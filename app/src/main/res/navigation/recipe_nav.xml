@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/recipe_nav"
+    app:startDestination="@id/categoryFragment">
+
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="eu.davidknotek.brecipe.repositories.CategoryFragment"
+        android:label="fragment_category"
+        tools:layout="@layout/fragment_category" >
+        <action
+            android:id="@+id/action_categoryFragment_to_addCategoryFragment"
+            app:destination="@id/addCategoryFragment" />
+        <action
+            android:id="@+id/action_categoryFragment_to_editCategoryFragment"
+            app:destination="@id/editCategoryFragment" />
+        <action
+            android:id="@+id/action_categoryFragment_to_listRecipesFragment"
+            app:destination="@id/listRecipesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCategoryFragment"
+        android:name="eu.davidknotek.brecipe.repositories.AddCategoryFragment"
+        android:label="fragment_add_category"
+        tools:layout="@layout/fragment_add_category" />
+    <fragment
+        android:id="@+id/editCategoryFragment"
+        android:name="eu.davidknotek.brecipe.repositories.EditCategoryFragment"
+        android:label="fragment_edit_category"
+        tools:layout="@layout/fragment_edit_category" />
+    <fragment
+        android:id="@+id/listRecipesFragment"
+        android:name="eu.davidknotek.brecipe.repositories.ListRecipesFragment"
+        android:label="fragment_list_recipes"
+        tools:layout="@layout/fragment_list_recipes" >
+        <action
+            android:id="@+id/action_listRecipesFragment_to_addRecipeFragment"
+            app:destination="@id/addRecipeFragment" />
+        <action
+            android:id="@+id/action_listRecipesFragment_to_editRecipeFragment"
+            app:destination="@id/editRecipeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addRecipeFragment"
+        android:name="eu.davidknotek.brecipe.repositories.AddRecipeFragment"
+        android:label="fragment_add_recipe"
+        tools:layout="@layout/fragment_add_recipe" />
+    <fragment
+        android:id="@+id/editRecipeFragment"
+        android:name="eu.davidknotek.brecipe.repositories.EditRecipeFragment"
+        android:label="fragment_edit_recipe"
+        tools:layout="@layout/fragment_edit_recipe" />
+</navigation>
