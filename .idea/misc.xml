@@ -3,13 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_add.xml" value="0.213" />
+        <entry key="app/src/main/res/drawable/ic_check.xml" value="0.213" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2375" />
         <entry key="app/src/main/res/layout/fragment_add_category.xml" value="0.2520833333333333" />
+        <entry key="app/src/main/res/layout/fragment_add_ingrediens.xml" value="0.2520833333333333" />
+        <entry key="app/src/main/res/layout/fragment_add_procedure.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/layout/fragment_add_recipe.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/layout/fragment_category.xml" value="0.2520833333333333" />
+        <entry key="app/src/main/res/layout/fragment_detail_recipe.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/layout/fragment_edit_category.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/layout/fragment_edit_recipe.xml" value="0.2520833333333333" />
+        <entry key="app/src/main/res/layout/fragment_first_page_edit.xml" value="0.29318734793187345" />
+        <entry key="app/src/main/res/layout/fragment_list_category.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_list_recipes.xml" value="0.2520833333333333" />
+        <entry key="app/src/main/res/layout/fragment_second_page_edit.xml" value="0.25104166666666666" />
+        <entry key="app/src/main/res/layout/fragment_third_page_edit.xml" value="0.25104166666666666" />
         <entry key="app/src/main/res/menu/category_list_menu.xml" value="0.2520833333333333" />
       </map>
     </option>

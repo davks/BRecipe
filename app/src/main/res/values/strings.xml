@@ -3,4 +3,19 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_category">Add category</string>
+    <string name="category_image">Category Image</string>
+    <string name="from_camera">From camera</string>
+    <string name="from_storage">From storage</string>
+    <string name="enter_category_name">Enter Category Name</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete_category">Delete Category</string>
+    <string name="settings">Settings</string>
+    <string name="enter_recipe_name">Enter Recipe Name</string>
+    <string name="enter_preparation">Enter Preparation</string>
+    <string name="enter_time_cooking">Enter Time Cooking</string>
+    <string name="enter_yield">Enter Yield</string>
+    <string name="enter_note">Enter Note</string>
+    <string name="add_ingredients">Add Ingredients</string>
+    <string name="add_procedure">Add Procedure</string>
 </resources>

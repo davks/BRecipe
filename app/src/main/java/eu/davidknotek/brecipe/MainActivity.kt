@@ -26,4 +26,8 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController)
         binding.toolbar.title = "Recipe"
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
 }

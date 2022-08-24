@@ -1,20 +1,20 @@
-package eu.davidknotek.brecipe.repositories
+package eu.davidknotek.brecipe.fragments.recipe
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import eu.davidknotek.brecipe.databinding.FragmentAddCategoryBinding
+import eu.davidknotek.brecipe.databinding.FragmentAddRecipeBinding
 
-class AddCategoryFragment : Fragment() {
-    private lateinit var binding: FragmentAddCategoryBinding
+class AddRecipeFragment : Fragment() {
+    private lateinit var binding: FragmentAddRecipeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentAddCategoryBinding.inflate(layoutInflater, container, false)
+        binding = FragmentAddRecipeBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 }
