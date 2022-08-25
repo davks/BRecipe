@@ -47,6 +47,46 @@ class AddRecipeFragment : Fragment() {
         binding.addNoteImageView.setOnClickListener {
             showNoteDialog()
         }
+
+        binding.starOneImageView.setOnClickListener {
+            setRating(1)
+        }
+        binding.starTwoImageView.setOnClickListener {
+            setRating(2)
+        }
+        binding.starThreeImageView.setOnClickListener {
+            setRating(3)
+        }
+        binding.starFourImageView.setOnClickListener {
+            setRating(4)
+        }
+        binding.starFiveImageView.setOnClickListener {
+            setRating(5)
+        }
+    }
+
+    private fun setRating(stars: Int) {
+        binding.starOneImageView.setImageResource(R.drawable.ic_star_border)
+        binding.starTwoImageView.setImageResource(R.drawable.ic_star_border)
+        binding.starThreeImageView.setImageResource(R.drawable.ic_star_border)
+        binding.starFourImageView.setImageResource(R.drawable.ic_star_border)
+        binding.starFiveImageView.setImageResource(R.drawable.ic_star_border)
+
+        if (stars >= 1) {
+            binding.starOneImageView.setImageResource(R.drawable.ic_star)
+        }
+        if (stars >= 2) {
+            binding.starTwoImageView.setImageResource(R.drawable.ic_star)
+        }
+        if (stars >= 3) {
+            binding.starThreeImageView.setImageResource(R.drawable.ic_star)
+        }
+        if (stars >= 4) {
+            binding.starFourImageView.setImageResource(R.drawable.ic_star)
+        }
+        if (stars == 5) {
+            binding.starFiveImageView.setImageResource(R.drawable.ic_star)
+        }
     }
 
     private fun showProcedureDialog() {
