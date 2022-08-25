@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue_super_light"
+    app:layoutDescription="@xml/fragment_add_recipe_scene"
     tools:context=".fragments.recipe.AddRecipeFragment">
 
     <ImageView
         android:id="@+id/recipeImageView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:src="@drawable/no_image_available"
         android:scaleType="centerCrop"
+        android:src="@drawable/no_image_available"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,31 +24,31 @@
         android:layout_height="30dp"
         android:layout_marginTop="160dp"
         android:layout_marginEnd="12dp"
+        android:contentDescription="@string/from_camera"
         android:src="@drawable/ic_camera"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/from_camera" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageFromStorageImageView"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="160dp"
-        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:contentDescription="@string/from_camera"
         android:src="@drawable/ic_storage"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/from_camera" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageFromCameraImageView"
+        app:layout_constraintEnd_toStartOf="@+id/imageFromCameraImageView"
+        app:layout_constraintTop_toTopOf="@+id/imageFromCameraImageView" />
 
     <LinearLayout
         android:id="@+id/nameLinearLayout"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipeImageView"
         app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recipeImageView"
         tools:ignore="MissingConstraints">
 
         <ImageView
@@ -62,9 +63,9 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@android:color/transparent"
-            android:padding="12dp"
             android:hint="@string/enter_recipe_name"
-            android:inputType="text" />
+            android:inputType="text"
+            android:padding="12dp" />
 
     </LinearLayout>
 
@@ -72,7 +73,7 @@
         android:id="@+id/preparationLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="4dp"
         android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -90,16 +91,16 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@android:color/transparent"
-            android:padding="12dp"
             android:hint="@string/enter_preparation"
-            android:inputType="number" />
+            android:inputType="number"
+            android:padding="12dp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/cookingLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="4dp"
         android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,16 +118,16 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@android:color/transparent"
-            android:padding="12dp"
             android:hint="@string/enter_time_cooking"
-            android:inputType="number" />
+            android:inputType="number"
+            android:padding="12dp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/yieldLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="4dp"
         android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -136,7 +137,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:padding="12dp"
-            android:src="@drawable/ic_yield"
+            android:src="@drawable/ic_restaurant"
             app:tint="@color/gray" />
 
         <EditText
@@ -144,16 +145,16 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@android:color/transparent"
-            android:padding="12dp"
             android:hint="@string/enter_yield"
-            android:inputType="number" />
+            android:inputType="number"
+            android:padding="12dp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ratingLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="4dp"
         android:background="@color/white"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -202,21 +203,154 @@
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/noteEditText"
+    <LinearLayout
+        android:id="@+id/noteLinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:inputType="textMultiLine"
-        android:padding="12dp"
-        android:gravity="start|top"
-        android:hint="@string/enter_note"
-        android:layout_marginTop="12dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="start|center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingLinearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/ratingLinearLayout">
 
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="12dp"
+            android:src="@drawable/ic_notes"
+            app:tint="@color/gray" />
 
+        <TextView
+            android:id="@+id/noteTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:layout_weight="2"
+            android:text="@string/notes_is_empty" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/addNoteImageView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="12dp"
+            android:src="@drawable/ic_more"
+            app:tint="@color/gray"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ingredientsLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@color/white"
+        android:gravity="start|center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/noteLinearLayout">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="12dp"
+            android:src="@drawable/ic_fastfood"
+            app:tint="@color/gray" />
+
+        <TextView
+            android:id="@+id/ingredientsTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:layout_weight="2"
+            android:text="@string/ingredients_is_empty" />
+
+        <ImageView
+            android:id="@+id/addIngredientsImageView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="12dp"
+            android:src="@drawable/ic_more"
+            app:tint="@color/gray"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/procedureLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@color/white"
+        android:gravity="start|center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ingredientsLinearLayout">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="12dp"
+            android:src="@drawable/ic_procedure"
+            app:tint="@color/gray" />
+
+        <TextView
+            android:id="@+id/procedureTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:layout_weight="2"
+            android:text="@string/procedure_is_empty" />
+
+        <ImageView
+            android:id="@+id/addProcedureImageView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="12dp"
+            android:src="@drawable/ic_more"
+            app:tint="@color/gray"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/categoryLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@color/white"
+        android:gravity="start|center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/procedureLinearLayout">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="12dp"
+            android:src="@drawable/ic_category"
+            app:tint="@color/gray" />
+
+        <TextView
+            android:id="@+id/categoryTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:layout_weight="2"
+            android:text="@string/select_category" />
+
+        <ImageView
+            android:id="@+id/addCategoryImageView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="12dp"
+            android:src="@drawable/ic_more"
+            app:tint="@color/gray"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

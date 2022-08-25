@@ -18,4 +18,9 @@
     <string name="enter_note">Enter Note</string>
     <string name="add_ingredients">Add Ingredients</string>
     <string name="add_procedure">Add Procedure</string>
+    <string name="notes_is_empty">Notes is empty</string>
+    <string name="ingredients_is_empty">Ingredients is empty</string>
+    <string name="select_category">Select category</string>
+    <string name="add_note">Add Note</string>
+    <string name="procedure_is_empty">Procedure is empty</string>
 </resources>

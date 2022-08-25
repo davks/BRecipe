@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.recipe.AddIngrediensFragment">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/headConstraintLayout"
@@ -20,22 +18,23 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12sp"
+            android:contentDescription="@string/cancel"
             android:src="@drawable/ic_close"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/white"
-            android:contentDescription="@string/cancel" />
+            app:tint="@color/white" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/add_ingredients"
-            android:textSize="24sp"
+            android:text="@string/add_note"
             android:textColor="@color/white"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/saveImageView"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/closeImageView"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,25 +43,24 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginEnd="12dp"
+            android:contentDescription="@string/save"
             android:src="@drawable/ic_check"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/white"
-            android:contentDescription="@string/save" />
+            app:tint="@color/white" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <EditText
-        android:id="@+id/ingredientsEditText"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:hint="@string/add_ingredients"
+        android:id="@+id/noteEditText"
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        android:hint="@string/add_note"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:background="@color/white"
         android:padding="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

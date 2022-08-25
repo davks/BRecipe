@@ -6,6 +6,9 @@
         <entry key="app/src/main/res/drawable/ic_add.xml" value="0.213" />
         <entry key="app/src/main/res/drawable/ic_check.xml" value="0.213" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2375" />
+        <entry key="app/src/main/res/layout/dialog_add_ingredients.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/dialog_add_note.xml" value="0.2520833333333333" />
+        <entry key="app/src/main/res/layout/dialog_add_procedure.xml" value="0.25104166666666666" />
         <entry key="app/src/main/res/layout/fragment_add_category.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/layout/fragment_add_ingrediens.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/layout/fragment_add_procedure.xml" value="0.2520833333333333" />

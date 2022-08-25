@@ -39,9 +39,6 @@
             android:id="@+id/action_listRecipesFragment_to_addRecipeFragment"
             app:destination="@id/addRecipeFragment" />
         <action
-            android:id="@+id/action_listRecipesFragment_to_editRecipeFragment"
-            app:destination="@id/editRecipeFragment" />
-        <action
             android:id="@+id/action_listRecipesFragment_to_detailRecipeFragment"
             app:destination="@id/detailRecipeFragment" />
         <action
@@ -60,12 +57,6 @@
             app:destination="@id/listRecipesFragment"
             app:popUpTo="@id/listRecipesFragment"
             app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_addRecipeFragment_to_addProcedureFragment"
-            app:destination="@id/addProcedureFragment" />
-        <action
-            android:id="@+id/action_addRecipeFragment_to_addIngrediensFragment"
-            app:destination="@id/addIngrediensFragment" />
     </fragment>
     <fragment
         android:id="@+id/editRecipeFragment"
@@ -88,15 +79,8 @@
             app:destination="@id/listRecipesFragment"
             app:popUpTo="@id/listRecipesFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_detailRecipeFragment_to_editRecipeFragment"
+            app:destination="@id/editRecipeFragment" />
     </fragment>
-    <dialog
-        android:id="@+id/addProcedureFragment"
-        android:name="eu.davidknotek.brecipe.fragments.recipe.AddProcedureFragment"
-        android:label="Add Procedure"
-        tools:layout="@layout/fragment_add_procedure" />
-    <dialog
-        android:id="@+id/addIngrediensFragment"
-        android:name="eu.davidknotek.brecipe.fragments.recipe.AddIngrediensFragment"
-        android:label="fragment_add_ingrediens"
-        tools:layout="@layout/fragment_add_ingrediens" />
 </navigation>
