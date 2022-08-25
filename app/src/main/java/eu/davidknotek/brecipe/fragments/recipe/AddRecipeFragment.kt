@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.fragment.findNavController
+import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.databinding.DialogAddIngredientsBinding
 import eu.davidknotek.brecipe.databinding.DialogAddNoteBinding
 import eu.davidknotek.brecipe.databinding.DialogAddProcedureBinding
@@ -34,7 +36,8 @@ class AddRecipeFragment : Fragment() {
 
     private fun setListeners() {
         binding.addIngredientsImageView.setOnClickListener {
-            showIngredientsDialog()
+//            showIngredientsDialog()
+            findNavController().navigate(R.id.action_addRecipeFragment_to_addIngredientsDialogFragment)
         }
 
         binding.addProcedureImageView.setOnClickListener {

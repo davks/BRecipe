@@ -57,6 +57,18 @@
             app:destination="@id/listRecipesFragment"
             app:popUpTo="@id/listRecipesFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_addRecipeFragment_to_addNoteDialogFragment"
+            app:destination="@id/addNoteDialogFragment" />
+        <action
+            android:id="@+id/action_addRecipeFragment_to_addProcedureDialogFragment"
+            app:destination="@id/addProcedureDialogFragment" />
+        <action
+            android:id="@+id/action_addRecipeFragment_to_addIngredientsDialogFragment"
+            app:destination="@id/addIngredientsDialogFragment" />
+        <action
+            android:id="@+id/action_addRecipeFragment_to_chooseCategoryDialogFragment"
+            app:destination="@id/chooseCategoryDialogFragment" />
     </fragment>
     <fragment
         android:id="@+id/editRecipeFragment"
@@ -83,4 +95,24 @@
             android:id="@+id/action_detailRecipeFragment_to_editRecipeFragment"
             app:destination="@id/editRecipeFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/addNoteDialogFragment"
+        android:name="eu.davidknotek.brecipe.dialogs.AddNoteDialogFragment"
+        android:label="@string/add_note"
+        tools:layout="@layout/fragment_add_note_dialog" />
+    <dialog
+        android:id="@+id/addProcedureDialogFragment"
+        android:name="eu.davidknotek.brecipe.dialogs.AddProcedureDialogFragment"
+        android:label="@string/add_procedure"
+        tools:layout="@layout/fragment_add_procedure_dialog"/>
+    <dialog
+        android:id="@+id/addIngredientsDialogFragment"
+        android:name="eu.davidknotek.brecipe.dialogs.AddIngredientsDialogFragment"
+        android:label="@string/add_ingredients"
+        tools:layout="@layout/fragment_add_ingredients_dialog" />
+    <dialog
+        android:id="@+id/chooseCategoryDialogFragment"
+        android:name="eu.davidknotek.brecipe.dialogs.ChooseCategoryDialogFragment"
+        android:label="@string/add_category"
+        tools:layout="@layout/fragment_choose_category_dialog" />
 </navigation>
