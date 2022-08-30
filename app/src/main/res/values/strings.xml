@@ -23,4 +23,7 @@
     <string name="select_category">Select category</string>
     <string name="add_note">Add Note</string>
     <string name="procedure_is_empty">Procedure is empty</string>
+    <string name="fill_in_category_name">Please fill in the category name</string>
+    <string name="edit_categories">Edit Categories</string>
+    <string name="stop_edit_categories">Stop edit categories</string>
 </resources>
