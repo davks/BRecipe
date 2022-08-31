@@ -16,17 +16,12 @@ import kotlinx.coroutines.launch
 class CategoryViewModel(application: Application): AndroidViewModel(application) {
     private val CategoryRepository: CategoryRepository
 
-    val isEmptyDatabase = MutableLiveData<Boolean>(false)
     val allCategories: LiveData<List<Category>>
         get() = CategoryRepository.allCategories
 
     init {
         val recipeDao = RecipeDatabase.getInstance(application).recipeDao()
         CategoryRepository = CategoryRepositoryImpl(recipeDao)
-    }
-
-    fun checkIfDatabaseIsEmpty(categories: List<Category>) {
-        isEmptyDatabase.value = categories.isEmpty()
     }
 
     fun insertCategory(category: Category) {

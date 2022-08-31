@@ -4,8 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:minHeight="350dp"
+    android:minHeight="330dp"
     tools:context=".fragments.category.AddCategoryFragment">
+
+    <TextView
+        android:id="@+id/topBox"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/blue"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <ImageView
         android:id="@+id/categoryImageView"
@@ -16,31 +25,7 @@
         android:src="@drawable/no_image_available"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/cameraButton"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="@color/blue"
-        android:textColor="@color/white"
-        android:text="@string/from_camera"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categoryNameEditText" />
-
-    <Button
-        android:id="@+id/storageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:text="@string/from_storage"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="12dp"
-        android:backgroundTint="@color/blue"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categoryNameEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/topBox" />
 
     <EditText
         android:id="@+id/categoryNameEditText"
@@ -69,5 +54,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:contentDescription="@string/cancel" />
+
+    <ImageView
+        android:id="@+id/cameraButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:contentDescription="@string/from_camera"
+        android:src="@drawable/ic_camera"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintEnd_toStartOf="@+id/saveImageView"
+        app:layout_constraintBottom_toBottomOf="@+id/saveImageView"
+        app:layout_constraintTop_toTopOf="@+id/saveImageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

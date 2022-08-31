@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import eu.davidknotek.brecipe.R
@@ -27,7 +28,11 @@ class ListCategoryAdapter: RecyclerView.Adapter<ListCategoryAdapter.MyViewHolder
         val currentCategory = categories[position]
 
         holder.binding.categoryNameTextView.text = currentCategory.name
-        //holder.binding.categoryImageView.setImageBitmap()
+        if (currentCategory.imageUrl == "") {
+            holder.binding.categoryImageView.setImageResource(R.drawable.no_image_available_small)
+        } else {
+            holder.binding.categoryImageView.setImageURI(currentCategory.imageUrl.toUri())
+        }
 
         // Show detail
         holder.binding.rowCategory.setOnClickListener {

@@ -18,6 +18,9 @@ abstract class SwipeGesture(val context: Context): ItemTouchHelper.SimpleCallbac
         return false
     }
 
+    /**
+     * We want to show background of recyclerview items when swipe
+     */
     override fun onChildDraw(
         c: Canvas,
         recyclerView: RecyclerView,
