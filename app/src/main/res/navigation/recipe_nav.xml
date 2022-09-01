@@ -18,7 +18,11 @@
             app:destination="@id/editCategoryFragment" />
         <action
             android:id="@+id/action_listCategoryFragment_to_listRecipesFragment"
-            app:destination="@id/listRecipesFragment" />
+            app:destination="@id/listRecipesFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <dialog
         android:id="@+id/addCategoryFragment"
@@ -37,13 +41,25 @@
         tools:layout="@layout/fragment_list_recipes">
         <action
             android:id="@+id/action_listRecipesFragment_to_addRecipeFragment"
-            app:destination="@id/addRecipeFragment" />
+            app:destination="@id/addRecipeFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_listRecipesFragment_to_detailRecipeFragment"
-            app:destination="@id/detailRecipeFragment" />
+            app:destination="@id/detailRecipeFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_listRecipesFragment_to_listCategoryFragment"
             app:destination="@id/listCategoryFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/from_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"
             app:popUpTo="@id/listCategoryFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -55,6 +71,10 @@
         <action
             android:id="@+id/action_addRecipeFragment_to_listRecipesFragment"
             app:destination="@id/listRecipesFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"
             app:popUpTo="@id/listRecipesFragment"
             app:popUpToInclusive="true" />
         <action
@@ -89,6 +109,10 @@
         <action
             android:id="@+id/action_detailRecipeFragment_to_listRecipesFragment"
             app:destination="@id/listRecipesFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"
             app:popUpTo="@id/listRecipesFragment"
             app:popUpToInclusive="true" />
         <action

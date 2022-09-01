@@ -7,12 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.net.toUri
+import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.Category
 import eu.davidknotek.brecipe.databinding.RowCategoryBinding
 import eu.davidknotek.brecipe.fragments.category.EditCategoryFragment
+import eu.davidknotek.brecipe.fragments.recipe.ListRecipesFragment
 
 class ListCategoryAdapter: RecyclerView.Adapter<ListCategoryAdapter.MyViewHolder>() {
     var categories = emptyList<Category>()
@@ -24,7 +26,6 @@ class ListCategoryAdapter: RecyclerView.Adapter<ListCategoryAdapter.MyViewHolder
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val context = holder.itemView.context
         val currentCategory = categories[position]
 
         holder.binding.categoryNameTextView.text = currentCategory.name
@@ -34,9 +35,10 @@ class ListCategoryAdapter: RecyclerView.Adapter<ListCategoryAdapter.MyViewHolder
             holder.binding.categoryImageView.setImageURI(currentCategory.imageUrl.toUri())
         }
 
-        // Show detail
+        // Show recipes from selected category
         holder.binding.rowCategory.setOnClickListener {
-            Toast.makeText(context, "Showing a detail", Toast.LENGTH_SHORT).show()
+            val bundle = bundleOf(ListRecipesFragment.CATEGORY to currentCategory)
+            holder.itemView.findNavController().navigate(R.id.action_listCategoryFragment_to_listRecipesFragment, bundle)
         }
     }
 

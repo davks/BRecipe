@@ -17,8 +17,8 @@ import com.google.android.material.snackbar.Snackbar
 import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.Category
 import eu.davidknotek.brecipe.databinding.FragmentListCategoryBinding
+import eu.davidknotek.brecipe.util.SwipeGesture
 import eu.davidknotek.brecipe.fragments.category.adapters.ListCategoryAdapter
-import eu.davidknotek.brecipe.util.CameraAndStoragePermission
 import eu.davidknotek.brecipe.viewmodels.CategoryViewModel
 import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 
@@ -107,7 +107,7 @@ class ListCategoryFragment : Fragment(), MenuProvider {
                     ItemTouchHelper.LEFT -> {
                         categoryViewModel.deleteCategory(category)
                         listCategoryAdapter.notifyItemRemoved(position)
-                        restoreDeletedData(viewHolder.itemView, category, position)
+                        restoreDeletedData(viewHolder.itemView, category)
                     }
                     ItemTouchHelper.RIGHT -> {
                         val bundle = bundleOf(EditCategoryFragment.CATEGORY to category)
@@ -124,7 +124,7 @@ class ListCategoryFragment : Fragment(), MenuProvider {
     /**
      * Show snackbar to restore deleted category.
      */
-    private fun restoreDeletedData(view: View, deletedItem: Category, position: Int) {
+    private fun restoreDeletedData(view: View, deletedItem: Category) {
         val snackbar = Snackbar.make(
             view, "Deleted: ${deletedItem.name}",
             Snackbar.LENGTH_LONG

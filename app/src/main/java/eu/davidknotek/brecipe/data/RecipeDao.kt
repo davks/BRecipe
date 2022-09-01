@@ -19,7 +19,7 @@ interface RecipeDao {
     suspend fun deleteRecipe(recipe: Recipe)
 
     @Query("SELECT * FROM recipe ORDER BY name ASC")
-    fun getRecipes(): LiveData<List<Recipe>>
+    fun getRecipes(): LiveData<CategoryWithRecipes>
 
     @Transaction
     @Query("SELECT * FROM recipe WHERE id_category = :idCategory")

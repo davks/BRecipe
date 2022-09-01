@@ -1,4 +1,4 @@
-package eu.davidknotek.brecipe.fragments.category
+package eu.davidknotek.brecipe.util
 
 import android.content.Context
 import android.graphics.Canvas
