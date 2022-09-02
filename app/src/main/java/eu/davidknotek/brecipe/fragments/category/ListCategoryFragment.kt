@@ -38,7 +38,7 @@ class ListCategoryFragment : Fragment(), MenuProvider {
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
-        // CategoryAdapter
+        // RecyclerView
         binding.categoriesRecyclerView.adapter = listCategoryAdapter
         binding.categoriesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         swipeToGesture(binding.categoriesRecyclerView)

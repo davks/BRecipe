@@ -9,7 +9,7 @@ class RecipeRepositoryImpl(private val recipeDao: RecipeDao): RecipeRepository {
     override val allRecipes: LiveData<CategoryWithRecipes>
         get() = recipeDao.getRecipes()
 
-    override fun getRecipes(idCategory: Int): LiveData<CategoryWithRecipes> {
+    override fun getRecipes(idCategory: Int): LiveData<List<Recipe>> {
         return recipeDao.getRecipes(idCategory)
     }
 

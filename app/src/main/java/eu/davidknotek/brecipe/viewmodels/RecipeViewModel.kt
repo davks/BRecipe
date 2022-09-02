@@ -41,6 +41,6 @@ class RecipeViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
-    fun getRecipes(idCategory: Int): LiveData<CategoryWithRecipes> =
+    fun getRecipes(idCategory: Int): LiveData<List<Recipe>> =
         recipeRepository.getRecipes(idCategory)
 }

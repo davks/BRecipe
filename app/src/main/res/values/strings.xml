@@ -27,4 +27,5 @@
     <string name="edit_categories">Edit Categories</string>
     <string name="stop_edit_categories">Stop edit categories</string>
     <string name="fill_in_all">Fill in all the necessary information</string>
+    <string name="time">Time:</string>
 </resources>

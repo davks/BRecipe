@@ -18,12 +18,13 @@ interface RecipeDao {
     @Delete
     suspend fun deleteRecipe(recipe: Recipe)
 
+    @Transaction
     @Query("SELECT * FROM recipe ORDER BY name ASC")
     fun getRecipes(): LiveData<CategoryWithRecipes>
 
-    @Transaction
+    //@Transaction
     @Query("SELECT * FROM recipe WHERE id_category = :idCategory")
-    fun getRecipes(idCategory: Int): LiveData<CategoryWithRecipes>
+    fun getRecipes(idCategory: Int): LiveData<List<Recipe>>
 
     /* Categories */
     @Insert
