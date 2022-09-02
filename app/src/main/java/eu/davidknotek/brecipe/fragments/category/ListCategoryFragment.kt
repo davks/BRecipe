@@ -110,7 +110,7 @@ class ListCategoryFragment : Fragment(), MenuProvider {
                         restoreDeletedData(viewHolder.itemView, category)
                     }
                     ItemTouchHelper.RIGHT -> {
-                        val bundle = bundleOf(EditCategoryFragment.CATEGORY to category)
+                        val bundle = bundleOf(SharedViewModel.CATEGORY to category)
                         findNavController().navigate(R.id.action_listCategoryFragment_to_editCategoryFragment, bundle)
                     }
                 }

@@ -6,11 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
 import eu.davidknotek.brecipe.databinding.FragmentAddIngredientsDialogBinding
+import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 
 
 class AddIngredientsDialogFragment : DialogFragment() {
     private lateinit var binding: FragmentAddIngredientsDialogBinding
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,6 +26,7 @@ class AddIngredientsDialogFragment : DialogFragment() {
 
     override fun onResume() {
         super.onResume()
+        binding.ingredientsEditText.setText(sharedViewModel.recipeIngredients.value)
         setDialogDimension()
     }
 
@@ -40,6 +44,7 @@ class AddIngredientsDialogFragment : DialogFragment() {
         }
 
         binding.saveImageView.setOnClickListener {
+            sharedViewModel.recipeIngredients.value = binding.ingredientsEditText.text.toString()
             dismiss()
         }
     }

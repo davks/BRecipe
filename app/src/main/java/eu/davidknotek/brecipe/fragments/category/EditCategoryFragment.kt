@@ -24,10 +24,6 @@ class EditCategoryFragment : BottomSheetDialogFragment() {
     private var currentCategory: Category? = null
     private lateinit var cameraAndStoragePermission: CameraAndStoragePermission
 
-    companion object {
-        const val CATEGORY = "category"
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,7 +31,7 @@ class EditCategoryFragment : BottomSheetDialogFragment() {
         binding = FragmentEditCategoryBinding.inflate(layoutInflater, container, false)
         isCancelable = false
         cameraAndStoragePermission = CameraAndStoragePermission(this)
-        currentCategory = requireArguments().getParcelable(CATEGORY)
+        currentCategory = requireArguments().getParcelable(SharedViewModel.CATEGORY)
         return binding.root
     }
 

@@ -11,35 +11,35 @@ data class Recipe(
     val id: Int,
 
     @ColumnInfo(name = "id_category")
-    val idCategory: Int,
+    var idCategory: Int,
 
     @ColumnInfo(name = "name")
-    val name: String,
+    var name: String,
 
     @ColumnInfo(name = "preparation")
-    val preparation: Int,
+    var preparation: Int,
 
     @ColumnInfo(name = "cooking")
-    val cooking: Int,
+    var cooking: Int,
 
     @ColumnInfo(name = "yield")
-    val yield: Int,
+    var yield: Int,
 
     @ColumnInfo(name = "heart")
-    val heart: Boolean,
+    var heart: Boolean,
 
     @ColumnInfo(name = "rating")
-    val rating: Int,
+    var rating: Int,
 
     @ColumnInfo(name = "note")
-    val note: String,
+    var note: String,
 
     @ColumnInfo(name = "ingredients")
-    val ingredients: String,
+    var ingredients: String,
 
     @ColumnInfo(name = "procedure")
-    val procedure: String,
+    var procedure: String,
 
     @ColumnInfo(name = "image_url")
-    val imageUrl: String
+    var imageUrl: String
 )

@@ -5,25 +5,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.Category
 import eu.davidknotek.brecipe.databinding.FragmentListRecipesBinding
+import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 
 class ListRecipesFragment : Fragment() {
     private lateinit var binding: FragmentListRecipesBinding
     private var currentCategory: Category? = null
-
-    companion object {
-        const val CATEGORY = "category"
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentListRecipesBinding.inflate(layoutInflater, container, false)
-        currentCategory = arguments?.getParcelable(CATEGORY)
+        currentCategory = arguments?.getParcelable(SharedViewModel.CATEGORY)
         (activity as androidx.appcompat.app.AppCompatActivity).supportActionBar?.title = "Recipes: ${currentCategory?.name}"
         return binding.root
     }
@@ -36,7 +34,8 @@ class ListRecipesFragment : Fragment() {
     private fun setListeners() {
         // Add new recipe
         binding.addRecipeActionButton.setOnClickListener {
-            findNavController().navigate(R.id.action_listRecipesFragment_to_addRecipeFragment)
+            val bundle = bundleOf(SharedViewModel.CATEGORY to currentCategory)
+            findNavController().navigate(R.id.action_listRecipesFragment_to_addRecipeFragment, bundle)
         }
     }
 
