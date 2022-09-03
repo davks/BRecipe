@@ -17,11 +17,17 @@ interface RecipeDao {
     @Delete
     suspend fun deleteRecipe(recipe: Recipe)
 
+    @Query("SELECT * FROM recipes ORDER BY name ASC")
+    fun getRecipes(): LiveData<List<Recipe>>
+
     @Query("SELECT * FROM recipes WHERE id_category = :idCategory")
     fun getRecipes(idCategory: Int): LiveData<List<Recipe>>
 
     @Query("SELECT * FROM recipes WHERE heart = 1")
     fun getFavoriteRecipes(): LiveData<List<Recipe>>
+
+    @Query("SELECT * FROM recipes WHERE name LIKE :search")
+    fun searchRecipes(search: String): LiveData<List<Recipe>>
 
     /* Categories */
     @Insert

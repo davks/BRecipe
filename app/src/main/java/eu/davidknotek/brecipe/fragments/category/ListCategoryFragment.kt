@@ -47,7 +47,6 @@ class ListCategoryFragment : Fragment(), MenuProvider {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
@@ -95,8 +94,16 @@ class ListCategoryFragment : Fragment(), MenuProvider {
                 showFavorite()
                 true
             }
+            R.id.searchRecipe -> {
+                searchRecipe()
+                true
+            }
             else -> false
         }
+    }
+
+    private fun searchRecipe() {
+        findNavController().navigate(R.id.action_listCategoryFragment_to_searchRecipesFragment)
     }
 
     private fun showFavorite() {

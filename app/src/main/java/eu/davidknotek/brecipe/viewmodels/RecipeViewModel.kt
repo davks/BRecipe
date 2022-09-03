@@ -14,9 +14,12 @@ import kotlinx.coroutines.launch
 class RecipeViewModel(application: Application): AndroidViewModel(application) {
     private val recipeRepository: RecipeRepository
 
+    val allRecipes: LiveData<List<Recipe>>
+
     init {
         val recipeDao = RecipeDatabase.getInstance(application).recipeDao()
         recipeRepository = RecipeRepositoryImpl(recipeDao)
+        allRecipes = recipeRepository.allRecipes
     }
 
     fun insertRecipe(recipe: Recipe) {
@@ -42,4 +45,7 @@ class RecipeViewModel(application: Application): AndroidViewModel(application) {
 
     fun getFavoriteRecipes(): LiveData<List<Recipe>> =
         recipeRepository.getFavoriteRecipes()
+
+    fun searchRecipes(query: String): LiveData<List<Recipe>> =
+        recipeRepository.searchRecipes(query)
 }

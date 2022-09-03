@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import eu.davidknotek.brecipe.R
-import eu.davidknotek.brecipe.data.models.Category
 
 class SharedViewModel(application: Application) : AndroidViewModel(application) {
     private val app = application
@@ -19,8 +18,8 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
         const val CATEGORY = "category"
     }
 
-    fun checkIfDatabaseIsEmpty(categories: List<Category>) {
-        isEmptyDatabase.value = categories.isEmpty()
+    fun <T> checkIfDatabaseIsEmpty(list: List<T>) {
+        isEmptyDatabase.value = list.isEmpty()
     }
 
     fun getIngredientsMessage(ingredients: String): String? {

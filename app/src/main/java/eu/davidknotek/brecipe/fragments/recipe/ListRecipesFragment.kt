@@ -44,10 +44,9 @@ class ListRecipesFragment : Fragment() {
     }
 
     private fun showByFavorites() {
-        // Don't want to add new recipe
-        binding.addRecipeActionButton.visibility = View.GONE
-
+        binding.addRecipeActionButton.visibility = View.GONE // don't want to add new recipe
         (activity as androidx.appcompat.app.AppCompatActivity).supportActionBar?.title = getString(R.string.favorites)
+
         searchFavoriteRecipes()
     }
 

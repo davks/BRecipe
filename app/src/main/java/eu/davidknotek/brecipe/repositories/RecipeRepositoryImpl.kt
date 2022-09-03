@@ -5,6 +5,8 @@ import eu.davidknotek.brecipe.data.RecipeDao
 import eu.davidknotek.brecipe.data.models.Recipe
 
 class RecipeRepositoryImpl(private val recipeDao: RecipeDao): RecipeRepository {
+    override val allRecipes: LiveData<List<Recipe>>
+        get() = recipeDao.getRecipes()
 
     override fun getRecipes(idCategory: Int): LiveData<List<Recipe>> {
         return recipeDao.getRecipes(idCategory)
@@ -12,6 +14,10 @@ class RecipeRepositoryImpl(private val recipeDao: RecipeDao): RecipeRepository {
 
     override fun getFavoriteRecipes(): LiveData<List<Recipe>> {
         return recipeDao.getFavoriteRecipes()
+    }
+
+    override fun searchRecipes(query: String): LiveData<List<Recipe>> {
+        return recipeDao.searchRecipes(query)
     }
 
     override suspend fun insertRecipe(recipe: Recipe) {

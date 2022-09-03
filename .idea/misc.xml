@@ -30,6 +30,7 @@
         <entry key="app/src/main/res/layout/fragment_first_page_edit.xml" value="0.29318734793187345" />
         <entry key="app/src/main/res/layout/fragment_list_category.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_list_recipes.xml" value="0.2520833333333333" />
+        <entry key="app/src/main/res/layout/fragment_search_recipes.xml" value="0.24895833333333334" />
         <entry key="app/src/main/res/layout/fragment_second_page_edit.xml" value="0.25104166666666666" />
         <entry key="app/src/main/res/layout/fragment_third_page_edit.xml" value="0.25104166666666666" />
         <entry key="app/src/main/res/layout/row_category.xml" value="0.24791666666666667" />
@@ -38,6 +39,7 @@
         <entry key="app/src/main/res/layout/row_recype.xml" value="0.24895833333333334" />
         <entry key="app/src/main/res/menu/category_list_menu.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/menu/recipe_add_menu.xml" value="0.24895833333333334" />
+        <entry key="app/src/main/res/menu/search_recipes_menu.xml" value="0.24791666666666667" />
       </map>
     </option>
   </component>

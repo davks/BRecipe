@@ -23,6 +23,13 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_listCategoryFragment_to_searchRecipesFragment"
+            app:destination="@id/searchRecipesFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <dialog
         android:id="@+id/addCategoryFragment"
@@ -139,4 +146,9 @@
         android:name="eu.davidknotek.brecipe.dialogs.ChooseCategoryDialogFragment"
         android:label="@string/add_category"
         tools:layout="@layout/fragment_choose_category_dialog" />
+    <fragment
+        android:id="@+id/searchRecipesFragment"
+        android:name="eu.davidknotek.brecipe.fragments.recipe.SearchRecipesFragment"
+        android:label="Search"
+        tools:layout="@layout/fragment_search_recipes" />
 </navigation>
