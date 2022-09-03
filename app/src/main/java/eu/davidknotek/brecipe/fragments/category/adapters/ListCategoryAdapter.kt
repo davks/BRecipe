@@ -15,6 +15,7 @@ import eu.davidknotek.brecipe.data.models.Category
 import eu.davidknotek.brecipe.databinding.RowCategoryBinding
 import eu.davidknotek.brecipe.fragments.category.EditCategoryFragment
 import eu.davidknotek.brecipe.fragments.recipe.ListRecipesFragment
+import eu.davidknotek.brecipe.fragments.recipe.ShowRecipesBy
 import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 
 class ListCategoryAdapter: RecyclerView.Adapter<ListCategoryAdapter.MyViewHolder>() {
@@ -38,7 +39,7 @@ class ListCategoryAdapter: RecyclerView.Adapter<ListCategoryAdapter.MyViewHolder
 
         // Show recipes from selected category
         holder.binding.rowCategory.setOnClickListener {
-            val bundle = bundleOf(SharedViewModel.CATEGORY to currentCategory)
+            val bundle = bundleOf(SharedViewModel.CATEGORY to currentCategory, SharedViewModel.SHOW_RECIPES_BY to ShowRecipesBy.CATEGORY)
             holder.itemView.findNavController().navigate(R.id.action_listCategoryFragment_to_listRecipesFragment, bundle)
         }
     }

@@ -3,7 +3,6 @@ package eu.davidknotek.brecipe.data
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import eu.davidknotek.brecipe.data.models.Category
-import eu.davidknotek.brecipe.data.models.CategoryWithRecipes
 import eu.davidknotek.brecipe.data.models.Recipe
 
 @Dao
@@ -18,13 +17,11 @@ interface RecipeDao {
     @Delete
     suspend fun deleteRecipe(recipe: Recipe)
 
-    @Transaction
-    @Query("SELECT * FROM recipe ORDER BY name ASC")
-    fun getRecipes(): LiveData<CategoryWithRecipes>
-
-    //@Transaction
-    @Query("SELECT * FROM recipe WHERE id_category = :idCategory")
+    @Query("SELECT * FROM recipes WHERE id_category = :idCategory")
     fun getRecipes(idCategory: Int): LiveData<List<Recipe>>
+
+    @Query("SELECT * FROM recipes WHERE heart = 1")
+    fun getFavoriteRecipes(): LiveData<List<Recipe>>
 
     /* Categories */
     @Insert
@@ -36,6 +33,6 @@ interface RecipeDao {
     @Delete
     suspend fun deleteCategory(category: Category)
 
-    @Query("SELECT * FROM category ORDER BY name ASC")
+    @Query("SELECT * FROM categories ORDER BY name ASC")
     fun getAllCategories(): LiveData<List<Category>>
 }

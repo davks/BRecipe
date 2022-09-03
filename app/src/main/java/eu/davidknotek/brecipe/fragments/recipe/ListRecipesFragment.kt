@@ -1,8 +1,6 @@
 package eu.davidknotek.brecipe.fragments.recipe
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +9,6 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.Category
 import eu.davidknotek.brecipe.databinding.FragmentListRecipesBinding
@@ -22,7 +19,8 @@ import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 class ListRecipesFragment : Fragment() {
     private lateinit var binding: FragmentListRecipesBinding
     private val recipeViewModel: RecipeViewModel by viewModels()
-    private val listRecipeAdapter: ListRecipeAdapter by lazy { ListRecipeAdapter() }
+    private val listRecipeAdapter: ListRecipeAdapter by lazy { ListRecipeAdapter(recipeViewModel) }
+    private var showRecipesBy: ShowRecipesBy = ShowRecipesBy.CATEGORY
     private var currentCategory: Category? = null
 
     override fun onCreateView(
@@ -30,27 +28,36 @@ class ListRecipesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentListRecipesBinding.inflate(layoutInflater, container, false)
-        currentCategory = arguments?.getParcelable(SharedViewModel.CATEGORY)
 
         // RecyclerView
         binding.recipesRecyclerView.adapter = listRecipeAdapter
         binding.recipesRecyclerView.layoutManager = GridLayoutManager(requireActivity(), 2)
-//        binding.recipesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        showRecipesBy = arguments?.get(SharedViewModel.SHOW_RECIPES_BY) as ShowRecipesBy
+
+        when (showRecipesBy) {
+            ShowRecipesBy.CATEGORY -> showByCategory()
+            ShowRecipesBy.FAVORITES -> showByFavorites()
+        }
 
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private fun showByFavorites() {
+        // Don't want to add new recipe
+        binding.addRecipeActionButton.visibility = View.GONE
+
+        (activity as androidx.appcompat.app.AppCompatActivity).supportActionBar?.title = getString(R.string.favorites)
+        searchFavoriteRecipes()
+    }
+
+    private fun showByCategory() {
+        currentCategory = arguments?.getParcelable(SharedViewModel.CATEGORY)
         (activity as androidx.appcompat.app.AppCompatActivity).supportActionBar?.title = "${currentCategory?.name}"
 
         setListeners()
         searchRecipes(currentCategory?.id!!)
-
-        val aaa = recipeViewModel.allRecipes.value
-        //Log.d(TAG, "onViewCreated: ${aaa?.recipes?.size}")
     }
-
 
     private fun setListeners() {
         // Add new recipe
@@ -62,17 +69,16 @@ class ListRecipesFragment : Fragment() {
 
     private fun searchRecipes(idCategory: Int) {
         recipeViewModel.getRecipes(idCategory).observe(viewLifecycleOwner) { list ->
-            Log.d(TAG, "setObservers: ")
             list?.let {
                 listRecipeAdapter.addRecipes(it)
             }
-
         }
-        //recipeViewModel.allRecipes.observe(viewLifecycleOwner) { list ->
-            //listRecipeAdapter.addRecipes()
-            //Log.d(TAG, "searchRecipes: ${list.recipes.size}")
-        //}
     }
 
+    private fun searchFavoriteRecipes() {
+        recipeViewModel.getFavoriteRecipes().observe(viewLifecycleOwner) { recipes ->
+            listRecipeAdapter.addRecipes(recipes)
+        }
+    }
 
 }

@@ -4,12 +4,14 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.net.toUri
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.Recipe
 import eu.davidknotek.brecipe.databinding.RowRecipeBinding
+import eu.davidknotek.brecipe.viewmodels.RecipeViewModel
 
-class ListRecipeAdapter: RecyclerView.Adapter<ListRecipeAdapter.MyViewHolder>() {
+class ListRecipeAdapter(private val recipeViewModel: RecipeViewModel): RecyclerView.Adapter<ListRecipeAdapter.MyViewHolder>() {
     private var recipes = emptyList<Recipe>()
 
     class MyViewHolder(val binding: RowRecipeBinding): RecyclerView.ViewHolder(binding.root)
@@ -28,6 +30,23 @@ class ListRecipeAdapter: RecyclerView.Adapter<ListRecipeAdapter.MyViewHolder>() 
             holder.binding.recipeImageView.setImageResource(R.drawable.no_image_available_small)
         } else {
             holder.binding.recipeImageView.setImageURI(currentRecipe.imageUrl.toUri())
+        }
+
+        if (currentRecipe.heart) {
+            holder.binding.favoriteImageView.setImageResource(R.drawable.ic_favorite)
+        } else {
+            holder.binding.favoriteImageView.setImageResource(R.drawable.ic_favorite_border)
+        }
+
+        holder.binding.favoriteImageView.setOnClickListener {
+            if (currentRecipe.heart) {
+                holder.binding.favoriteImageView.setImageResource(R.drawable.ic_favorite_border)
+                currentRecipe.heart = false
+            } else {
+                holder.binding.favoriteImageView.setImageResource(R.drawable.ic_favorite)
+                currentRecipe.heart = true
+            }
+            recipeViewModel.updateRecipe(currentRecipe)
         }
     }
 

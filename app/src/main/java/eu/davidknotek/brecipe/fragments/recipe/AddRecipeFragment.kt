@@ -14,9 +14,9 @@ import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.Category
 import eu.davidknotek.brecipe.data.models.Recipe
 import eu.davidknotek.brecipe.databinding.FragmentAddRecipeBinding
+import eu.davidknotek.brecipe.util.CameraAndStoragePermission
 import eu.davidknotek.brecipe.util.strToInt
 import eu.davidknotek.brecipe.util.verifyRecipe
-import eu.davidknotek.brecipe.viewmodels.CategoryViewModel
 import eu.davidknotek.brecipe.viewmodels.RecipeViewModel
 import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 
@@ -24,6 +24,7 @@ class AddRecipeFragment : Fragment(), MenuProvider {
     private lateinit var binding: FragmentAddRecipeBinding
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private val recipeViewModel: RecipeViewModel by viewModels()
+    private lateinit var cameraAndStoragePermission: CameraAndStoragePermission
     private var category: Category? = null
     private lateinit var recipe: Recipe
 
@@ -34,6 +35,7 @@ class AddRecipeFragment : Fragment(), MenuProvider {
         binding = FragmentAddRecipeBinding.inflate(layoutInflater, container, false)
         category = arguments?.getParcelable(SharedViewModel.CATEGORY)
         recipe = Recipe(0, category?.id?: 0, "", 0, 0, 0, false, 0, "", "", "", "")
+        cameraAndStoragePermission = CameraAndStoragePermission(this)
         return binding.root
     }
 
@@ -59,7 +61,7 @@ class AddRecipeFragment : Fragment(), MenuProvider {
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         return when (menuItem.itemId) {
             R.id.saveRecipe -> {
-                saveToDb()
+                saveRecipe()
                 true
             }
             else -> false
@@ -83,6 +85,10 @@ class AddRecipeFragment : Fragment(), MenuProvider {
 
         binding.addNoteImageView.setOnClickListener {
             findNavController().navigate(R.id.action_addRecipeFragment_to_addNoteDialogFragment)
+        }
+
+        binding.imageFromCameraImageView.setOnClickListener {
+            cameraAndStoragePermission.checkPermissionsCamera(binding.recipeImageView)
         }
 
         binding.starOneImageView.setOnClickListener {
@@ -153,15 +159,20 @@ class AddRecipeFragment : Fragment(), MenuProvider {
         recipe.rating = stars
     }
 
-    private fun saveToDb() {
+    private fun saveRecipe() {
         recipe.name = binding.recipeNameEditText.text.toString()
         recipe.preparation = strToInt(binding.preparationEditText.text.toString())
         recipe.cooking = strToInt(binding.cookingEditText.text.toString())
         recipe.yield = strToInt(binding.yieldEditText.text.toString())
 
         if (verifyRecipe(recipe)) {
+            if (cameraAndStoragePermission.image != null) {
+                val uri = cameraAndStoragePermission.saveImageToStorage()
+                recipe.imageUrl = uri.path.toString()
+            }
             recipeViewModel.insertRecipe(recipe)
-            val bundle = bundleOf(SharedViewModel.CATEGORY to category)
+
+            val bundle = bundleOf(SharedViewModel.CATEGORY to category, SharedViewModel.SHOW_RECIPES_BY to ShowRecipesBy.CATEGORY)
             findNavController().navigate(R.id.action_addRecipeFragment_to_listRecipesFragment, bundle)
         } else {
             Toast.makeText(requireContext(), getString(R.string.fill_in_all), Toast.LENGTH_SHORT).show()

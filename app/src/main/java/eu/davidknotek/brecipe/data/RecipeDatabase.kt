@@ -12,7 +12,7 @@ import eu.davidknotek.brecipe.data.models.Recipe
         Recipe::class,
         Category::class
     ],
-    version = 1
+    version = 2
 )
 abstract class RecipeDatabase: RoomDatabase() {
     abstract fun recipeDao(): RecipeDao
@@ -24,7 +24,7 @@ abstract class RecipeDatabase: RoomDatabase() {
                 return INSTANCE?:Room.databaseBuilder(context,
                     RecipeDatabase::class.java,
                     "recipe-database"
-                ).build().also {
+                ).fallbackToDestructiveMigration().build().also {
                     INSTANCE = it
                 }
             }

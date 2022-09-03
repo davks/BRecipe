@@ -28,4 +28,6 @@
     <string name="stop_edit_categories">Stop edit categories</string>
     <string name="fill_in_all">Fill in all the necessary information</string>
     <string name="time">Time:</string>
+    <string name="favorite">Favorite</string>
+    <string name="favorites">Favorites</string>
 </resources>

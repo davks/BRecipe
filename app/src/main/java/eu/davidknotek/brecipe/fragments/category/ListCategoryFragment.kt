@@ -19,6 +19,7 @@ import eu.davidknotek.brecipe.data.models.Category
 import eu.davidknotek.brecipe.databinding.FragmentListCategoryBinding
 import eu.davidknotek.brecipe.util.SwipeGesture
 import eu.davidknotek.brecipe.fragments.category.adapters.ListCategoryAdapter
+import eu.davidknotek.brecipe.fragments.recipe.ShowRecipesBy
 import eu.davidknotek.brecipe.viewmodels.CategoryViewModel
 import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 
@@ -90,8 +91,17 @@ class ListCategoryFragment : Fragment(), MenuProvider {
                 //
                 true
             }
+            R.id.favorite -> {
+                showFavorite()
+                true
+            }
             else -> false
         }
+    }
+
+    private fun showFavorite() {
+        val bundle = bundleOf(SharedViewModel.SHOW_RECIPES_BY to ShowRecipesBy.FAVORITES)
+        findNavController().navigate(R.id.action_listCategoryFragment_to_listRecipesFragment, bundle)
     }
 
     /**

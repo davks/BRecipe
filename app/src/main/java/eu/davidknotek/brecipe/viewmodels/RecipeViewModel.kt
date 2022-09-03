@@ -5,7 +5,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import eu.davidknotek.brecipe.data.RecipeDatabase
-import eu.davidknotek.brecipe.data.models.CategoryWithRecipes
 import eu.davidknotek.brecipe.data.models.Recipe
 import eu.davidknotek.brecipe.repositories.RecipeRepository
 import eu.davidknotek.brecipe.repositories.RecipeRepositoryImpl
@@ -14,9 +13,6 @@ import kotlinx.coroutines.launch
 
 class RecipeViewModel(application: Application): AndroidViewModel(application) {
     private val recipeRepository: RecipeRepository
-
-    val allRecipes: LiveData<CategoryWithRecipes>
-        get() = recipeRepository.allRecipes
 
     init {
         val recipeDao = RecipeDatabase.getInstance(application).recipeDao()
@@ -43,4 +39,7 @@ class RecipeViewModel(application: Application): AndroidViewModel(application) {
 
     fun getRecipes(idCategory: Int): LiveData<List<Recipe>> =
         recipeRepository.getRecipes(idCategory)
+
+    fun getFavoriteRecipes(): LiveData<List<Recipe>> =
+        recipeRepository.getFavoriteRecipes()
 }
