@@ -11,7 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.databinding.FragmentSearchRecipesBinding
-import eu.davidknotek.brecipe.fragments.recipe.adapters.ListRecipeAdapter
+import eu.davidknotek.brecipe.fragments.recipe.adapters.SearchRecipeAdapter
 import eu.davidknotek.brecipe.viewmodels.RecipeViewModel
 import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 
@@ -19,7 +19,7 @@ class SearchRecipesFragment : Fragment(), SearchView.OnQueryTextListener, MenuPr
     private lateinit var binding: FragmentSearchRecipesBinding
     private val recipeViewModel: RecipeViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by viewModels()
-    private val listRecipeAdapter: ListRecipeAdapter by lazy { ListRecipeAdapter(recipeViewModel, UsedRecipesBy.SEARCH) }
+    private val searchRecipeAdapter: SearchRecipeAdapter by lazy { SearchRecipeAdapter(recipeViewModel) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +32,7 @@ class SearchRecipesFragment : Fragment(), SearchView.OnQueryTextListener, MenuPr
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
         // RecyclerView
-        binding.recipesRecyclerView.adapter = listRecipeAdapter
+        binding.recipesRecyclerView.adapter = searchRecipeAdapter
         binding.recipesRecyclerView.layoutManager = GridLayoutManager(requireActivity(), 2)
 
         return binding.root
@@ -41,13 +41,6 @@ class SearchRecipesFragment : Fragment(), SearchView.OnQueryTextListener, MenuPr
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setObservers()
-    }
-
-    private fun setObservers() {
-        recipeViewModel.allRecipes.observe(viewLifecycleOwner) { recipes ->
-            sharedViewModel.checkIfDatabaseIsEmpty(recipes)
-            listRecipeAdapter.addRecipes(recipes)
-        }
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
@@ -82,10 +75,17 @@ class SearchRecipesFragment : Fragment(), SearchView.OnQueryTextListener, MenuPr
         return false
     }
 
+    private fun setObservers() {
+        recipeViewModel.allRecipes.observe(viewLifecycleOwner) { recipes ->
+            sharedViewModel.checkIfDatabaseIsEmpty(recipes)
+            searchRecipeAdapter.addRecipes(recipes)
+        }
+    }
+
     private fun searchRecipes(query: String) {
         recipeViewModel.searchRecipes("%$query%").observe(viewLifecycleOwner) { list ->
             list?.let {
-                listRecipeAdapter.addRecipes(it)
+                searchRecipeAdapter.addRecipes(it)
             }
         }
     }

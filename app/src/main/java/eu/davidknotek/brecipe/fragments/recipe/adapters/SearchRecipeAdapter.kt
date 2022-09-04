@@ -14,9 +14,9 @@ import eu.davidknotek.brecipe.fragments.recipe.UsedRecipesBy
 import eu.davidknotek.brecipe.fragments.recipe.detail.DetailRecipeFragment
 import eu.davidknotek.brecipe.viewmodels.RecipeViewModel
 
-class ListRecipeAdapter(
+class SearchRecipeAdapter(
     private val recipeViewModel: RecipeViewModel
-) : RecyclerView.Adapter<ListRecipeAdapter.MyViewHolder>() {
+) : RecyclerView.Adapter<SearchRecipeAdapter.MyViewHolder>() {
     private var recipes = emptyList<Recipe>()
 
     class MyViewHolder(val binding: RowRecipeBinding) : RecyclerView.ViewHolder(binding.root)
@@ -65,8 +65,7 @@ class ListRecipeAdapter(
         holder.binding.recipeCard.setOnClickListener {
             val bundle = bundleOf(DetailRecipeFragment.RECIPE to currentRecipe)
             holder.itemView.findNavController()
-                .navigate(R.id.action_listRecipesFragment_to_detailRecipeFragment, bundle)
-
+                .navigate(R.id.action_searchRecipesFragment_to_detailRecipeFragment, bundle)
         }
     }
 
@@ -80,7 +79,7 @@ class ListRecipeAdapter(
         notifyDataSetChanged()
     }
 
-    private fun openDetail(holder: ListRecipeAdapter.MyViewHolder) {
+    private fun openDetail(holder: SearchRecipeAdapter.MyViewHolder) {
 
     }
 }

@@ -19,7 +19,7 @@ import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 class ListRecipesFragment : Fragment() {
     private lateinit var binding: FragmentListRecipesBinding
     private val recipeViewModel: RecipeViewModel by viewModels()
-    private val listRecipeAdapter: ListRecipeAdapter by lazy { ListRecipeAdapter(recipeViewModel, UsedRecipesBy.CATEGORY) }
+    private val listRecipeAdapter: ListRecipeAdapter by lazy { ListRecipeAdapter(recipeViewModel) }
     private var usedRecipesBy: UsedRecipesBy = UsedRecipesBy.CATEGORY
     private var currentCategory: Category? = null
 
@@ -33,31 +33,38 @@ class ListRecipesFragment : Fragment() {
         binding.recipesRecyclerView.adapter = listRecipeAdapter
         binding.recipesRecyclerView.layoutManager = GridLayoutManager(requireActivity(), 2)
 
+        // We use this fragment by Category and Favorites
         usedRecipesBy = arguments?.get(SharedViewModel.SHOW_RECIPES_BY) as UsedRecipesBy
+        when (usedRecipesBy) {
+            UsedRecipesBy.CATEGORY -> showByCategory()
+            UsedRecipesBy.FAVORITES -> showByFavorites()
+        }
 
-        if (usedRecipesBy == UsedRecipesBy.CATEGORY) {
-            showByCategory()
-        }
-        if (usedRecipesBy == UsedRecipesBy.FAVORITES) {
-             showByFavorites()
-        }
+        setListeners()
 
         return binding.root
     }
 
     private fun showByFavorites() {
         binding.addRecipeActionButton.visibility = View.GONE // don't want to add new recipe
-        (activity as androidx.appcompat.app.AppCompatActivity).supportActionBar?.title = getString(R.string.favorites)
+        (activity as androidx.appcompat.app.AppCompatActivity).supportActionBar?.title =
+            getString(R.string.favorites)
 
-        searchFavoriteRecipes()
+        recipeViewModel.getFavoriteRecipes().observe(viewLifecycleOwner) { recipes ->
+            listRecipeAdapter.addRecipes(recipes)
+        }
     }
 
     private fun showByCategory() {
         currentCategory = arguments?.getParcelable(SharedViewModel.CATEGORY)
-        (activity as androidx.appcompat.app.AppCompatActivity).supportActionBar?.title = "${currentCategory?.name}"
+        (activity as androidx.appcompat.app.AppCompatActivity).supportActionBar?.title =
+            "${currentCategory?.name}"
 
-        setListeners()
-        searchRecipes(currentCategory?.id!!)
+        recipeViewModel.getRecipes(currentCategory?.id!!).observe(viewLifecycleOwner) { list ->
+            list?.let {
+                listRecipeAdapter.addRecipes(it)
+            }
+        }
     }
 
     private fun setListeners() {
@@ -65,20 +72,6 @@ class ListRecipesFragment : Fragment() {
         binding.addRecipeActionButton.setOnClickListener {
             val bundle = bundleOf(SharedViewModel.CATEGORY to currentCategory)
             findNavController().navigate(R.id.action_listRecipesFragment_to_addRecipeFragment, bundle)
-        }
-    }
-
-    private fun searchRecipes(idCategory: Int) {
-        recipeViewModel.getRecipes(idCategory).observe(viewLifecycleOwner) { list ->
-            list?.let {
-                listRecipeAdapter.addRecipes(it)
-            }
-        }
-    }
-
-    private fun searchFavoriteRecipes() {
-        recipeViewModel.getFavoriteRecipes().observe(viewLifecycleOwner) { recipes ->
-            listRecipeAdapter.addRecipes(recipes)
         }
     }
 

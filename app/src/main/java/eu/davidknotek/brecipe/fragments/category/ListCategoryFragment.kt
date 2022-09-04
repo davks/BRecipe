@@ -53,33 +53,6 @@ class ListCategoryFragment : Fragment(), MenuProvider {
         setObservers()
     }
 
-    private fun setObservers() {
-        categoryViewModel.allCategories.observe(viewLifecycleOwner) { categories ->
-            sharedViewModel.checkIfDatabaseIsEmpty(categories)
-            listCategoryAdapter.addCategories(categories)
-            binding.categoriesRecyclerView.scheduleLayoutAnimation()  // animace
-        }
-
-        // Refresh category list after close the category edit dialog
-        sharedViewModel.refreshCategory.observe(viewLifecycleOwner) {
-            if (it) {
-                listCategoryAdapter.refreshCategories()
-                sharedViewModel.refreshCategory.value = false
-            }
-        }
-
-        // When empty, database show an image on fragment
-        sharedViewModel.isEmptyDatabase.observe(viewLifecycleOwner) {
-
-        }
-    }
-
-    private fun setListeners() {
-        binding.addCategoryFloatingButton.setOnClickListener {
-            findNavController().navigate(R.id.action_listCategoryFragment_to_addCategoryFragment)
-        }
-    }
-
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
         menuInflater.inflate(R.menu.category_list_menu, menu)
     }
@@ -99,6 +72,33 @@ class ListCategoryFragment : Fragment(), MenuProvider {
                 true
             }
             else -> false
+        }
+    }
+
+    private fun setListeners() {
+        binding.addCategoryFloatingButton.setOnClickListener {
+            findNavController().navigate(R.id.action_listCategoryFragment_to_addCategoryFragment)
+        }
+    }
+
+    private fun setObservers() {
+        categoryViewModel.allCategories.observe(viewLifecycleOwner) { categories ->
+            sharedViewModel.checkIfDatabaseIsEmpty(categories)
+            listCategoryAdapter.addCategories(categories)
+            binding.categoriesRecyclerView.scheduleLayoutAnimation()  // animace
+        }
+
+        // Refresh category list after close the category edit dialog
+        sharedViewModel.refreshCategory.observe(viewLifecycleOwner) {
+            if (it) {
+                listCategoryAdapter.refreshCategories()
+                sharedViewModel.refreshCategory.value = false
+            }
+        }
+
+        // When empty, database show an image on fragment
+        sharedViewModel.isEmptyDatabase.observe(viewLifecycleOwner) {
+
         }
     }
 
@@ -149,7 +149,7 @@ class ListCategoryFragment : Fragment(), MenuProvider {
         snackbar.addCallback(object: Snackbar.Callback() {
             override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
                 super.onDismissed(transientBottomBar, event)
-                //Change category name in reciepe
+                //Change category id in reciepe
             }
         })
         snackbar.setAction("Undo") {
