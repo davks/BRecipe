@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/drawable/ic_check.xml" value="0.213" />
         <entry key="app/src/main/res/drawable/ic_favorite.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/ic_favorite_border.xml" value="0.2065" />
+        <entry key="app/src/main/res/layout-v28/fragment_viewpager_procedure.xml" value="0.24791666666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2375" />
         <entry key="app/src/main/res/layout/dialog_add_ingredients.xml" value="0.22" />
         <entry key="app/src/main/res/layout/dialog_add_note.xml" value="0.2520833333333333" />
@@ -33,12 +34,21 @@
         <entry key="app/src/main/res/layout/fragment_search_recipes.xml" value="0.24895833333333334" />
         <entry key="app/src/main/res/layout/fragment_second_page_edit.xml" value="0.25104166666666666" />
         <entry key="app/src/main/res/layout/fragment_third_page_edit.xml" value="0.25104166666666666" />
+        <entry key="app/src/main/res/layout/fragment_viewpager_detail.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_viewpager_ingredients.xml" value="0.20436083796494228" />
+        <entry key="app/src/main/res/layout/fragment_viewpager_procedure.xml" value="0.20436083796494228" />
         <entry key="app/src/main/res/layout/row_category.xml" value="0.24791666666666667" />
         <entry key="app/src/main/res/layout/row_category_edit.xml" value="0.24895833333333334" />
         <entry key="app/src/main/res/layout/row_recipe.xml" value="0.25" />
         <entry key="app/src/main/res/layout/row_recype.xml" value="0.24895833333333334" />
+        <entry key="app/src/main/res/layout/viewpager_detail.xml" value="0.20436083796494228" />
+        <entry key="app/src/main/res/layout/viewpager_ingredients.xml" value="0.20350577169730655" />
+        <entry key="app/src/main/res/layout/viewpager_procedure.xml" value="0.20350577169730655" />
         <entry key="app/src/main/res/menu/category_list_menu.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/menu/recipe_add_menu.xml" value="0.24895833333333334" />
+        <entry key="app/src/main/res/menu/recipe_delete_menu.xml" value="0.20350577169730655" />
+        <entry key="app/src/main/res/menu/recipe_detail_menu.xml" value="0.20350577169730655" />
+        <entry key="app/src/main/res/menu/recipe_edit_menu.xml" value="0.20350577169730655" />
         <entry key="app/src/main/res/menu/search_recipes_menu.xml" value="0.24791666666666667" />
       </map>
     </option>

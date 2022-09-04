@@ -24,7 +24,7 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
 
     fun getIngredientsMessage(ingredients: String): String? {
         return ingredients.ifEmpty {
-            app.resources.getString(R.string.ingredients_is_empty)
+            app.resources.getString(R.string.ingredients_empty)
         }
     }
 
@@ -36,7 +36,7 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
 
     fun geNoteMessage(note: String): String {
         return note.ifEmpty {
-            app.resources.getString(R.string.notes_is_empty)
+            app.resources.getString(R.string.empty_notes)
         }
     }
 }

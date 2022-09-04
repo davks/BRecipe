@@ -4,14 +4,20 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.net.toUri
-import androidx.lifecycle.ViewModelProvider
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.Recipe
 import eu.davidknotek.brecipe.databinding.RowRecipeBinding
+import eu.davidknotek.brecipe.fragments.recipe.UsedRecipesBy
+import eu.davidknotek.brecipe.fragments.recipe.detail.DetailRecipeFragment
 import eu.davidknotek.brecipe.viewmodels.RecipeViewModel
 
-class ListRecipeAdapter(private val recipeViewModel: RecipeViewModel): RecyclerView.Adapter<ListRecipeAdapter.MyViewHolder>() {
+class ListRecipeAdapter(
+    private val recipeViewModel: RecipeViewModel,
+    private val usedRecipesBy: UsedRecipesBy
+    ): RecyclerView.Adapter<ListRecipeAdapter.MyViewHolder>() {
     private var recipes = emptyList<Recipe>()
 
     class MyViewHolder(val binding: RowRecipeBinding): RecyclerView.ViewHolder(binding.root)
@@ -38,6 +44,7 @@ class ListRecipeAdapter(private val recipeViewModel: RecipeViewModel): RecyclerV
             holder.binding.favoriteImageView.setImageResource(R.drawable.ic_favorite_border)
         }
 
+        // Heart - favorite recipe
         holder.binding.favoriteImageView.setOnClickListener {
             if (currentRecipe.heart) {
                 holder.binding.favoriteImageView.setImageResource(R.drawable.ic_favorite_border)
@@ -47,6 +54,18 @@ class ListRecipeAdapter(private val recipeViewModel: RecipeViewModel): RecyclerV
                 currentRecipe.heart = true
             }
             recipeViewModel.updateRecipe(currentRecipe)
+        }
+
+        // Recipe detail, we need send current recipe
+        holder.binding.recipeCard.setOnClickListener {
+            val bundle = bundleOf(DetailRecipeFragment.RECIPE to currentRecipe)
+
+            // This adapter is used by ListRecipesFragment and SearchRecipesFragment
+            if (usedRecipesBy == UsedRecipesBy.SEARCH) {
+                holder.itemView.findNavController().navigate(R.id.action_searchRecipesFragment_to_detailRecipeFragment, bundle)
+            } else {
+                holder.itemView.findNavController().navigate(R.id.action_listRecipesFragment_to_detailRecipeFragment, bundle)
+            }
         }
     }
 
@@ -58,5 +77,9 @@ class ListRecipeAdapter(private val recipeViewModel: RecipeViewModel): RecyclerV
     fun addRecipes(recipes: List<Recipe>) {
         this.recipes = recipes
         notifyDataSetChanged()
+    }
+
+    private fun openDetail(holder: ListRecipeAdapter.MyViewHolder) {
+
     }
 }

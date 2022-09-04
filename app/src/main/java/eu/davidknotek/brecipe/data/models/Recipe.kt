@@ -1,10 +1,13 @@
 package eu.davidknotek.brecipe.data.models
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "recipes")
+@Parcelize
 data class Recipe(
     @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true)
@@ -42,4 +45,4 @@ data class Recipe(
 
     @ColumnInfo(name = "image_url")
     var imageUrl: String
-)
+) : Parcelable

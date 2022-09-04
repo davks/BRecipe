@@ -1,8 +1,6 @@
 package eu.davidknotek.brecipe.fragments.recipe
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -21,7 +19,7 @@ class SearchRecipesFragment : Fragment(), SearchView.OnQueryTextListener, MenuPr
     private lateinit var binding: FragmentSearchRecipesBinding
     private val recipeViewModel: RecipeViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by viewModels()
-    private val listRecipeAdapter: ListRecipeAdapter by lazy { ListRecipeAdapter(recipeViewModel) }
+    private val listRecipeAdapter: ListRecipeAdapter by lazy { ListRecipeAdapter(recipeViewModel, UsedRecipesBy.SEARCH) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

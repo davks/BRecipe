@@ -103,14 +103,27 @@
         android:label="Edit recipe"
         tools:layout="@layout/fragment_edit_recipe" >
         <action
-            android:id="@+id/action_editRecipeFragment_to_listRecipesFragment"
-            app:destination="@id/listRecipesFragment"
-            app:popUpTo="@id/listRecipesFragment"
+            android:id="@+id/action_editRecipeFragment_to_detailRecipeFragment"
+            app:destination="@id/detailRecipeFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
+            app:popUpTo="@id/detailRecipeFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_editRecipeFragment_to_listCategoryFragment"
+            app:destination="@id/listCategoryFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"
+            app:popUpTo="@id/listCategoryFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/detailRecipeFragment"
-        android:name="eu.davidknotek.brecipe.fragments.recipe.DetailRecipeFragment"
+        android:name="eu.davidknotek.brecipe.fragments.recipe.detail.DetailRecipeFragment"
         android:label="Detail recipe"
         tools:layout="@layout/fragment_detail_recipe">
         <action
@@ -124,7 +137,11 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_detailRecipeFragment_to_editRecipeFragment"
-            app:destination="@id/editRecipeFragment" />
+            app:destination="@id/editRecipeFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <dialog
         android:id="@+id/addNoteDialogFragment"
@@ -150,5 +167,13 @@
         android:id="@+id/searchRecipesFragment"
         android:name="eu.davidknotek.brecipe.fragments.recipe.SearchRecipesFragment"
         android:label="Search"
-        tools:layout="@layout/fragment_search_recipes" />
+        tools:layout="@layout/fragment_search_recipes" >
+        <action
+            android:id="@+id/action_searchRecipesFragment_to_detailRecipeFragment"
+            app:destination="@id/detailRecipeFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
 </navigation>

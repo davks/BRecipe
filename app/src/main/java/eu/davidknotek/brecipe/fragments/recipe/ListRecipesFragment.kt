@@ -19,8 +19,8 @@ import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 class ListRecipesFragment : Fragment() {
     private lateinit var binding: FragmentListRecipesBinding
     private val recipeViewModel: RecipeViewModel by viewModels()
-    private val listRecipeAdapter: ListRecipeAdapter by lazy { ListRecipeAdapter(recipeViewModel) }
-    private var showRecipesBy: ShowRecipesBy = ShowRecipesBy.CATEGORY
+    private val listRecipeAdapter: ListRecipeAdapter by lazy { ListRecipeAdapter(recipeViewModel, UsedRecipesBy.CATEGORY) }
+    private var usedRecipesBy: UsedRecipesBy = UsedRecipesBy.CATEGORY
     private var currentCategory: Category? = null
 
     override fun onCreateView(
@@ -33,11 +33,13 @@ class ListRecipesFragment : Fragment() {
         binding.recipesRecyclerView.adapter = listRecipeAdapter
         binding.recipesRecyclerView.layoutManager = GridLayoutManager(requireActivity(), 2)
 
-        showRecipesBy = arguments?.get(SharedViewModel.SHOW_RECIPES_BY) as ShowRecipesBy
+        usedRecipesBy = arguments?.get(SharedViewModel.SHOW_RECIPES_BY) as UsedRecipesBy
 
-        when (showRecipesBy) {
-            ShowRecipesBy.CATEGORY -> showByCategory()
-            ShowRecipesBy.FAVORITES -> showByFavorites()
+        if (usedRecipesBy == UsedRecipesBy.CATEGORY) {
+            showByCategory()
+        }
+        if (usedRecipesBy == UsedRecipesBy.FAVORITES) {
+             showByFavorites()
         }
 
         return binding.root

@@ -172,7 +172,7 @@ class AddRecipeFragment : Fragment(), MenuProvider {
             }
             recipeViewModel.insertRecipe(recipe)
 
-            val bundle = bundleOf(SharedViewModel.CATEGORY to category, SharedViewModel.SHOW_RECIPES_BY to ShowRecipesBy.CATEGORY)
+            val bundle = bundleOf(SharedViewModel.CATEGORY to category, SharedViewModel.SHOW_RECIPES_BY to UsedRecipesBy.CATEGORY)
             findNavController().navigate(R.id.action_addRecipeFragment_to_listRecipesFragment, bundle)
         } else {
             Toast.makeText(requireContext(), getString(R.string.fill_in_all), Toast.LENGTH_SHORT).show()
