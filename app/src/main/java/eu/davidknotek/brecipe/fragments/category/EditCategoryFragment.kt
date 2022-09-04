@@ -12,6 +12,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.Category
 import eu.davidknotek.brecipe.databinding.FragmentEditCategoryBinding
+import eu.davidknotek.brecipe.fragments.recipe.detail.DetailRecipeFragment
 import eu.davidknotek.brecipe.util.CameraAndStoragePermission
 import eu.davidknotek.brecipe.viewmodels.CategoryViewModel
 import eu.davidknotek.brecipe.viewmodels.SharedViewModel
@@ -31,7 +32,7 @@ class EditCategoryFragment : BottomSheetDialogFragment() {
         binding = FragmentEditCategoryBinding.inflate(layoutInflater, container, false)
         isCancelable = false
         cameraAndStoragePermission = CameraAndStoragePermission(this)
-        currentCategory = requireArguments().getParcelable(SharedViewModel.CATEGORY)
+        currentCategory = requireArguments().getParcelable(DetailRecipeFragment.CATEGORY)
         return binding.root
     }
 

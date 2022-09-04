@@ -1,6 +1,8 @@
 package eu.davidknotek.brecipe.fragments.recipe.adapters
 
 import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.net.toUri
@@ -8,16 +10,15 @@ import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import eu.davidknotek.brecipe.R
-import eu.davidknotek.brecipe.data.models.Recipe
+import eu.davidknotek.brecipe.data.models.RecipeAndCategory
 import eu.davidknotek.brecipe.databinding.RowRecipeBinding
-import eu.davidknotek.brecipe.fragments.recipe.UsedRecipesBy
 import eu.davidknotek.brecipe.fragments.recipe.detail.DetailRecipeFragment
 import eu.davidknotek.brecipe.viewmodels.RecipeViewModel
 
 class SearchRecipeAdapter(
     private val recipeViewModel: RecipeViewModel
 ) : RecyclerView.Adapter<SearchRecipeAdapter.MyViewHolder>() {
-    private var recipes = emptyList<Recipe>()
+    private var recipes = emptyList<RecipeAndCategory>()
 
     class MyViewHolder(val binding: RowRecipeBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -32,18 +33,19 @@ class SearchRecipeAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentRecipe = recipes[position]
-        val time = "${currentRecipe.cooking + currentRecipe.preparation}"
-        holder.binding.nameRecipeTextView.text = currentRecipe.name
+        val currentRecipeWithCategory = recipes[position]
+        val time = "${currentRecipeWithCategory.recipe.cooking + currentRecipeWithCategory.recipe.preparation}"
+        Log.d(TAG, "onBindViewHolder: $time")
+        holder.binding.nameRecipeTextView.text = currentRecipeWithCategory.recipe.name
         holder.binding.timeCookingTextView.text = "Time: ${time}min"
 
-        if (currentRecipe.imageUrl == "") {
+        if (currentRecipeWithCategory.recipe.imageUrl == "") {
             holder.binding.recipeImageView.setImageResource(R.drawable.no_image_available_small)
         } else {
-            holder.binding.recipeImageView.setImageURI(currentRecipe.imageUrl.toUri())
+            holder.binding.recipeImageView.setImageURI(currentRecipeWithCategory.recipe.imageUrl.toUri())
         }
 
-        if (currentRecipe.heart) {
+        if (currentRecipeWithCategory.recipe.heart) {
             holder.binding.favoriteImageView.setImageResource(R.drawable.ic_favorite)
         } else {
             holder.binding.favoriteImageView.setImageResource(R.drawable.ic_favorite_border)
@@ -51,19 +53,21 @@ class SearchRecipeAdapter(
 
         // Heart - favorite recipe
         holder.binding.favoriteImageView.setOnClickListener {
-            if (currentRecipe.heart) {
+            if (currentRecipeWithCategory.recipe.heart) {
                 holder.binding.favoriteImageView.setImageResource(R.drawable.ic_favorite_border)
-                currentRecipe.heart = false
+                currentRecipeWithCategory.recipe.heart = false
             } else {
                 holder.binding.favoriteImageView.setImageResource(R.drawable.ic_favorite)
-                currentRecipe.heart = true
+                currentRecipeWithCategory.recipe.heart = true
             }
-            recipeViewModel.updateRecipe(currentRecipe)
+            recipeViewModel.updateRecipe(currentRecipeWithCategory.recipe)
         }
 
         // Recipe detail, we need send current recipe
         holder.binding.recipeCard.setOnClickListener {
-            val bundle = bundleOf(DetailRecipeFragment.RECIPE to currentRecipe)
+            val bundle = bundleOf(
+                DetailRecipeFragment.RECIPE_AND_CATEGORY to currentRecipeWithCategory
+            )
             holder.itemView.findNavController()
                 .navigate(R.id.action_searchRecipesFragment_to_detailRecipeFragment, bundle)
         }
@@ -74,7 +78,7 @@ class SearchRecipeAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun addRecipes(recipes: List<Recipe>) {
+    fun addRecipes(recipes: List<RecipeAndCategory>) {
         this.recipes = recipes
         notifyDataSetChanged()
     }

@@ -18,7 +18,7 @@ class ViewpagerDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentViewpagerDetailBinding.inflate(layoutInflater, container,false)
-        val recipe = requireArguments().getParcelable<Recipe>(DetailRecipeFragment.RECIPE)
+        val recipe = requireArguments().getParcelable<Recipe>(DetailRecipeFragment.RECIPE_AND_CATEGORY)
         recipe?.let {
             setDetailRecipe(recipe)
         }

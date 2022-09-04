@@ -1,7 +1,5 @@
 package eu.davidknotek.brecipe.fragments.recipe.adapters
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -23,7 +21,7 @@ class DetailRecipeAdapter(
 
     init {
 //        Log.d(TAG, "${recipe.name} ${recipe.procedure} ")
-        detail.arguments = bundleOf(DetailRecipeFragment.RECIPE to recipe)
+        detail.arguments = bundleOf(DetailRecipeFragment.RECIPE_AND_CATEGORY to recipe)
         ingredients.arguments = bundleOf(DetailRecipeFragment.INGREDIENTS to recipe.ingredients)
         procedure.arguments = bundleOf(DetailRecipeFragment.PROCEDURE to recipe.procedure)
         fragments = listOf(detail, ingredients, procedure)

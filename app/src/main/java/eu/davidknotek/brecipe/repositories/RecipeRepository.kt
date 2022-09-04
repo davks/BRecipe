@@ -2,12 +2,13 @@ package eu.davidknotek.brecipe.repositories
 
 import androidx.lifecycle.LiveData
 import eu.davidknotek.brecipe.data.models.Recipe
+import eu.davidknotek.brecipe.data.models.RecipeAndCategory
 
 interface RecipeRepository {
-    val allRecipes: LiveData<List<Recipe>>
-    fun getRecipes(idCategory: Int): LiveData<List<Recipe>>
-    fun getFavoriteRecipes(): LiveData<List<Recipe>>
-    fun searchRecipes(query: String): LiveData<List<Recipe>>
+    val allRecipes: LiveData<List<RecipeAndCategory>>
+    fun getRecipes(idCategory: Int): LiveData<List<RecipeAndCategory>>
+    fun getFavoriteRecipes(): LiveData<List<RecipeAndCategory>>
+    fun searchRecipes(query: String): LiveData<List<RecipeAndCategory>>
     suspend fun insertRecipe(recipe: Recipe)
     suspend fun updateRecipe(recipe: Recipe)
     suspend fun deleteRecipe(recipe: Recipe)

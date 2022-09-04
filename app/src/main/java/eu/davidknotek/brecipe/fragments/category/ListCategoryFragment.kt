@@ -20,6 +20,7 @@ import eu.davidknotek.brecipe.databinding.FragmentListCategoryBinding
 import eu.davidknotek.brecipe.util.SwipeGesture
 import eu.davidknotek.brecipe.fragments.category.adapters.ListCategoryAdapter
 import eu.davidknotek.brecipe.fragments.recipe.UsedRecipesBy
+import eu.davidknotek.brecipe.fragments.recipe.detail.DetailRecipeFragment
 import eu.davidknotek.brecipe.viewmodels.CategoryViewModel
 import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 
@@ -107,7 +108,7 @@ class ListCategoryFragment : Fragment(), MenuProvider {
     }
 
     private fun showFavorite() {
-        val bundle = bundleOf(SharedViewModel.SHOW_RECIPES_BY to UsedRecipesBy.FAVORITES)
+        val bundle = bundleOf(DetailRecipeFragment.SHOW_RECIPES_BY to UsedRecipesBy.FAVORITES)
         findNavController().navigate(R.id.action_listCategoryFragment_to_listRecipesFragment, bundle)
     }
 
@@ -127,7 +128,7 @@ class ListCategoryFragment : Fragment(), MenuProvider {
                         restoreDeletedData(viewHolder.itemView, category)
                     }
                     ItemTouchHelper.RIGHT -> {
-                        val bundle = bundleOf(SharedViewModel.CATEGORY to category)
+                        val bundle = bundleOf(DetailRecipeFragment.CATEGORY to category)
                         findNavController().navigate(R.id.action_listCategoryFragment_to_editCategoryFragment, bundle)
                     }
                 }

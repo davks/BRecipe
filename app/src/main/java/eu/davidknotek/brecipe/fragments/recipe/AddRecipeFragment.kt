@@ -14,6 +14,7 @@ import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.Category
 import eu.davidknotek.brecipe.data.models.Recipe
 import eu.davidknotek.brecipe.databinding.FragmentAddRecipeBinding
+import eu.davidknotek.brecipe.fragments.recipe.detail.DetailRecipeFragment
 import eu.davidknotek.brecipe.util.CameraAndStoragePermission
 import eu.davidknotek.brecipe.util.strToInt
 import eu.davidknotek.brecipe.util.verifyRecipe
@@ -33,7 +34,7 @@ class AddRecipeFragment : Fragment(), MenuProvider {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAddRecipeBinding.inflate(layoutInflater, container, false)
-        category = arguments?.getParcelable(SharedViewModel.CATEGORY)
+        category = arguments?.getParcelable(DetailRecipeFragment.CATEGORY)
         recipe = Recipe(0, category?.id?: 0, "", 0, 0, 0, false, 0, "", "", "", "")
         cameraAndStoragePermission = CameraAndStoragePermission(this)
         return binding.root
@@ -172,7 +173,7 @@ class AddRecipeFragment : Fragment(), MenuProvider {
             }
             recipeViewModel.insertRecipe(recipe)
 
-            val bundle = bundleOf(SharedViewModel.CATEGORY to category, SharedViewModel.SHOW_RECIPES_BY to UsedRecipesBy.CATEGORY)
+            val bundle = bundleOf(DetailRecipeFragment.CATEGORY to category, DetailRecipeFragment.SHOW_RECIPES_BY to UsedRecipesBy.CATEGORY)
             findNavController().navigate(R.id.action_addRecipeFragment_to_listRecipesFragment, bundle)
         } else {
             Toast.makeText(requireContext(), getString(R.string.fill_in_all), Toast.LENGTH_SHORT).show()

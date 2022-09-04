@@ -2,29 +2,27 @@ package eu.davidknotek.brecipe.fragments.recipe.detail
 
 import android.os.Bundle
 import android.view.*
-import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.core.view.MenuHost
 import androidx.fragment.app.Fragment
 import androidx.core.view.MenuProvider
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import eu.davidknotek.brecipe.R
-import eu.davidknotek.brecipe.data.models.Recipe
+import eu.davidknotek.brecipe.data.models.RecipeAndCategory
 import eu.davidknotek.brecipe.databinding.FragmentDetailRecipeBinding
 import eu.davidknotek.brecipe.fragments.recipe.adapters.DetailRecipeAdapter
-import eu.davidknotek.brecipe.viewmodels.RecipeViewModel
-import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 
 class DetailRecipeFragment : Fragment(), MenuProvider {
     private lateinit var binding: FragmentDetailRecipeBinding
-    private var recipe: Recipe? = null
+    private var recipeAndCategory: RecipeAndCategory? = null
 
     companion object {
-        const val RECIPE = "recipe"
+        const val RECIPE_AND_CATEGORY = "recipe"
         const val INGREDIENTS = "ingredients"
         const val PROCEDURE = "procedure"
+        const val SHOW_RECIPES_BY = "show_recipes_by"
+        const val CATEGORY = "category"
     }
 
     override fun onCreateView(
@@ -38,9 +36,9 @@ class DetailRecipeFragment : Fragment(), MenuProvider {
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
         // ViewPager
-        recipe = requireArguments().getParcelable(RECIPE)
-        recipe?.let {
-            val adapter = DetailRecipeAdapter(requireActivity(), it)
+        recipeAndCategory = requireArguments().getParcelable(RECIPE_AND_CATEGORY)
+        recipeAndCategory?.let {
+            val adapter = DetailRecipeAdapter(requireActivity(), it.recipe)
             binding.viewPager.adapter = adapter
         }
 
@@ -62,7 +60,7 @@ class DetailRecipeFragment : Fragment(), MenuProvider {
     }
 
     private fun editRecipe() {
-        val bundle = bundleOf(RECIPE to recipe)
+        val bundle = bundleOf(RECIPE_AND_CATEGORY to recipeAndCategory)
         findNavController().navigate(R.id.action_detailRecipeFragment_to_editRecipeFragment, bundle)
     }
 }

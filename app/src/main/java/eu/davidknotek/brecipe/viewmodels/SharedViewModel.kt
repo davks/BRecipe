@@ -13,11 +13,6 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
     val recipeProcedure = MutableLiveData("")
     val recipeNote = MutableLiveData("")
 
-    companion object {
-        const val SHOW_RECIPES_BY = "show_recipes_by"
-        const val CATEGORY = "category"
-    }
-
     fun <T> checkIfDatabaseIsEmpty(list: List<T>) {
         isEmptyDatabase.value = list.isEmpty()
     }

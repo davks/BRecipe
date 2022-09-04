@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import eu.davidknotek.brecipe.data.models.Category
 import eu.davidknotek.brecipe.data.models.Recipe
+import eu.davidknotek.brecipe.data.models.RecipeAndCategory
 
 @Dao
 interface RecipeDao {
@@ -17,17 +18,24 @@ interface RecipeDao {
     @Delete
     suspend fun deleteRecipe(recipe: Recipe)
 
+//    @Query("SELECT * FROM recipes ORDER BY name ASC")
+//    fun getRecipes(): LiveData<List<Recipe>>
+
+    @Transaction
     @Query("SELECT * FROM recipes ORDER BY name ASC")
-    fun getRecipes(): LiveData<List<Recipe>>
+    fun getRecipes(): LiveData<List<RecipeAndCategory>>
 
+    @Transaction
     @Query("SELECT * FROM recipes WHERE id_category = :idCategory")
-    fun getRecipes(idCategory: Int): LiveData<List<Recipe>>
+    fun getRecipes(idCategory: Int): LiveData<List<RecipeAndCategory>>
 
+    @Transaction
     @Query("SELECT * FROM recipes WHERE heart = 1")
-    fun getFavoriteRecipes(): LiveData<List<Recipe>>
+    fun getFavoriteRecipes(): LiveData<List<RecipeAndCategory>>
 
+    @Transaction
     @Query("SELECT * FROM recipes WHERE name LIKE :search")
-    fun searchRecipes(search: String): LiveData<List<Recipe>>
+    fun searchRecipes(search: String): LiveData<List<RecipeAndCategory>>
 
     /* Categories */
     @Insert

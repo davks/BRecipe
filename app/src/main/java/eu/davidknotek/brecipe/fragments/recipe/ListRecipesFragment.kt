@@ -13,6 +13,7 @@ import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.Category
 import eu.davidknotek.brecipe.databinding.FragmentListRecipesBinding
 import eu.davidknotek.brecipe.fragments.recipe.adapters.ListRecipeAdapter
+import eu.davidknotek.brecipe.fragments.recipe.detail.DetailRecipeFragment
 import eu.davidknotek.brecipe.viewmodels.RecipeViewModel
 import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 
@@ -34,7 +35,7 @@ class ListRecipesFragment : Fragment() {
         binding.recipesRecyclerView.layoutManager = GridLayoutManager(requireActivity(), 2)
 
         // We use this fragment by Category and Favorites
-        usedRecipesBy = arguments?.get(SharedViewModel.SHOW_RECIPES_BY) as UsedRecipesBy
+        usedRecipesBy = arguments?.get(DetailRecipeFragment.SHOW_RECIPES_BY) as UsedRecipesBy
         when (usedRecipesBy) {
             UsedRecipesBy.CATEGORY -> showByCategory()
             UsedRecipesBy.FAVORITES -> showByFavorites()
@@ -56,7 +57,7 @@ class ListRecipesFragment : Fragment() {
     }
 
     private fun showByCategory() {
-        currentCategory = arguments?.getParcelable(SharedViewModel.CATEGORY)
+        currentCategory = arguments?.getParcelable(DetailRecipeFragment.CATEGORY)
         (activity as androidx.appcompat.app.AppCompatActivity).supportActionBar?.title =
             "${currentCategory?.name}"
 
@@ -70,7 +71,7 @@ class ListRecipesFragment : Fragment() {
     private fun setListeners() {
         // Add new recipe
         binding.addRecipeActionButton.setOnClickListener {
-            val bundle = bundleOf(SharedViewModel.CATEGORY to currentCategory)
+            val bundle = bundleOf(DetailRecipeFragment.CATEGORY to currentCategory)
             findNavController().navigate(R.id.action_listRecipesFragment_to_addRecipeFragment, bundle)
         }
     }
