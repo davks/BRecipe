@@ -77,7 +77,7 @@ class SearchRecipesFragment : Fragment(), SearchView.OnQueryTextListener, MenuPr
 
     private fun setObservers() {
         recipeViewModel.allRecipes.observe(viewLifecycleOwner) {
-            //sharedViewModel.checkIfDatabaseIsEmpty(it)
+            sharedViewModel.checkIfDatabaseIsEmpty(it)
             searchRecipeAdapter.addRecipes(it)
         }
     }

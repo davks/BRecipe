@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.core.view.MenuProvider
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.RecipeAndCategory
 import eu.davidknotek.brecipe.databinding.FragmentDetailRecipeBinding
@@ -35,13 +38,7 @@ class DetailRecipeFragment : Fragment(), MenuProvider {
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
-        // ViewPager
-        recipeAndCategory = requireArguments().getParcelable(RECIPE_AND_CATEGORY)
-        recipeAndCategory?.let {
-            val adapter = DetailRecipeAdapter(requireActivity(), it.recipe)
-            binding.viewPager.adapter = adapter
-        }
-
+        setViewPager()
         return binding.root
     }
 
@@ -52,15 +49,22 @@ class DetailRecipeFragment : Fragment(), MenuProvider {
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         return when (menuItem.itemId) {
             R.id.editRecipe -> {
-                editRecipe()
+                val bundle = bundleOf(RECIPE_AND_CATEGORY to recipeAndCategory)
+                findNavController().navigate(R.id.action_detailRecipeFragment_to_editRecipeFragment, bundle)
                 true
             }
             else -> false
         }
     }
 
-    private fun editRecipe() {
-        val bundle = bundleOf(RECIPE_AND_CATEGORY to recipeAndCategory)
-        findNavController().navigate(R.id.action_detailRecipeFragment_to_editRecipeFragment, bundle)
+    private fun setViewPager() {
+        recipeAndCategory = requireArguments().getParcelable(RECIPE_AND_CATEGORY)
+        recipeAndCategory?.let {
+            val adapter = DetailRecipeAdapter(requireActivity(), it.recipe)
+            binding.viewPager.adapter = adapter
+            TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+                tab.text = adapter.tabs[position]
+            }.attach()
+        }
     }
 }

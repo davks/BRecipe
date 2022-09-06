@@ -19,8 +19,9 @@ class DetailRecipeAdapter(
     private val ingredients = ViewpagerIngredientsFragment()
     private val procedure = ViewpagerProcedureFragment()
 
+    val tabs = listOf("Detail", "Ingredients", "Procedure")
+
     init {
-//        Log.d(TAG, "${recipe.name} ${recipe.procedure} ")
         detail.arguments = bundleOf(DetailRecipeFragment.RECIPE_AND_CATEGORY to recipe)
         ingredients.arguments = bundleOf(DetailRecipeFragment.INGREDIENTS to recipe.ingredients)
         procedure.arguments = bundleOf(DetailRecipeFragment.PROCEDURE to recipe.procedure)
