@@ -6,12 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".fragments.detail.ViewpagerProcedureFragment">
 
-    <TextView
-        android:id="@+id/procedureTextView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/procedureRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="30dp"
-        android:textSize="18sp"
+        android:layout_margin="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

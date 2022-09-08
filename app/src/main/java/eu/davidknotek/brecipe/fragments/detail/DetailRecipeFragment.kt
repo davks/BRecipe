@@ -14,7 +14,7 @@ import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.RecipeAndCategory
 import eu.davidknotek.brecipe.databinding.FragmentDetailRecipeBinding
 import eu.davidknotek.brecipe.fragments.adapters.DetailRecipeAdapter
-import eu.davidknotek.brecipe.viewmodels.IngredientsViewModel
+import eu.davidknotek.brecipe.viewmodels.IngredientsAndProceduresViewModel
 
 /**
  * The fragment will show the recipe detail.
@@ -22,12 +22,11 @@ import eu.davidknotek.brecipe.viewmodels.IngredientsViewModel
  */
 class DetailRecipeFragment : Fragment(), MenuProvider {
     private lateinit var binding: FragmentDetailRecipeBinding
-    private val ingredientsViewModel: IngredientsViewModel by activityViewModels()
+    private val ingredientsAndProceduresViewModel: IngredientsAndProceduresViewModel by activityViewModels()
     private var recipeAndCategory: RecipeAndCategory? = null
 
     companion object {
         const val RECIPE_AND_CATEGORY = "recipe"
-        const val INGREDIENTS = "ingredients"
         const val PROCEDURE = "procedure"
         const val SHOW_RECIPES_BY = "show_recipes_by"
         const val CATEGORY = "category"
@@ -43,21 +42,16 @@ class DetailRecipeFragment : Fragment(), MenuProvider {
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
-        // Arguments
+        // Arguments - we get recipe detail
         recipeAndCategory = requireArguments().getParcelable(RECIPE_AND_CATEGORY)
 
-//        // We need check selected recipe with last recipe
-//        recipeAndCategory?.let {
-//            if (!ingredientsViewModel.checkLastRecipe(it.recipe)) {
-//                ingredientsViewModel.restartIngredients(it.recipe.ingredients)
-//            }
-//        }
-
-        if (recipeAndCategory != null) {
-            ingredientsViewModel.checkLastRecipe(recipeAndCategory?.recipe!!)
+        // We need change list ingredients if we check new recipe
+        recipeAndCategory?.let {
+            ingredientsAndProceduresViewModel.isNewRecipe(recipeAndCategory?.recipe!!)
         }
 
         setViewPager()
+
         return binding.root
     }
 

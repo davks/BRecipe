@@ -5,20 +5,17 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import eu.davidknotek.brecipe.data.models.Category
-import eu.davidknotek.brecipe.data.models.CurrentIngredient
 import eu.davidknotek.brecipe.data.models.Recipe
 
 @Database(
     entities = [
         Recipe::class,
-        Category::class,
-        CurrentIngredient::class
+        Category::class
     ],
-    version = 3
+    version = 4
 )
 abstract class RecipeDatabase: RoomDatabase() {
     abstract fun recipeDao(): RecipeDao
-    abstract fun ingredientsDao(): IngredientsDao
 
     companion object {
         private var INSTANCE: RecipeDatabase? = null

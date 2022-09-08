@@ -2,22 +2,22 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/rowIngredient"
+    android:id="@+id/rowProcedure"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/ingredientNameTextview"
+        android:id="@+id/procedureNameTextview"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
+        android:layout_marginStart="12dp"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@id/ingredientDoneImageView"
+        app:layout_constraintStart_toEndOf="@id/procedureDoneImageView"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <ImageView
-        android:id="@+id/ingredientDoneImageView"
+        android:id="@+id/procedureDoneImageView"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="14dp"

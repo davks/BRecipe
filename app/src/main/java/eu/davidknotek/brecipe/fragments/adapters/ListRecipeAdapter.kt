@@ -13,6 +13,9 @@ import eu.davidknotek.brecipe.databinding.RowRecipeBinding
 import eu.davidknotek.brecipe.fragments.detail.DetailRecipeFragment
 import eu.davidknotek.brecipe.viewmodels.RecipeViewModel
 
+/**
+ * Show list of recipes in RecyclerView.
+ */
 class ListRecipeAdapter(
     private val recipeViewModel: RecipeViewModel
 ) : RecyclerView.Adapter<ListRecipeAdapter.MyViewHolder>() {

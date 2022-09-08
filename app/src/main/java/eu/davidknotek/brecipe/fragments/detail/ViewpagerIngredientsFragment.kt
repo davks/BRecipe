@@ -9,12 +9,12 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import eu.davidknotek.brecipe.databinding.FragmentViewpagerIngredientsBinding
 import eu.davidknotek.brecipe.fragments.adapters.IngredientsAdapter
-import eu.davidknotek.brecipe.viewmodels.IngredientsViewModel
+import eu.davidknotek.brecipe.viewmodels.IngredientsAndProceduresViewModel
 
 class ViewpagerIngredientsFragment : Fragment() {
     private lateinit var binding: FragmentViewpagerIngredientsBinding
-    private val ingredientsViewModel: IngredientsViewModel by activityViewModels()
-    private val ingredientsAdapter: IngredientsAdapter by lazy { IngredientsAdapter(ingredientsViewModel) }
+    private val ingredientsAndProceduresViewModel: IngredientsAndProceduresViewModel by activityViewModels()
+    private val ingredientsAdapter: IngredientsAdapter by lazy { IngredientsAdapter(ingredientsAndProceduresViewModel) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,20 +26,11 @@ class ViewpagerIngredientsFragment : Fragment() {
         binding.ingredientsRecyclerView.adapter = ingredientsAdapter
         binding.ingredientsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        ingredientsViewModel.allIngredients.observe(viewLifecycleOwner) {
+        // Show all ingredients
+        ingredientsAndProceduresViewModel.allIngredients.observe(viewLifecycleOwner) {
             ingredientsAdapter.setIngredients(it)
         }
 
-        changeIngredients()
         return binding.root
-    }
-
-    private fun changeIngredients() {
-        val ingredients = arguments?.getString(DetailRecipeFragment.INGREDIENTS)
-        ingredientsViewModel.isNewRecipe.observe(viewLifecycleOwner) {
-            if (!it) {
-                ingredientsViewModel.restartIngredients(ingredientsViewModel.ingredientsToList(ingredients))
-            }
-        }
     }
 }
