@@ -1,4 +1,4 @@
-package eu.davidknotek.brecipe.fragments.category
+package eu.davidknotek.brecipe.fragments.edit
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,11 +12,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.Category
 import eu.davidknotek.brecipe.databinding.FragmentEditCategoryBinding
-import eu.davidknotek.brecipe.fragments.recipe.detail.DetailRecipeFragment
+import eu.davidknotek.brecipe.fragments.detail.DetailRecipeFragment
 import eu.davidknotek.brecipe.util.CameraAndStoragePermission
 import eu.davidknotek.brecipe.viewmodels.CategoryViewModel
 import eu.davidknotek.brecipe.viewmodels.SharedViewModel
-import java.io.File
 
 class EditCategoryFragment : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentEditCategoryBinding

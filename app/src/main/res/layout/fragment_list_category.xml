@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/listCategoryConstraintLayout"
-    tools:context=".fragments.category.ListCategoryFragment">
+    tools:context=".fragments.list.ListCategoryFragment">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addCategoryFloatingButton"

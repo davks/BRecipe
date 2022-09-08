@@ -1,4 +1,4 @@
-package eu.davidknotek.brecipe.fragments.recipe
+package eu.davidknotek.brecipe.fragments.add
 
 import android.os.Bundle
 import android.view.*
@@ -14,7 +14,8 @@ import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.Category
 import eu.davidknotek.brecipe.data.models.Recipe
 import eu.davidknotek.brecipe.databinding.FragmentAddRecipeBinding
-import eu.davidknotek.brecipe.fragments.recipe.detail.DetailRecipeFragment
+import eu.davidknotek.brecipe.fragments.UsedRecipesBy
+import eu.davidknotek.brecipe.fragments.detail.DetailRecipeFragment
 import eu.davidknotek.brecipe.util.CameraAndStoragePermission
 import eu.davidknotek.brecipe.util.strToInt
 import eu.davidknotek.brecipe.util.verifyRecipe

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/blue_super_light"
     app:layoutDescription="@xml/fragment_add_recipe_scene"
-    tools:context=".fragments.recipe.AddRecipeFragment">
+    tools:context=".fragments.add.AddRecipeFragment">
 
     <ImageView
         android:id="@+id/recipeImageView"

@@ -1,4 +1,4 @@
-package eu.davidknotek.brecipe.fragments.recipe.detail
+package eu.davidknotek.brecipe.fragments.detail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

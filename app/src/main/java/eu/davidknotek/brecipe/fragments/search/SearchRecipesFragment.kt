@@ -1,4 +1,4 @@
-package eu.davidknotek.brecipe.fragments.recipe
+package eu.davidknotek.brecipe.fragments.search
 
 import android.os.Bundle
 import android.view.*
@@ -11,7 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.databinding.FragmentSearchRecipesBinding
-import eu.davidknotek.brecipe.fragments.recipe.adapters.SearchRecipeAdapter
+import eu.davidknotek.brecipe.fragments.adapters.SearchRecipeAdapter
 import eu.davidknotek.brecipe.viewmodels.RecipeViewModel
 import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 

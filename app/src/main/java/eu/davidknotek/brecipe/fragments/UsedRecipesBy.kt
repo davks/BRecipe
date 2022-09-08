@@ -1,4 +1,4 @@
-package eu.davidknotek.brecipe.fragments.recipe
+package eu.davidknotek.brecipe.fragments
 
 enum class UsedRecipesBy {
     CATEGORY, FAVORITES

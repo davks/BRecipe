@@ -1,4 +1,4 @@
-package eu.davidknotek.brecipe.fragments.category
+package eu.davidknotek.brecipe.fragments.list
 
 import android.os.Bundle
 import android.view.*
@@ -18,9 +18,9 @@ import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.Category
 import eu.davidknotek.brecipe.databinding.FragmentListCategoryBinding
 import eu.davidknotek.brecipe.util.SwipeGesture
-import eu.davidknotek.brecipe.fragments.category.adapters.ListCategoryAdapter
-import eu.davidknotek.brecipe.fragments.recipe.UsedRecipesBy
-import eu.davidknotek.brecipe.fragments.recipe.detail.DetailRecipeFragment
+import eu.davidknotek.brecipe.fragments.adapters.ListCategoryAdapter
+import eu.davidknotek.brecipe.fragments.UsedRecipesBy
+import eu.davidknotek.brecipe.fragments.detail.DetailRecipeFragment
 import eu.davidknotek.brecipe.viewmodels.CategoryViewModel
 import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 

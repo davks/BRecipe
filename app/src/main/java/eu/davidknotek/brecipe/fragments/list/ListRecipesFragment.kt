@@ -1,4 +1,4 @@
-package eu.davidknotek.brecipe.fragments.recipe
+package eu.davidknotek.brecipe.fragments.list
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.Category
 import eu.davidknotek.brecipe.databinding.FragmentListRecipesBinding
-import eu.davidknotek.brecipe.fragments.recipe.adapters.ListRecipeAdapter
-import eu.davidknotek.brecipe.fragments.recipe.detail.DetailRecipeFragment
+import eu.davidknotek.brecipe.fragments.UsedRecipesBy
+import eu.davidknotek.brecipe.fragments.adapters.ListRecipeAdapter
+import eu.davidknotek.brecipe.fragments.detail.DetailRecipeFragment
 import eu.davidknotek.brecipe.viewmodels.RecipeViewModel
-import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 
 class ListRecipesFragment : Fragment() {
     private lateinit var binding: FragmentListRecipesBinding

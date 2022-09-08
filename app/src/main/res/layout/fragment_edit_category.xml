@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:minHeight="330dp"
-    tools:context=".fragments.category.EditCategoryFragment">
+    tools:context=".fragments.edit.EditCategoryFragment">
 
     <TextView
         android:id="@+id/topBox"
@@ -33,7 +33,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:hint="@string/enter_category_name"
-        app:layout_constraintTop_toBottomOf="@+id/categoryImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/categoryImageView"
+        android:inputType="text"
+        android:importantForAutofill="no" />
 
     <ImageView
         android:id="@+id/saveImageView"

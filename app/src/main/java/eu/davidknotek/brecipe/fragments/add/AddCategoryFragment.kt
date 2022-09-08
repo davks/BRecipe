@@ -1,4 +1,4 @@
-package eu.davidknotek.brecipe.fragments.category
+package eu.davidknotek.brecipe.fragments.add
 
 import android.os.Bundle
 import android.view.LayoutInflater

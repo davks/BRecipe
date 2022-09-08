@@ -1,4 +1,4 @@
-package eu.davidknotek.brecipe.fragments.recipe.detail
+package eu.davidknotek.brecipe.fragments.detail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import eu.davidknotek.brecipe.databinding.FragmentViewpagerIngredientsBinding
-import eu.davidknotek.brecipe.fragments.recipe.adapters.IngredientsAdapter
+import eu.davidknotek.brecipe.fragments.adapters.IngredientsAdapter
 import eu.davidknotek.brecipe.viewmodels.IngredientsViewModel
 
 class ViewpagerIngredientsFragment : Fragment() {

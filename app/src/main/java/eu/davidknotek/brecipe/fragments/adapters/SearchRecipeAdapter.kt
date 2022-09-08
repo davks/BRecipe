@@ -1,4 +1,4 @@
-package eu.davidknotek.brecipe.fragments.recipe.adapters
+package eu.davidknotek.brecipe.fragments.adapters
 
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.RecipeAndCategory
 import eu.davidknotek.brecipe.databinding.RowRecipeBinding
-import eu.davidknotek.brecipe.fragments.recipe.detail.DetailRecipeFragment
+import eu.davidknotek.brecipe.fragments.detail.DetailRecipeFragment
 import eu.davidknotek.brecipe.viewmodels.RecipeViewModel
 
 class SearchRecipeAdapter(
@@ -83,7 +83,7 @@ class SearchRecipeAdapter(
         notifyDataSetChanged()
     }
 
-    private fun openDetail(holder: SearchRecipeAdapter.MyViewHolder) {
+    private fun openDetail(holder: MyViewHolder) {
 
     }
 }

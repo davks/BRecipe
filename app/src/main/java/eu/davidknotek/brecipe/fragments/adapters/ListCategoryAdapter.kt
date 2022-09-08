@@ -1,4 +1,4 @@
-package eu.davidknotek.brecipe.fragments.category.adapters
+package eu.davidknotek.brecipe.fragments.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -10,9 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.Category
 import eu.davidknotek.brecipe.databinding.RowCategoryBinding
-import eu.davidknotek.brecipe.fragments.recipe.UsedRecipesBy
-import eu.davidknotek.brecipe.fragments.recipe.detail.DetailRecipeFragment
-import eu.davidknotek.brecipe.viewmodels.SharedViewModel
+import eu.davidknotek.brecipe.fragments.UsedRecipesBy
+import eu.davidknotek.brecipe.fragments.detail.DetailRecipeFragment
 
 class ListCategoryAdapter : RecyclerView.Adapter<ListCategoryAdapter.MyViewHolder>() {
     var categories = emptyList<Category>()

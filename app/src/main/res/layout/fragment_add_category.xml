@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:minHeight="330dp"
-    tools:context=".fragments.category.AddCategoryFragment">
+    tools:context=".fragments.add.AddCategoryFragment">
 
     <TextView
         android:id="@+id/topBox"

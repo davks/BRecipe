@@ -1,4 +1,4 @@
-package eu.davidknotek.brecipe.fragments.recipe.adapters
+package eu.davidknotek.brecipe.fragments.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.RecipeAndCategory
 import eu.davidknotek.brecipe.databinding.RowRecipeBinding
-import eu.davidknotek.brecipe.fragments.recipe.detail.DetailRecipeFragment
+import eu.davidknotek.brecipe.fragments.detail.DetailRecipeFragment
 import eu.davidknotek.brecipe.viewmodels.RecipeViewModel
 
 class ListRecipeAdapter(
@@ -79,7 +79,7 @@ class ListRecipeAdapter(
         notifyDataSetChanged()
     }
 
-    private fun openDetail(holder: ListRecipeAdapter.MyViewHolder) {
+    private fun openDetail(holder: MyViewHolder) {
 
     }
 }

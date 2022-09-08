@@ -1,4 +1,4 @@
-package eu.davidknotek.brecipe.fragments.recipe
+package eu.davidknotek.brecipe.fragments.edit
 
 import android.os.Bundle
 import android.view.*
@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.RecipeAndCategory
 import eu.davidknotek.brecipe.databinding.FragmentEditRecipeBinding
-import eu.davidknotek.brecipe.fragments.recipe.detail.DetailRecipeFragment
+import eu.davidknotek.brecipe.fragments.detail.DetailRecipeFragment
 import eu.davidknotek.brecipe.viewmodels.RecipeViewModel
 
 class EditRecipeFragment : Fragment(), MenuProvider {

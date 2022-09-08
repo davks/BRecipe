@@ -1,4 +1,4 @@
-package eu.davidknotek.brecipe.fragments.recipe.adapters
+package eu.davidknotek.brecipe.fragments.adapters
 
 import android.annotation.SuppressLint
 import android.graphics.Paint

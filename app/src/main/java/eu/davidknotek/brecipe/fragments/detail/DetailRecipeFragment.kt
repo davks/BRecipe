@@ -1,4 +1,4 @@
-package eu.davidknotek.brecipe.fragments.recipe.detail
+package eu.davidknotek.brecipe.fragments.detail
 
 import android.os.Bundle
 import android.view.*
@@ -13,7 +13,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.RecipeAndCategory
 import eu.davidknotek.brecipe.databinding.FragmentDetailRecipeBinding
-import eu.davidknotek.brecipe.fragments.recipe.adapters.DetailRecipeAdapter
+import eu.davidknotek.brecipe.fragments.adapters.DetailRecipeAdapter
 import eu.davidknotek.brecipe.viewmodels.IngredientsViewModel
 
 /**

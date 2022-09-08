@@ -1,14 +1,14 @@
-package eu.davidknotek.brecipe.fragments.recipe.adapters
+package eu.davidknotek.brecipe.fragments.adapters
 
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import eu.davidknotek.brecipe.data.models.Recipe
-import eu.davidknotek.brecipe.fragments.recipe.detail.DetailRecipeFragment
-import eu.davidknotek.brecipe.fragments.recipe.detail.ViewpagerDetailFragment
-import eu.davidknotek.brecipe.fragments.recipe.detail.ViewpagerIngredientsFragment
-import eu.davidknotek.brecipe.fragments.recipe.detail.ViewpagerProcedureFragment
+import eu.davidknotek.brecipe.fragments.detail.DetailRecipeFragment
+import eu.davidknotek.brecipe.fragments.detail.ViewpagerDetailFragment
+import eu.davidknotek.brecipe.fragments.detail.ViewpagerIngredientsFragment
+import eu.davidknotek.brecipe.fragments.detail.ViewpagerProcedureFragment
 
 class DetailRecipeAdapter(
     activity: FragmentActivity,
