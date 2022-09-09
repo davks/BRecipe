@@ -17,7 +17,7 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
         isEmptyDatabase.value = list.isEmpty()
     }
 
-    fun getIngredientsMessage(ingredients: String): String? {
+    fun getIngredientsMessage(ingredients: String): String {
         return ingredients.ifEmpty {
             app.resources.getString(R.string.ingredients_empty)
         }

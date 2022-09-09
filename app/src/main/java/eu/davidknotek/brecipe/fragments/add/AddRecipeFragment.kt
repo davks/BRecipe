@@ -22,6 +22,10 @@ import eu.davidknotek.brecipe.util.verifyRecipe
 import eu.davidknotek.brecipe.viewmodels.RecipeViewModel
 import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 
+/**
+ * This we use when we need add a new recipe.
+ * We need to know a category and camera permission.
+ */
 class AddRecipeFragment : Fragment(), MenuProvider {
     private lateinit var binding: FragmentAddRecipeBinding
     private val sharedViewModel: SharedViewModel by activityViewModels()
@@ -35,8 +39,13 @@ class AddRecipeFragment : Fragment(), MenuProvider {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAddRecipeBinding.inflate(layoutInflater, container, false)
+
+        // In a new recipe we need a category
         category = arguments?.getParcelable(DetailRecipeFragment.CATEGORY)
+
         recipe = Recipe(0, category?.id?: 0, "", 0, 0, 0, false, 0, "", "", "", "")
+
+        // We need permission to camera
         cameraAndStoragePermission = CameraAndStoragePermission(this)
         return binding.root
     }
@@ -48,7 +57,7 @@ class AddRecipeFragment : Fragment(), MenuProvider {
         val menuHost = requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
-        // Set category
+        // Set category name
         binding.categoryTextView.text = category?.name
 
         emptyRecipe()
@@ -93,6 +102,7 @@ class AddRecipeFragment : Fragment(), MenuProvider {
             cameraAndStoragePermission.checkPermissionsCamera(binding.recipeImageView)
         }
 
+        // Set rating (stars)
         binding.starOneImageView.setOnClickListener {
             setRating(1)
         }
@@ -115,20 +125,20 @@ class AddRecipeFragment : Fragment(), MenuProvider {
     }
 
     private fun setObservers() {
-        // Set ingredients od recipe
+        // Set ingredients
         sharedViewModel.recipeIngredients.observe(viewLifecycleOwner) { ingredients ->
             recipe.ingredients = ingredients
             binding.ingredientsTextView.text = sharedViewModel.getIngredientsMessage(ingredients)
         }
 
-        // Set procedure of recipe
+        // Set procedure
         sharedViewModel.recipeProcedure.observe(viewLifecycleOwner) { procedure ->
             recipe.procedure = procedure
             binding.procedureTextView.text = sharedViewModel.getProcedureMessage(procedure)
 
         }
 
-        // Set note of recipe
+        // Set note
         sharedViewModel.recipeNote.observe(viewLifecycleOwner) { note ->
             recipe.note = note
             binding.noteTextView.text = sharedViewModel.geNoteMessage(note)

@@ -32,7 +32,7 @@
     <string name="favorites">Favorites</string>
     <string name="search">Search</string>
     <string name="min">%d min</string>
-    <string name="yield">%d yield</string>
+    <string name="yield">%d servings</string>
     <string name="edit_recipe">Edit Recipe</string>
     <string name="delete_recipe">Delete Recipe</string>
 </resources>

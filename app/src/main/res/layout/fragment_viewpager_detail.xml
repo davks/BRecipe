@@ -22,7 +22,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
         android:maxLines="2"
         android:text="Loupané brambory"
@@ -48,8 +48,8 @@
             android:id="@+id/preparationTimeImageView"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_time"
-            app:tint="@color/gray" />
+            app:tint="@color/green"
+            android:src="@drawable/ic_time" />
 
         <TextView
             android:id="@+id/preparationTextView"
@@ -77,7 +77,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_cooking"
-            app:tint="@color/gray" />
+            app:tint="@color/green" />
 
         <TextView
             android:id="@+id/cookingTimeTextView"
@@ -105,7 +105,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_yield"
-            app:tint="@color/gray" />
+            app:tint="@color/green" />
 
         <TextView
             android:id="@+id/yieldTextView"

@@ -124,7 +124,7 @@
     <fragment
         android:id="@+id/detailRecipeFragment"
         android:name="eu.davidknotek.brecipe.fragments.detail.DetailRecipeFragment"
-        android:label="Detail recipe"
+        android:label="Recipe detail"
         tools:layout="@layout/fragment_detail_recipe">
         <action
             android:id="@+id/action_detailRecipeFragment_to_listRecipesFragment"
