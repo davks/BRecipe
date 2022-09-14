@@ -1,6 +1,8 @@
 package eu.davidknotek.brecipe.fragments.detail
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.core.os.bundleOf
 import androidx.core.view.MenuHost
@@ -27,9 +29,9 @@ class DetailRecipeFragment : Fragment(), MenuProvider {
 
     companion object {
         const val RECIPE_AND_CATEGORY = "recipe"
-        const val PROCEDURE = "procedure"
         const val SHOW_RECIPES_BY = "show_recipes_by"
         const val CATEGORY = "category"
+        const val NEW_RECIPE = "new_recipe"
     }
 
     override fun onCreateView(
@@ -45,9 +47,9 @@ class DetailRecipeFragment : Fragment(), MenuProvider {
         // Arguments - we get recipe detail
         recipeAndCategory = requireArguments().getParcelable(RECIPE_AND_CATEGORY)
 
-        // We need change list ingredients if we check new recipe
+        // We need change list ingredients and procedure if we find a new recipe
         recipeAndCategory?.let {
-            ingredientsAndProceduresViewModel.isNewRecipe(recipeAndCategory?.recipe!!)
+            ingredientsAndProceduresViewModel.isNewRecipe(it.recipe)
         }
 
         setViewPager()

@@ -19,9 +19,13 @@ class IngredientsAndProceduresViewModel: ViewModel() {
         } else {
             isNewRecipe.value = false
             this.recipe = recipe
-            allIngredients.value = ingredientsToList(recipe.ingredients)
-            allProcedures.value = proceduresToList(recipe.procedure)
+            setNewIngredientsAndProcedure(recipe)
         }
+    }
+
+    fun setNewIngredientsAndProcedure(recipe: Recipe) {
+        allIngredients.value = ingredientsToList(recipe.ingredients)
+        allProcedures.value = proceduresToList(recipe.procedure)
     }
 
     fun updateIngredient(newIngredient: Ingredient) {

@@ -42,7 +42,6 @@ class AddRecipeFragment : Fragment(), MenuProvider {
 
         // In a new recipe we need a category
         category = arguments?.getParcelable(DetailRecipeFragment.CATEGORY)
-
         recipe = Recipe(0, category?.id?: 0, "", 0, 0, 0, false, 0, "", "", "", "")
 
         // We need permission to camera

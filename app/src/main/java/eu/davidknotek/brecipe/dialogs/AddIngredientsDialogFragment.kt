@@ -30,12 +30,6 @@ class AddIngredientsDialogFragment : DialogFragment() {
         setDialogDimension()
     }
 
-    private fun setDialogDimension() {
-        val width = ConstraintLayout.LayoutParams.MATCH_PARENT
-        val height = ConstraintLayout.LayoutParams.WRAP_CONTENT
-        dialog?.window?.setLayout(width, height)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -44,8 +38,14 @@ class AddIngredientsDialogFragment : DialogFragment() {
         }
 
         binding.saveImageView.setOnClickListener {
-            sharedViewModel.recipeIngredients.value = binding.ingredientsEditText.text.toString()
+            sharedViewModel.recipeIngredients.value = binding.ingredientsEditText.text.toString().trim()
             dismiss()
         }
+    }
+
+    private fun setDialogDimension() {
+        val width = ConstraintLayout.LayoutParams.MATCH_PARENT
+        val height = ConstraintLayout.LayoutParams.WRAP_CONTENT
+        dialog?.window?.setLayout(width, height)
     }
 }

@@ -23,7 +23,6 @@ class DetailRecipeAdapter(
 
     init {
         detail.arguments = bundleOf(DetailRecipeFragment.RECIPE_AND_CATEGORY to recipe)
-        procedure.arguments = bundleOf(DetailRecipeFragment.PROCEDURE to recipe.procedure)
         fragments = listOf(detail, ingredients, procedure)
     }
 

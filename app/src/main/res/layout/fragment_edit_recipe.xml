@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/blue_super_light"
+    app:layoutDescription="@xml/fragment_edit_recipe_scene"
     tools:context=".fragments.edit.EditRecipeFragment">
 
 
@@ -33,9 +35,9 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginEnd="12dp"
-        android:visibility="gone"
         android:contentDescription="@string/from_camera"
         android:src="@drawable/ic_storage"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/imageFromCameraImageView"
         app:layout_constraintEnd_toStartOf="@+id/imageFromCameraImageView"
         app:layout_constraintTop_toTopOf="@+id/imageFromCameraImageView" />
@@ -226,9 +228,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
+            android:layout_weight="2"
             android:ellipsize="end"
             android:maxLines="2"
-            android:layout_weight="2"
             android:text="@string/empty_notes" />
 
         <ImageView
@@ -237,7 +239,7 @@
             android:layout_height="60dp"
             android:padding="12dp"
             android:src="@drawable/ic_more"
-            app:tint="@color/gray"/>
+            app:tint="@color/gray" />
     </LinearLayout>
 
     <LinearLayout
@@ -263,9 +265,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
+            android:layout_weight="2"
             android:ellipsize="end"
             android:maxLines="2"
-            android:layout_weight="2"
             android:text="@string/ingredients_empty" />
 
         <ImageView
@@ -274,7 +276,7 @@
             android:layout_height="60dp"
             android:padding="12dp"
             android:src="@drawable/ic_more"
-            app:tint="@color/gray"/>
+            app:tint="@color/gray" />
 
     </LinearLayout>
 
@@ -301,9 +303,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
+            android:layout_weight="2"
             android:ellipsize="end"
             android:maxLines="2"
-            android:layout_weight="2"
             android:text="@string/procedure_is_empty" />
 
         <ImageView
@@ -312,7 +314,7 @@
             android:layout_height="60dp"
             android:padding="12dp"
             android:src="@drawable/ic_more"
-            app:tint="@color/gray"/>
+            app:tint="@color/gray" />
 
     </LinearLayout>
 
@@ -339,9 +341,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
+            android:layout_weight="2"
             android:ellipsize="end"
             android:maxLines="2"
-            android:layout_weight="2"
             android:text="@string/select_category" />
 
         <ImageView
@@ -350,7 +352,7 @@
             android:layout_height="60dp"
             android:padding="12dp"
             android:src="@drawable/ic_more"
-            app:tint="@color/gray"/>
+            app:tint="@color/gray" />
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>

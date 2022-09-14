@@ -37,7 +37,7 @@ class AddProcedureDialogFragment : DialogFragment() {
         }
 
         binding.saveImageView.setOnClickListener {
-            sharedViewModel.recipeProcedure.value = binding.procedureEditText.text.toString()
+            sharedViewModel.recipeProcedure.value = binding.procedureEditText.text.toString().trim()
             dismiss()
         }
     }

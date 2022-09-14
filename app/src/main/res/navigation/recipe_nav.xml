@@ -120,6 +120,18 @@
             app:popExitAnim="@anim/to_left"
             app:popUpTo="@id/listCategoryFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_editRecipeFragment_to_addNoteDialogFragment"
+            app:destination="@id/addNoteDialogFragment" />
+        <action
+            android:id="@+id/action_editRecipeFragment_to_addProcedureDialogFragment"
+            app:destination="@id/addProcedureDialogFragment" />
+        <action
+            android:id="@+id/action_editRecipeFragment_to_chooseCategoryDialogFragment"
+            app:destination="@id/chooseCategoryDialogFragment" />
+        <action
+            android:id="@+id/action_editRecipeFragment_to_addIngredientsDialogFragment"
+            app:destination="@id/addIngredientsDialogFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailRecipeFragment"
