@@ -12,7 +12,7 @@ import eu.davidknotek.brecipe.data.models.Recipe
         Recipe::class,
         Category::class
     ],
-    version = 4
+    version = 5
 )
 abstract class RecipeDatabase: RoomDatabase() {
     abstract fun recipeDao(): RecipeDao

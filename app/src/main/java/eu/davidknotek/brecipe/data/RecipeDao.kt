@@ -44,6 +44,6 @@ interface RecipeDao {
     @Delete
     suspend fun deleteCategory(category: Category)
 
-    @Query("SELECT * FROM categories ORDER BY name ASC")
+    @Query("SELECT *, (SELECT count(*) FROM recipes r WHERE c.id = r.id_category) AS numberOfRecipes FROM categories c ORDER BY name ASC")
     fun getAllCategories(): LiveData<List<Category>>
 }

@@ -36,4 +36,5 @@
     <string name="yield">%d servings</string>
     <string name="edit_recipe">Edit Recipe</string>
     <string name="delete_recipe">Delete Recipe</string>
+    <string name="recipes">Recipes:</string>
 </resources>
