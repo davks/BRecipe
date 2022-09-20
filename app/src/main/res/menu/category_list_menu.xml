@@ -14,10 +14,4 @@
         app:showAsAction="ifRoom"
         app:iconTint="@color/white"
         android:icon="@drawable/ic_favorite"/>
-
-    <item
-        android:id="@+id/settings"
-        android:title="@string/settings"
-        app:showAsAction="never"
-        android:icon="@drawable/ic_settings"/>
 </menu>

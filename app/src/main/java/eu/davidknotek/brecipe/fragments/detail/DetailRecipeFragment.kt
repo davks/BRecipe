@@ -31,7 +31,6 @@ class DetailRecipeFragment : Fragment(), MenuProvider {
         const val RECIPE_AND_CATEGORY = "recipe"
         const val SHOW_RECIPES_BY = "show_recipes_by"
         const val CATEGORY = "category"
-        const val NEW_RECIPE = "new_recipe"
     }
 
     override fun onCreateView(

@@ -7,7 +7,6 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -17,6 +16,7 @@ import com.google.android.material.snackbar.Snackbar
 import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.Category
 import eu.davidknotek.brecipe.databinding.FragmentListCategoryBinding
+import eu.davidknotek.brecipe.dialogs.ChooseCategoryDialogFragment
 import eu.davidknotek.brecipe.util.SwipeGesture
 import eu.davidknotek.brecipe.fragments.adapters.ListCategoryAdapter
 import eu.davidknotek.brecipe.fragments.UsedRecipesBy
@@ -24,9 +24,12 @@ import eu.davidknotek.brecipe.fragments.detail.DetailRecipeFragment
 import eu.davidknotek.brecipe.viewmodels.CategoryViewModel
 import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 
+/**
+ * Home fragment that displays list of categories.
+ */
 class ListCategoryFragment : Fragment(), MenuProvider {
     private lateinit var binding: FragmentListCategoryBinding
-    private val categoryViewModel: CategoryViewModel by viewModels()
+    private val categoryViewModel: CategoryViewModel by activityViewModels()
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private val listCategoryAdapter: ListCategoryAdapter by lazy { ListCategoryAdapter() }
 
@@ -60,10 +63,6 @@ class ListCategoryFragment : Fragment(), MenuProvider {
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         return when (menuItem.itemId) {
-            R.id.settings -> {
-                //
-                true
-            }
             R.id.favorite -> {
                 showFavorite()
                 true
@@ -86,14 +85,14 @@ class ListCategoryFragment : Fragment(), MenuProvider {
         categoryViewModel.allCategories.observe(viewLifecycleOwner) { categories ->
             sharedViewModel.checkIfDatabaseIsEmpty(categories)
             listCategoryAdapter.addCategories(categories)
-            binding.categoriesRecyclerView.scheduleLayoutAnimation()  // animace
+            binding.categoriesRecyclerView.scheduleLayoutAnimation()  // animation
         }
 
         // Refresh category list after close the category edit dialog
-        sharedViewModel.refreshCategory.observe(viewLifecycleOwner) {
+        categoryViewModel.refreshCategory.observe(viewLifecycleOwner) {
             if (it) {
                 listCategoryAdapter.refreshCategories()
-                sharedViewModel.refreshCategory.value = false
+                categoryViewModel.refreshCategory.value = false
             }
         }
 
@@ -116,16 +115,14 @@ class ListCategoryFragment : Fragment(), MenuProvider {
      * Swipe left and right. Swipe left - delete category and swipe right - show edit dialog.
      */
     private fun swipeToGesture(recyclerView: RecyclerView) {
-        val swipetToGestureCallback = object : SwipeGesture(requireContext()) {
+        val swipeToGestureCallback = object : SwipeGesture(requireContext()) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.bindingAdapterPosition
                 val category = listCategoryAdapter.categories[position]
 
                 when (direction) {
                     ItemTouchHelper.LEFT -> {
-                        categoryViewModel.deleteCategory(category)
-                        listCategoryAdapter.notifyItemRemoved(position)
-                        restoreDeletedData(viewHolder.itemView, category)
+                        deleteCategory(category, position, viewHolder)
                     }
                     ItemTouchHelper.RIGHT -> {
                         val bundle = bundleOf(DetailRecipeFragment.CATEGORY to category)
@@ -135,28 +132,45 @@ class ListCategoryFragment : Fragment(), MenuProvider {
             }
         }
         // We need the connection to RecyclerView
-        val itemTouchHelper = ItemTouchHelper(swipetToGestureCallback)
+        val itemTouchHelper = ItemTouchHelper(swipeToGestureCallback)
         itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 
     /**
-     * Show snackbar to restore deleted category.
+     * If the number of categories is greater than zero, a dialog box will appear listing the categories
+     * where the recipes should be moved to. Otherwise the category will be deleted directly.
+     */
+    private fun deleteCategory(category: Category, position: Int, viewHolder: RecyclerView.ViewHolder) {
+        category.numberOfRecipes?.let {
+            if (it > 0) {
+                val bundle = bundleOf(ChooseCategoryDialogFragment.MESSAGE to "Select the category where the recipes will be moved.", ChooseCategoryDialogFragment.CATEGORY_ID to category.id)
+                findNavController().navigate(R.id.action_listCategoryFragment_to_chooseCategoryDialogFragment, bundle)
+            } else {
+                categoryViewModel.deleteCategory(category)
+                listCategoryAdapter.notifyItemRemoved(position)
+                restoreDeletedData(viewHolder.itemView, category)
+            }
+        }
+    }
+
+    /**
+     * Show snack to restore deleted category.
      */
     private fun restoreDeletedData(view: View, deletedItem: Category) {
-        val snackbar = Snackbar.make(
+        val snack = Snackbar.make(
             view, "Deleted: ${deletedItem.name}",
             Snackbar.LENGTH_LONG
         )
-        snackbar.addCallback(object: Snackbar.Callback() {
+        snack.addCallback(object: Snackbar.Callback() {
             override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
                 super.onDismissed(transientBottomBar, event)
-                //Change category id in reciepe
+                //Change category id in recipes
             }
         })
-        snackbar.setAction("Undo") {
+        snack.setAction("Undo") {
             categoryViewModel.insertCategory(deletedItem)
         }
 
-        snackbar.show()
+        snack.show()
     }
 }

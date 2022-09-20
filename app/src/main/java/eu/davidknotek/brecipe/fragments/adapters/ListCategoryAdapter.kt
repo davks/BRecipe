@@ -15,6 +15,9 @@ import eu.davidknotek.brecipe.databinding.RowCategoryBinding
 import eu.davidknotek.brecipe.fragments.UsedRecipesBy
 import eu.davidknotek.brecipe.fragments.detail.DetailRecipeFragment
 
+/**
+ * Adapter for RecyclerView with a list of categories in the home fragment.
+ */
 class ListCategoryAdapter : RecyclerView.Adapter<ListCategoryAdapter.MyViewHolder>() {
     var categories = emptyList<Category>()
 

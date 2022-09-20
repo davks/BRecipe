@@ -18,6 +18,9 @@ interface RecipeDao {
     @Delete
     suspend fun deleteRecipe(recipe: Recipe)
 
+    @Query("UPDATE recipes SET id_category = :newIdCategory WHERE id_category = :oldIdCategory")
+    fun changeRecipeCategory(oldIdCategory: Int, newIdCategory: Int)
+
     @Transaction
     @Query("SELECT * FROM recipes ORDER BY name ASC")
     fun getRecipes(): LiveData<List<RecipeAndCategory>>
@@ -46,4 +49,7 @@ interface RecipeDao {
 
     @Query("SELECT *, (SELECT count(*) FROM recipes r WHERE c.id = r.id_category) AS numberOfRecipes FROM categories c ORDER BY name ASC")
     fun getAllCategories(): LiveData<List<Category>>
+
+    @Query("SELECT * FROM categories WHERE id != :exceptCategoryId")
+    fun getAllCategories(exceptCategoryId: Int): LiveData<List<Category>>
 }

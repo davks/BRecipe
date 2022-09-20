@@ -8,6 +8,10 @@ class CategoryRepositoryImpl(private val recipeDao: RecipeDao): CategoryReposito
     override val allCategories: LiveData<List<Category>>
         get() = recipeDao.getAllCategories()
 
+    override fun getAllCategories(exceptId: Int): LiveData<List<Category>> {
+        return recipeDao.getAllCategories(exceptId)
+    }
+
     override suspend fun insertCategory(category: Category) {
         recipeDao.insertCategory(category)
     }

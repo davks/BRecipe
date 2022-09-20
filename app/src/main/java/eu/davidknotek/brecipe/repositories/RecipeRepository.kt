@@ -9,6 +9,7 @@ interface RecipeRepository {
     fun getRecipes(idCategory: Int): LiveData<List<RecipeAndCategory>>
     fun getFavoriteRecipes(): LiveData<List<RecipeAndCategory>>
     fun searchRecipes(query: String): LiveData<List<RecipeAndCategory>>
+    fun changeRecipeCategory(oldIdCategory: Int, newIdCategory: Int)
     suspend fun insertRecipe(recipe: Recipe)
     suspend fun updateRecipe(recipe: Recipe)
     suspend fun deleteRecipe(recipe: Recipe)

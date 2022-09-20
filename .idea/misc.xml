@@ -39,6 +39,7 @@
         <entry key="app/src/main/res/layout/fragment_viewpager_ingredients.xml" value="0.20436083796494228" />
         <entry key="app/src/main/res/layout/fragment_viewpager_procedure.xml" value="0.20436083796494228" />
         <entry key="app/src/main/res/layout/row_category.xml" value="0.24791666666666667" />
+        <entry key="app/src/main/res/layout/row_category_dialog.xml" value="0.20350577169730655" />
         <entry key="app/src/main/res/layout/row_category_edit.xml" value="0.24895833333333334" />
         <entry key="app/src/main/res/layout/row_ingredient.xml" value="0.20436083796494228" />
         <entry key="app/src/main/res/layout/row_procedure.xml" value="0.20436083796494228" />

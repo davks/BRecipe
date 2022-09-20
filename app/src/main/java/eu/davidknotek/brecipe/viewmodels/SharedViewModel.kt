@@ -7,7 +7,6 @@ import eu.davidknotek.brecipe.R
 
 class SharedViewModel(application: Application) : AndroidViewModel(application) {
     private val app = application
-    val refreshCategory = MutableLiveData(false)
     val isEmptyDatabase = MutableLiveData(false)
     val recipeIngredients = MutableLiveData("")
     val recipeProcedure = MutableLiveData("")

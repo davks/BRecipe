@@ -21,6 +21,10 @@ class RecipeRepositoryImpl(private val recipeDao: RecipeDao): RecipeRepository {
         return recipeDao.searchRecipes(query)
     }
 
+    override fun changeRecipeCategory(oldIdCategory: Int, newIdCategory: Int) {
+        recipeDao.changeRecipeCategory(oldIdCategory, newIdCategory)
+    }
+
     override suspend fun insertRecipe(recipe: Recipe) {
         recipeDao.insertRecipe(recipe)
     }

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.Category
@@ -15,12 +14,10 @@ import eu.davidknotek.brecipe.databinding.FragmentEditCategoryBinding
 import eu.davidknotek.brecipe.fragments.detail.DetailRecipeFragment
 import eu.davidknotek.brecipe.util.CameraAndStoragePermission
 import eu.davidknotek.brecipe.viewmodels.CategoryViewModel
-import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 
 class EditCategoryFragment : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentEditCategoryBinding
-    private val categoryViewModel: CategoryViewModel by viewModels()
-    private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val categoryViewModel: CategoryViewModel by activityViewModels()
     private var currentCategory: Category? = null
     private lateinit var cameraAndStoragePermission: CameraAndStoragePermission
 
@@ -43,7 +40,7 @@ class EditCategoryFragment : BottomSheetDialogFragment() {
 
     private fun setListeners() {
         binding.cancelImageView.setOnClickListener {
-            sharedViewModel.refreshCategory.value = true
+            categoryViewModel.refreshCategory.value = true
             dismiss()
         }
 
@@ -64,7 +61,7 @@ class EditCategoryFragment : BottomSheetDialogFragment() {
     private fun saveCategory(): Boolean {
         val name = binding.categoryNameEditText.text.toString()
         return if (name.isNotEmpty() && currentCategory != null) {
-            categoryViewModel.updateCategory(getCategoryFragment())
+            categoryViewModel.updateCategory(getItemsFromCategoryFragment())
             true
         } else {
             false
@@ -80,7 +77,7 @@ class EditCategoryFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun getCategoryFragment(): Category {
+    private fun getItemsFromCategoryFragment(): Category {
         val categoryName = binding.categoryNameEditText.text.toString()
         var categoryImageUrl = currentCategory?.imageUrl.toString()
 

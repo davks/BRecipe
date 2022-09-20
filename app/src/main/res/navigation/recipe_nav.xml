@@ -30,6 +30,9 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_listCategoryFragment_to_chooseCategoryDialogFragment"
+            app:destination="@id/chooseCategoryDialogFragment" />
     </fragment>
     <dialog
         android:id="@+id/addCategoryFragment"
