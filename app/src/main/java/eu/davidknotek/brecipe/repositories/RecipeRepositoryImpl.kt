@@ -21,7 +21,7 @@ class RecipeRepositoryImpl(private val recipeDao: RecipeDao): RecipeRepository {
         return recipeDao.searchRecipes(query)
     }
 
-    override fun changeRecipeCategory(oldIdCategory: Int, newIdCategory: Int) {
+    override suspend fun changeRecipeCategory(oldIdCategory: Int, newIdCategory: Int) {
         recipeDao.changeRecipeCategory(oldIdCategory, newIdCategory)
     }
 

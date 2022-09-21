@@ -7,6 +7,7 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -22,6 +23,7 @@ import eu.davidknotek.brecipe.fragments.adapters.ListCategoryAdapter
 import eu.davidknotek.brecipe.fragments.UsedRecipesBy
 import eu.davidknotek.brecipe.fragments.detail.DetailRecipeFragment
 import eu.davidknotek.brecipe.viewmodels.CategoryViewModel
+import eu.davidknotek.brecipe.viewmodels.RecipeViewModel
 import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 
 /**
@@ -30,8 +32,12 @@ import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 class ListCategoryFragment : Fragment(), MenuProvider {
     private lateinit var binding: FragmentListCategoryBinding
     private val categoryViewModel: CategoryViewModel by activityViewModels()
+    private val recipeViewModel: RecipeViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private val listCategoryAdapter: ListCategoryAdapter by lazy { ListCategoryAdapter() }
+
+    private var oldCategory: Category? = null
+    private var oldCategoryId = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -89,16 +95,28 @@ class ListCategoryFragment : Fragment(), MenuProvider {
         }
 
         // Refresh category list after close the category edit dialog
-        categoryViewModel.refreshCategory.observe(viewLifecycleOwner) {
+        sharedViewModel.refreshCategory.observe(viewLifecycleOwner) {
             if (it) {
                 listCategoryAdapter.refreshCategories()
-                categoryViewModel.refreshCategory.value = false
+                sharedViewModel.refreshCategory.value = false
             }
         }
 
         // When empty, database show an image on fragment
         sharedViewModel.isEmptyDatabase.observe(viewLifecycleOwner) {
 
+        }
+
+        // If we select a category from the chooseCategoryDialog, we remove the old category and transfer the recipes to the new category.
+        sharedViewModel.selectedCategory.observe(viewLifecycleOwner) { selectedCategory ->
+            selectedCategory?.let { newCategory ->
+                recipeViewModel.changeRecipeCategory(oldCategoryId, newCategory.id)
+                oldCategory?.let {
+                    categoryViewModel.deleteCategory(it)
+                }
+                listCategoryAdapter.refreshCategories()
+                sharedViewModel.selectedCategory.value = null
+            }
         }
     }
 
@@ -123,6 +141,8 @@ class ListCategoryFragment : Fragment(), MenuProvider {
                 when (direction) {
                     ItemTouchHelper.LEFT -> {
                         deleteCategory(category, position, viewHolder)
+                        oldCategoryId = category.id
+                        oldCategory = category
                     }
                     ItemTouchHelper.RIGHT -> {
                         val bundle = bundleOf(DetailRecipeFragment.CATEGORY to category)
@@ -141,9 +161,12 @@ class ListCategoryFragment : Fragment(), MenuProvider {
      * where the recipes should be moved to. Otherwise the category will be deleted directly.
      */
     private fun deleteCategory(category: Category, position: Int, viewHolder: RecyclerView.ViewHolder) {
-        category.numberOfRecipes?.let {
-            if (it > 0) {
-                val bundle = bundleOf(ChooseCategoryDialogFragment.MESSAGE to "Select the category where the recipes will be moved.", ChooseCategoryDialogFragment.CATEGORY_ID to category.id)
+        category.numberOfRecipes?.let { numberOfRecipes ->
+            if (numberOfRecipes > 0) {
+                val bundle = bundleOf(
+                    ChooseCategoryDialogFragment.MESSAGE to "Select the category where the recipes will be moved.",
+                    ChooseCategoryDialogFragment.CATEGORY_ID to category.id,
+                    ChooseCategoryDialogFragment.TITLE to "Delete the category")
                 findNavController().navigate(R.id.action_listCategoryFragment_to_chooseCategoryDialogFragment, bundle)
             } else {
                 categoryViewModel.deleteCategory(category)
@@ -164,7 +187,6 @@ class ListCategoryFragment : Fragment(), MenuProvider {
         snack.addCallback(object: Snackbar.Callback() {
             override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
                 super.onDismissed(transientBottomBar, event)
-                //Change category id in recipes
             }
         })
         snack.setAction("Undo") {

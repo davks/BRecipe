@@ -19,7 +19,7 @@ interface RecipeDao {
     suspend fun deleteRecipe(recipe: Recipe)
 
     @Query("UPDATE recipes SET id_category = :newIdCategory WHERE id_category = :oldIdCategory")
-    fun changeRecipeCategory(oldIdCategory: Int, newIdCategory: Int)
+    suspend fun changeRecipeCategory(oldIdCategory: Int, newIdCategory: Int)
 
     @Transaction
     @Query("SELECT * FROM recipes ORDER BY name ASC")

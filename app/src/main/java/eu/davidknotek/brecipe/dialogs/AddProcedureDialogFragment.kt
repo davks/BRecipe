@@ -8,6 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import eu.davidknotek.brecipe.databinding.FragmentAddProcedureDialogBinding
+import eu.davidknotek.brecipe.util.setDialogDimension
 import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 
 class AddProcedureDialogFragment : DialogFragment() {
@@ -26,7 +27,7 @@ class AddProcedureDialogFragment : DialogFragment() {
     override fun onResume() {
         super.onResume()
         binding.procedureEditText.setText(sharedViewModel.recipeProcedure.value)
-        setDialogDimension()
+        setDialogDimension(dialog)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,11 +42,4 @@ class AddProcedureDialogFragment : DialogFragment() {
             dismiss()
         }
     }
-
-    private fun setDialogDimension() {
-        val width = ConstraintLayout.LayoutParams.MATCH_PARENT
-        val height = ConstraintLayout.LayoutParams.WRAP_CONTENT
-        dialog?.window?.setLayout(width, height)
-    }
-
 }

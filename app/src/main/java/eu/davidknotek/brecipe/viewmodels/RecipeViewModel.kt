@@ -42,7 +42,9 @@ class RecipeViewModel(application: Application): AndroidViewModel(application) {
     }
 
     fun changeRecipeCategory(oldIdCategory: Int, newIdCategory: Int) {
-        recipeRepository.changeRecipeCategory(oldIdCategory, newIdCategory)
+        viewModelScope.launch(Dispatchers.IO) {
+            recipeRepository.changeRecipeCategory(oldIdCategory, newIdCategory)
+        }
     }
 
     fun getRecipes(idCategory: Int): LiveData<List<RecipeAndCategory>> =

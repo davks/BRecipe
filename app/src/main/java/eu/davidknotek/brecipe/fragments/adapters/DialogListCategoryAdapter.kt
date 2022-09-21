@@ -1,5 +1,6 @@
 package eu.davidknotek.brecipe.fragments.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.net.toUri
@@ -7,9 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.Category
 import eu.davidknotek.brecipe.databinding.RowCategoryDialogBinding
-import eu.davidknotek.brecipe.viewmodels.CategoryViewModel
+import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 
-class DialogListCategoryAdapter(private val categoryViewModel: CategoryViewModel): RecyclerView.Adapter<DialogListCategoryAdapter.MyViewHolder>() {
+/**
+ * Adapter for RecyclerView in ChooseCategoryDialogFragment.
+ * Display the categories, from which we select one
+ */
+class DialogListCategoryAdapter(private val sharedViewModel: SharedViewModel): RecyclerView.Adapter<DialogListCategoryAdapter.MyViewHolder>() {
     private var categories = emptyList<Category>()
 
     class MyViewHolder(val binding: RowCategoryDialogBinding): RecyclerView.ViewHolder(binding.root)
@@ -33,8 +38,10 @@ class DialogListCategoryAdapter(private val categoryViewModel: CategoryViewModel
             holder.binding.categoryPictureImageView.setImageURI(currentCategory.imageUrl.toUri())
         }
 
+        // If we click on a category, we save it and inform that we have already selected the category (we need close the chooseCategoryDialog)
         holder.binding.categoryCargView.setOnClickListener {
-            categoryViewModel.selectedCategory.value = currentCategory
+            sharedViewModel.selectedCategory.value = currentCategory
+            sharedViewModel.isSelectedCategory.value = true
         }
     }
 
@@ -42,8 +49,14 @@ class DialogListCategoryAdapter(private val categoryViewModel: CategoryViewModel
         return categories.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun addCategories(categories: List<Category>) {
         this.categories = categories
+        refreshCategories()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun refreshCategories() {
         notifyDataSetChanged()
     }
 }

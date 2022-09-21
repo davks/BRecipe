@@ -13,6 +13,9 @@ class IngredientsAndProceduresViewModel: ViewModel() {
     private var isNewRecipe = MutableLiveData(false)
     private var recipe: Recipe? = null
 
+    /**
+     * If a new recipe is not displayed, the old list of procedures and ingredients is displayed.
+     */
     fun isNewRecipe(recipe: Recipe) {
         if (this.recipe == recipe) {
             isNewRecipe.value = true
@@ -28,11 +31,14 @@ class IngredientsAndProceduresViewModel: ViewModel() {
         allProcedures.value = proceduresToList(recipe.procedure)
     }
 
-    fun updateIngredient(newIngredient: Ingredient) {
+    /**
+     * Create a new list of ingredients. We need it in case the ingredients changes to finished.
+     */
+    fun updateIngredient(updatedIngredient: Ingredient) {
         val newIngredients = mutableListOf<Ingredient>()
         for (ingredient in allIngredients.value!!) {
-            if (ingredient == newIngredient) {
-                ingredient.done = newIngredient.done
+            if (ingredient == updatedIngredient) {
+                ingredient.done = updatedIngredient.done
             }
             newIngredients.add(ingredient)
         }
@@ -40,11 +46,14 @@ class IngredientsAndProceduresViewModel: ViewModel() {
         allIngredients.value = newIngredients
     }
 
-    fun updateProcedure(newProcedure: Procedure) {
+    /**
+     * Create a new list of procedure. We need it in case the procedure changes to finished.
+     */
+    fun updateProcedure(updatedProcedure: Procedure) {
         val newProcedures = mutableListOf<Procedure>()
         for (procedure in allProcedures.value!!) {
-            if (procedure == newProcedure) {
-                procedure.done = newProcedure.done
+            if (procedure == updatedProcedure) {
+                procedure.done = updatedProcedure.done
             }
             newProcedures.add(procedure)
         }

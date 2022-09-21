@@ -14,10 +14,12 @@ import eu.davidknotek.brecipe.databinding.FragmentEditCategoryBinding
 import eu.davidknotek.brecipe.fragments.detail.DetailRecipeFragment
 import eu.davidknotek.brecipe.util.CameraAndStoragePermission
 import eu.davidknotek.brecipe.viewmodels.CategoryViewModel
+import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 
 class EditCategoryFragment : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentEditCategoryBinding
     private val categoryViewModel: CategoryViewModel by activityViewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
     private var currentCategory: Category? = null
     private lateinit var cameraAndStoragePermission: CameraAndStoragePermission
 
@@ -40,7 +42,7 @@ class EditCategoryFragment : BottomSheetDialogFragment() {
 
     private fun setListeners() {
         binding.cancelImageView.setOnClickListener {
-            categoryViewModel.refreshCategory.value = true
+            sharedViewModel.refreshCategory.value = true
             dismiss()
         }
 

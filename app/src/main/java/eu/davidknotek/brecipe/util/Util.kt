@@ -1,5 +1,7 @@
 package eu.davidknotek.brecipe.util
 
+import android.app.Dialog
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -20,6 +22,15 @@ fun strToInt(str: String): Int =
     } catch (e: Exception) {
         0
     }
+
+/**
+ * Dialog dimension
+ */
+fun setDialogDimension(dialog: Dialog?) {
+    val width = ConstraintLayout.LayoutParams.MATCH_PARENT
+    val height = ConstraintLayout.LayoutParams.WRAP_CONTENT
+    dialog?.window?.setLayout(width, height)
+}
 
 /**
  * Extends TabLayout and show tabs

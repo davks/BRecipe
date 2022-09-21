@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import eu.davidknotek.brecipe.R
+import eu.davidknotek.brecipe.data.models.Category
 
 class SharedViewModel(application: Application) : AndroidViewModel(application) {
     private val app = application
@@ -11,6 +12,10 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
     val recipeIngredients = MutableLiveData("")
     val recipeProcedure = MutableLiveData("")
     val recipeNote = MutableLiveData("")
+
+    val refreshCategory = MutableLiveData(false)
+    val selectedCategory = MutableLiveData<Category>()
+    val isSelectedCategory = MutableLiveData(false) // we need to close chooseCategoryDialogFragment
 
     fun <T> checkIfDatabaseIsEmpty(list: List<T>) {
         isEmptyDatabase.value = list.isEmpty()
