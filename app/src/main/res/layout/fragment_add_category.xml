@@ -33,7 +33,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:hint="@string/enter_category_name"
-        app:layout_constraintTop_toBottomOf="@+id/categoryImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/categoryImageView"
+        android:inputType="text"
+        android:importantForAutofill="no" />
 
     <ImageView
         android:id="@+id/saveImageView"

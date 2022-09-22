@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/listCategoryFragment"
         android:name="eu.davidknotek.brecipe.fragments.list.ListCategoryFragment"
-        android:label="Categories"
+        android:label="@string/categories"
         tools:layout="@layout/fragment_list_category">
         <action
             android:id="@+id/action_listCategoryFragment_to_addCategoryFragment"
@@ -37,17 +37,17 @@
     <dialog
         android:id="@+id/addCategoryFragment"
         android:name="eu.davidknotek.brecipe.fragments.add.AddCategoryFragment"
-        android:label="Add category"
+        android:label="@string/add_category"
         tools:layout="@layout/fragment_add_category" />
     <dialog
         android:id="@+id/editCategoryFragment"
         android:name="eu.davidknotek.brecipe.fragments.edit.EditCategoryFragment"
-        android:label="Edit category"
+        android:label="@string/edit_category"
         tools:layout="@layout/fragment_edit_category" />
     <fragment
         android:id="@+id/listRecipesFragment"
         android:name="eu.davidknotek.brecipe.fragments.list.ListRecipesFragment"
-        android:label="Recipes"
+        android:label="@string/recipes"
         tools:layout="@layout/fragment_list_recipes">
         <action
             android:id="@+id/action_listRecipesFragment_to_addRecipeFragment"
@@ -76,8 +76,8 @@
     <fragment
         android:id="@+id/addRecipeFragment"
         android:name="eu.davidknotek.brecipe.fragments.add.AddRecipeFragment"
-        android:label="Add recipe"
-        tools:layout="@layout/fragment_add_recipe" >
+        android:label="@string/add_recipe"
+        tools:layout="@layout/fragment_add_recipe">
         <action
             android:id="@+id/action_addRecipeFragment_to_listRecipesFragment"
             app:destination="@id/listRecipesFragment"
@@ -103,8 +103,8 @@
     <fragment
         android:id="@+id/editRecipeFragment"
         android:name="eu.davidknotek.brecipe.fragments.edit.EditRecipeFragment"
-        android:label="Edit recipe"
-        tools:layout="@layout/fragment_edit_recipe" >
+        android:label="@string/edit_recipe"
+        tools:layout="@layout/fragment_edit_recipe">
         <action
             android:id="@+id/action_editRecipeFragment_to_detailRecipeFragment"
             app:destination="@id/detailRecipeFragment"
@@ -139,7 +139,7 @@
     <fragment
         android:id="@+id/detailRecipeFragment"
         android:name="eu.davidknotek.brecipe.fragments.detail.DetailRecipeFragment"
-        android:label="Recipe detail"
+        android:label="@string/recipe_detail"
         tools:layout="@layout/fragment_detail_recipe">
         <action
             android:id="@+id/action_detailRecipeFragment_to_listRecipesFragment"
@@ -181,8 +181,8 @@
     <fragment
         android:id="@+id/searchRecipesFragment"
         android:name="eu.davidknotek.brecipe.fragments.search.SearchRecipesFragment"
-        android:label="Search"
-        tools:layout="@layout/fragment_search_recipes" >
+        android:label="@string/search"
+        tools:layout="@layout/fragment_search_recipes">
         <action
             android:id="@+id/action_searchRecipesFragment_to_detailRecipeFragment"
             app:destination="@id/detailRecipeFragment"

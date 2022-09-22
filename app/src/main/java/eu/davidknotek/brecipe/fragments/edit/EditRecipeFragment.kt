@@ -121,13 +121,13 @@ class EditRecipeFragment : Fragment(), MenuProvider {
 
     private fun deleteRecipe() {
         val dialog: AlertDialog.Builder = AlertDialog.Builder(requireContext())
-        dialog.setTitle("Delete recipe: ${recipeAndCategory?.recipe?.name}")
-        dialog.setMessage("Do you want to delete this recipe: ${recipeAndCategory?.recipe?.name}?")
+        dialog.setTitle(getString(R.string.delete_recipe_name, recipeAndCategory?.recipe?.name?:""))
+        dialog.setMessage(getString(R.string.do_you_want_delete_recipe_name, recipeAndCategory?.recipe?.name?:""))
         dialog.setIcon(R.drawable.ic_warning)
-        dialog.setNegativeButton("No") { dialogInterface, _ ->
+        dialog.setNegativeButton(getString(R.string.no)) { dialogInterface, _ ->
             dialogInterface.dismiss()
         }
-        dialog.setPositiveButton("Yes") { dialogInterface, _ ->
+        dialog.setPositiveButton(getString(R.string.yes)) { dialogInterface, _ ->
             recipeAndCategory?.let {
                 recipeViewModel.deleteRecipe(it.recipe)
                 findNavController().navigate(R.id.action_editRecipeFragment_to_listCategoryFragment)
@@ -156,7 +156,7 @@ class EditRecipeFragment : Fragment(), MenuProvider {
 
         binding.addCategoryImageView.setOnClickListener {
             val bundle = bundleOf(
-                ChooseCategoryDialogFragment.TITLE to "Choose the category")
+                ChooseCategoryDialogFragment.TITLE to getString(R.string.choose_category))
             findNavController().navigate(R.id.action_editRecipeFragment_to_chooseCategoryDialogFragment, bundle)
         }
 

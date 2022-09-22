@@ -8,7 +8,6 @@
     app:layoutDescription="@xml/fragment_edit_recipe_scene"
     tools:context=".fragments.edit.EditRecipeFragment">
 
-
     <ImageView
         android:id="@+id/recipeImageView"
         android:layout_width="match_parent"
@@ -17,7 +16,8 @@
         android:src="@drawable/no_image_available"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/no_image" />
 
     <ImageView
         android:id="@+id/imageFromCameraImageView"
@@ -58,7 +58,8 @@
             android:layout_height="60dp"
             android:padding="12dp"
             android:src="@drawable/ic_rename"
-            app:tint="@color/gray" />
+            app:tint="@color/gray"
+            android:contentDescription="@string/recipe_name" />
 
         <EditText
             android:id="@+id/recipeNameEditText"
@@ -67,7 +68,8 @@
             android:background="@android:color/transparent"
             android:hint="@string/enter_recipe_name"
             android:inputType="text"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:importantForAutofill="no" />
 
     </LinearLayout>
 
@@ -86,7 +88,8 @@
             android:layout_height="60dp"
             android:padding="12dp"
             android:src="@drawable/ic_time"
-            app:tint="@color/gray" />
+            app:tint="@color/gray"
+            android:contentDescription="@string/preparation" />
 
         <EditText
             android:id="@+id/preparationEditText"
@@ -95,7 +98,8 @@
             android:background="@android:color/transparent"
             android:hint="@string/enter_preparation"
             android:inputType="number"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:importantForAutofill="no" />
     </LinearLayout>
 
     <LinearLayout
@@ -113,7 +117,8 @@
             android:layout_height="60dp"
             android:padding="12dp"
             android:src="@drawable/ic_cooking"
-            app:tint="@color/gray" />
+            app:tint="@color/gray"
+            android:contentDescription="@string/cooking" />
 
         <EditText
             android:id="@+id/cookingEditText"
@@ -122,7 +127,8 @@
             android:background="@android:color/transparent"
             android:hint="@string/enter_time_cooking"
             android:inputType="number"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:importantForAutofill="no" />
     </LinearLayout>
 
     <LinearLayout
@@ -140,7 +146,8 @@
             android:layout_height="60dp"
             android:padding="12dp"
             android:src="@drawable/ic_restaurant"
-            app:tint="@color/gray" />
+            app:tint="@color/gray"
+            android:contentDescription="@string/yield_image" />
 
         <EditText
             android:id="@+id/yieldEditText"
@@ -149,7 +156,8 @@
             android:background="@android:color/transparent"
             android:hint="@string/enter_yield"
             android:inputType="number"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:importantForAutofill="no" />
     </LinearLayout>
 
     <LinearLayout
@@ -169,7 +177,8 @@
             android:layout_height="60dp"
             android:padding="12dp"
             android:src="@drawable/ic_star_border"
-            app:tint="@color/gray" />
+            app:tint="@color/gray"
+            android:contentDescription="@string/star_one" />
 
         <ImageView
             android:id="@+id/starTwoImageView"
@@ -177,7 +186,8 @@
             android:layout_height="60dp"
             android:padding="12dp"
             android:src="@drawable/ic_star_border"
-            app:tint="@color/gray" />
+            app:tint="@color/gray"
+            android:contentDescription="@string/star_two" />
 
         <ImageView
             android:id="@+id/starThreeImageView"
@@ -185,7 +195,8 @@
             android:layout_height="60dp"
             android:padding="12dp"
             android:src="@drawable/ic_star_border"
-            app:tint="@color/gray" />
+            app:tint="@color/gray"
+            android:contentDescription="@string/star_three" />
 
         <ImageView
             android:id="@+id/starFourImageView"
@@ -193,7 +204,8 @@
             android:layout_height="60dp"
             android:padding="12dp"
             android:src="@drawable/ic_star_border"
-            app:tint="@color/gray" />
+            app:tint="@color/gray"
+            android:contentDescription="@string/star_four" />
 
         <ImageView
             android:id="@+id/starFiveImageView"
@@ -201,7 +213,8 @@
             android:layout_height="60dp"
             android:padding="12dp"
             android:src="@drawable/ic_star_border"
-            app:tint="@color/gray" />
+            app:tint="@color/gray"
+            android:contentDescription="@string/star_five" />
 
     </LinearLayout>
 
@@ -221,7 +234,8 @@
             android:layout_height="60dp"
             android:padding="12dp"
             android:src="@drawable/ic_notes"
-            app:tint="@color/gray" />
+            app:tint="@color/gray"
+            android:contentDescription="@string/note" />
 
         <TextView
             android:id="@+id/noteTextView"
@@ -239,7 +253,8 @@
             android:layout_height="60dp"
             android:padding="12dp"
             android:src="@drawable/ic_more"
-            app:tint="@color/gray" />
+            app:tint="@color/gray"
+            android:contentDescription="@string/add_note" />
     </LinearLayout>
 
     <LinearLayout
@@ -258,7 +273,8 @@
             android:layout_height="60dp"
             android:padding="12dp"
             android:src="@drawable/ic_fastfood"
-            app:tint="@color/gray" />
+            app:tint="@color/gray"
+            android:contentDescription="@string/ingredients" />
 
         <TextView
             android:id="@+id/ingredientsTextView"
@@ -276,7 +292,8 @@
             android:layout_height="60dp"
             android:padding="12dp"
             android:src="@drawable/ic_more"
-            app:tint="@color/gray" />
+            app:tint="@color/gray"
+            android:contentDescription="@string/add_ingredients" />
 
     </LinearLayout>
 
@@ -296,7 +313,8 @@
             android:layout_height="60dp"
             android:padding="12dp"
             android:src="@drawable/ic_procedure"
-            app:tint="@color/gray" />
+            app:tint="@color/gray"
+            android:contentDescription="@string/procedure" />
 
         <TextView
             android:id="@+id/procedureTextView"
@@ -314,7 +332,8 @@
             android:layout_height="60dp"
             android:padding="12dp"
             android:src="@drawable/ic_more"
-            app:tint="@color/gray" />
+            app:tint="@color/gray"
+            android:contentDescription="@string/add_procedure" />
 
     </LinearLayout>
 
@@ -334,7 +353,8 @@
             android:layout_height="60dp"
             android:padding="12dp"
             android:src="@drawable/ic_category"
-            app:tint="@color/gray" />
+            app:tint="@color/gray"
+            android:contentDescription="@string/category" />
 
         <TextView
             android:id="@+id/categoryTextView"
@@ -352,7 +372,8 @@
             android:layout_height="60dp"
             android:padding="12dp"
             android:src="@drawable/ic_more"
-            app:tint="@color/gray" />
+            app:tint="@color/gray"
+            android:contentDescription="@string/add_category" />
     </LinearLayout>
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

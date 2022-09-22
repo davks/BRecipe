@@ -15,7 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/recipe_name" />
 
     <TextView
         android:id="@+id/recipeNameTextView"
@@ -25,7 +26,6 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
         android:maxLines="2"
-        android:text="Loupané brambory"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,6 +40,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:gravity="center"
+        android:background="@null"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recipeNameTextView">
@@ -49,15 +50,15 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             app:tint="@color/green"
-            android:src="@drawable/ic_time" />
+            android:src="@drawable/ic_time"
+            android:contentDescription="@string/preparation" />
 
         <TextView
             android:id="@+id/preparationTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
-            android:layout_marginStart="2dp"
-            android:text="40 min" />
+            android:layout_marginStart="2dp" />
 
     </LinearLayout>
 
@@ -67,6 +68,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
+        android:background="@null"
         app:layout_constraintBottom_toBottomOf="@+id/preparationTimeLinearLayout"
         app:layout_constraintEnd_toStartOf="@+id/yieldLinearLayout"
         app:layout_constraintStart_toEndOf="@+id/preparationTimeLinearLayout"
@@ -77,15 +79,15 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_cooking"
-            app:tint="@color/green" />
+            app:tint="@color/green"
+            android:contentDescription="@string/cooking" />
 
         <TextView
             android:id="@+id/cookingTimeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
-            android:layout_marginStart="2dp"
-            android:text="40 min" />
+            android:layout_marginStart="2dp" />
 
     </LinearLayout>
 
@@ -94,6 +96,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:background="@null"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/cookingTimeLinearLayout"
         app:layout_constraintEnd_toStartOf="@+id/ratingLinearLayout"
@@ -105,15 +108,15 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_yield"
-            app:tint="@color/green" />
+            app:tint="@color/green"
+            android:contentDescription="@string/yield_image" />
 
         <TextView
             android:id="@+id/yieldTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
-            android:layout_marginStart="2dp"
-            android:text="8 yield" />
+            android:layout_marginStart="2dp" />
 
     </LinearLayout>
 
@@ -123,6 +126,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
         android:gravity="center"
+        android:background="@null"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/cookingTimeLinearLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -133,15 +137,15 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_star"
-            app:tint="@color/yellow" />
+            app:tint="@color/yellow"
+            android:contentDescription="@string/star" />
 
         <TextView
             android:id="@+id/ratingTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
-            android:layout_marginStart="2dp"
-            android:text="5" />
+            android:layout_marginStart="2dp" />
 
     </LinearLayout>
 

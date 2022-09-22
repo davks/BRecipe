@@ -34,10 +34,12 @@ class SearchRecipeAdapter(
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentRecipeWithCategory = recipes[position]
+        val context = holder.itemView.context
+
         val time = "${currentRecipeWithCategory.recipe.cooking + currentRecipeWithCategory.recipe.preparation}"
         Log.d(TAG, "onBindViewHolder: $time")
         holder.binding.nameRecipeTextView.text = currentRecipeWithCategory.recipe.name
-        holder.binding.timeCookingTextView.text = "Time: ${time}min"
+        holder.binding.timeCookingTextView.text = context.getString(R.string.time_min, time) //"Time: ${time}min"
 
         if (currentRecipeWithCategory.recipe.imageUrl == "") {
             holder.binding.recipeImageView.setImageResource(R.drawable.no_image_available_small)
@@ -81,9 +83,5 @@ class SearchRecipeAdapter(
     fun addRecipes(recipes: List<RecipeAndCategory>) {
         this.recipes = recipes
         notifyDataSetChanged()
-    }
-
-    private fun openDetail(holder: MyViewHolder) {
-
     }
 }

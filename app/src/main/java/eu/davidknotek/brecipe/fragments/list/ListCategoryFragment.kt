@@ -168,9 +168,9 @@ class ListCategoryFragment : Fragment(), MenuProvider {
         category.numberOfRecipes?.let { numberOfRecipes ->
             if (numberOfRecipes > 0) {
                 val bundle = bundleOf(
-                    ChooseCategoryDialogFragment.MESSAGE to "Select the category where the recipes will be moved.",
+                    ChooseCategoryDialogFragment.MESSAGE to getString(R.string.select_category_move_recipes),
                     ChooseCategoryDialogFragment.CATEGORY_ID to category.id,
-                    ChooseCategoryDialogFragment.TITLE to "Delete the category")
+                    ChooseCategoryDialogFragment.TITLE to getString(R.string.delete_the_category))
                 findNavController().navigate(R.id.action_listCategoryFragment_to_chooseCategoryDialogFragment, bundle)
             } else {
                 categoryViewModel.deleteCategory(category)
@@ -185,7 +185,7 @@ class ListCategoryFragment : Fragment(), MenuProvider {
      */
     private fun restoreDeletedData(view: View, deletedItem: Category) {
         val snack = Snackbar.make(
-            view, "Deleted: ${deletedItem.name}",
+            view, getString(R.string.category_deleted, deletedItem.name),
             Snackbar.LENGTH_LONG
         )
         snack.addCallback(object: Snackbar.Callback() {
@@ -193,7 +193,7 @@ class ListCategoryFragment : Fragment(), MenuProvider {
                 super.onDismissed(transientBottomBar, event)
             }
         })
-        snack.setAction("Undo") {
+        snack.setAction(getString(R.string.undo)) {
             categoryViewModel.insertCategory(deletedItem)
         }
 

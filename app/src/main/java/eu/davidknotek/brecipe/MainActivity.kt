@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
         setupActionBarWithNavController(navController)
-        binding.toolbar.title = "Recipe"
+        binding.toolbar.title = getString(R.string.category)
     }
 
     override fun onSupportNavigateUp(): Boolean {

@@ -4,6 +4,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.Recipe
 import eu.davidknotek.brecipe.fragments.detail.DetailRecipeFragment
 import eu.davidknotek.brecipe.fragments.detail.ViewpagerDetailFragment
@@ -23,7 +24,11 @@ class DetailRecipeAdapter(
     private val ingredients = ViewpagerIngredientsFragment()
     private val procedure = ViewpagerProcedureFragment()
 
-    val tabs = listOf("Detail", "Ingredients", "Procedure")
+    val tabs = listOf(
+        activity.resources.getString(R.string.wp_detail),
+        activity.resources.getString(R.string.wp_ingredients),
+        activity.resources.getString(R.string.wp_procedure)
+    )
 
     init {
         detail.arguments = bundleOf(DetailRecipeFragment.RECIPE_AND_CATEGORY to recipe)

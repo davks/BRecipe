@@ -11,6 +11,9 @@ import eu.davidknotek.brecipe.data.models.Procedure
 import eu.davidknotek.brecipe.databinding.RowProcedureBinding
 import eu.davidknotek.brecipe.viewmodels.IngredientsAndProceduresViewModel
 
+/**
+ * Adapter for recyclerview in the recipe detail and a list of procedures.
+ */
 class ProcedureAdapter(private val ingredientsAndProceduresViewModel: IngredientsAndProceduresViewModel):
     RecyclerView.Adapter<ProcedureAdapter.MyViewHolder>() {
     private var procedures = emptyList<Procedure>()

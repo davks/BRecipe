@@ -8,7 +8,7 @@ import eu.davidknotek.brecipe.data.models.RecipeAndCategory
 
 @Dao
 interface RecipeDao {
-    /* Reciepes */
+    /* Recipes */
     @Insert
     suspend fun insertRecipe(recipe: Recipe)
 

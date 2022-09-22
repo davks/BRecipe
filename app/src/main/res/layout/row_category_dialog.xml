@@ -19,7 +19,8 @@
             android:scaleType="centerCrop"
             android:src="@drawable/no_image_available_small"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/no_image" />
 
         <TextView
             android:id="@+id/categoryNameTextView"

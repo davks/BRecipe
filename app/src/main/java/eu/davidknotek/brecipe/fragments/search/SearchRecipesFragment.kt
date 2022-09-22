@@ -64,7 +64,7 @@ class SearchRecipesFragment : Fragment(), SearchView.OnQueryTextListener, MenuPr
         val search = menu.findItem(R.id.menu_search)
         val searchView = search.actionView as? SearchView
         searchView?.isSubmitButtonEnabled = false
-        searchView?.queryHint = "Search..."
+        searchView?.queryHint = "${getString(R.string.search)}..."
         searchView?.isFocusable = true
         searchView?.isIconified = false
         searchView?.requestFocusFromTouch()

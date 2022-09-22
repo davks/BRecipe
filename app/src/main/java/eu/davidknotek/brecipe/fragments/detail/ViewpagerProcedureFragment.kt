@@ -1,15 +1,13 @@
 package eu.davidknotek.brecipe.fragments.detail
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.databinding.FragmentViewpagerProcedureBinding
-import eu.davidknotek.brecipe.fragments.adapters.IngredientsAdapter
 import eu.davidknotek.brecipe.fragments.adapters.ProcedureAdapter
 import eu.davidknotek.brecipe.viewmodels.IngredientsAndProceduresViewModel
 

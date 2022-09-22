@@ -21,7 +21,8 @@
             android:scaleType="centerCrop"
             android:src="@drawable/no_image_available"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/no_image" />
 
         <TextView
             android:id="@+id/nameRecipeTextView"
@@ -35,7 +36,6 @@
             android:textStyle="bold"
             android:lines="2"
             android:ellipsize="end"
-            android:text="Name"
             app:layout_constraintTop_toBottomOf="@+id/recipeImageView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -48,13 +48,15 @@
             android:src="@drawable/ic_time"
             app:tint="@color/gray"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/nameRecipeTextView"/>
+            app:layout_constraintTop_toBottomOf="@id/nameRecipeTextView"
+            android:contentDescription="@string/cooking" />
 
         <TextView
             android:id="@+id/timeCookingTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="11sp"
+            android:paddingStart="0dp"
             android:paddingEnd="12dp"
             app:layout_constraintEnd_toStartOf="@+id/favoriteImageView"
             app:layout_constraintTop_toTopOf="@id/timeImageView"
@@ -68,7 +70,8 @@
             android:padding="8dp"
             android:src="@drawable/ic_favorite_border"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@string/favorite" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
