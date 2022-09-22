@@ -63,12 +63,11 @@ class ListRecipeAdapter(
             recipeViewModel.updateRecipe(currentRecipeWithCategory.recipe)
         }
 
-        // Recipe detail, we need send current recipe
+        // Open recipe detail, we need send current selected recipe
         holder.binding.recipeCard.setOnClickListener {
             val bundle = bundleOf(DetailRecipeFragment.RECIPE_AND_CATEGORY to currentRecipeWithCategory)
             holder.itemView.findNavController()
                 .navigate(R.id.action_listRecipesFragment_to_detailRecipeFragment, bundle)
-
         }
     }
 
@@ -80,9 +79,5 @@ class ListRecipeAdapter(
     fun addRecipes(recipes: List<RecipeAndCategory>) {
         this.recipes = recipes
         notifyDataSetChanged()
-    }
-
-    private fun openDetail(holder: MyViewHolder) {
-
     }
 }

@@ -36,4 +36,6 @@
     <string name="edit_recipe">Edit a Recipe</string>
     <string name="delete_recipe">Delete a Recipe</string>
     <string name="recipes">Recipes:</string>
+    <string name="list_off">List off</string>
+    <string name="list_is_empty">The list is empty</string>
 </resources>

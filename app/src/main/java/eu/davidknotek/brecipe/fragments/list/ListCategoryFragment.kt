@@ -108,14 +108,14 @@ class ListCategoryFragment : Fragment(), MenuProvider {
         }
 
         // If we select a category from the chooseCategoryDialog, we remove the old category and transfer the recipes to the new category.
-        sharedViewModel.selectedCategory.observe(viewLifecycleOwner) { selectedCategory ->
+        sharedViewModel.recipeCategory.observe(viewLifecycleOwner) { selectedCategory ->
             selectedCategory?.let { newCategory ->
                 recipeViewModel.changeRecipeCategory(oldCategoryId, newCategory.id)
                 oldCategory?.let {
                     categoryViewModel.deleteCategory(it)
                 }
                 listCategoryAdapter.refreshCategories()
-                sharedViewModel.selectedCategory.value = null
+                sharedViewModel.recipeCategory.value = null
             }
         }
     }

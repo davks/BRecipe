@@ -90,7 +90,7 @@ class ChooseCategoryDialogFragment : BottomSheetDialogFragment() {
             }
         }
 
-        // Close dialog if is selected category
+        // Close a dialog if is selected a category
         sharedViewModel.isSelectedCategory.observe(viewLifecycleOwner) { isSelectedCategory ->
             if (isSelectedCategory) {
                 sharedViewModel.isSelectedCategory.value = false

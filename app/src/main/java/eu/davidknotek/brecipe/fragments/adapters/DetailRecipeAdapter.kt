@@ -10,11 +10,15 @@ import eu.davidknotek.brecipe.fragments.detail.ViewpagerDetailFragment
 import eu.davidknotek.brecipe.fragments.detail.ViewpagerIngredientsFragment
 import eu.davidknotek.brecipe.fragments.detail.ViewpagerProcedureFragment
 
+/**
+ * Adapter for viewpager2 that displays the recipe detail.
+ */
 class DetailRecipeAdapter(
     activity: FragmentActivity,
     val recipe: Recipe
 ): FragmentStateAdapter(activity) {
     private var fragments: List<Fragment>
+
     private val detail = ViewpagerDetailFragment()
     private val ingredients = ViewpagerIngredientsFragment()
     private val procedure = ViewpagerProcedureFragment()

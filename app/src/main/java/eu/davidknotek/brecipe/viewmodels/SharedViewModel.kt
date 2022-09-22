@@ -12,9 +12,9 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
     val recipeIngredients = MutableLiveData("")
     val recipeProcedure = MutableLiveData("")
     val recipeNote = MutableLiveData("")
+    val recipeCategory = MutableLiveData<Category>()
 
     val refreshCategory = MutableLiveData(false)
-    val selectedCategory = MutableLiveData<Category>()
     val isSelectedCategory = MutableLiveData(false) // we need to close chooseCategoryDialogFragment
 
     fun <T> checkIfDatabaseIsEmpty(list: List<T>) {

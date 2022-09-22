@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.RecipeAndCategory
 import eu.davidknotek.brecipe.databinding.FragmentEditRecipeBinding
+import eu.davidknotek.brecipe.dialogs.ChooseCategoryDialogFragment
 import eu.davidknotek.brecipe.fragments.detail.DetailRecipeFragment
 import eu.davidknotek.brecipe.util.CameraAndStoragePermission
 import eu.davidknotek.brecipe.util.strToInt
@@ -24,6 +25,9 @@ import eu.davidknotek.brecipe.viewmodels.IngredientsAndProceduresViewModel
 import eu.davidknotek.brecipe.viewmodels.RecipeViewModel
 import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 
+/**
+ * Edit a recipe. We can change the recipe name, procedure, ingredients etc...
+ */
 class EditRecipeFragment : Fragment(), MenuProvider {
     private lateinit var binding: FragmentEditRecipeBinding
     private val recipeViewModel: RecipeViewModel by viewModels()
@@ -77,16 +81,19 @@ class EditRecipeFragment : Fragment(), MenuProvider {
         binding.preparationEditText.setText(recipeAndCategory?.recipe?.preparation.toString())
         binding.cookingEditText.setText(recipeAndCategory?.recipe?.cooking.toString())
         binding.yieldEditText.setText(recipeAndCategory?.recipe?.yield.toString())
-        setRating(recipeAndCategory?.recipe?.rating?: 0)
-        sharedViewModel.recipeNote.value = recipeAndCategory?.recipe?.note?:""
-        sharedViewModel.recipeIngredients.value = recipeAndCategory?.recipe?.ingredients?:""
-        sharedViewModel.recipeProcedure.value = recipeAndCategory?.recipe?.procedure?:""
         binding.categoryTextView.text = recipeAndCategory?.category?.name?:""
+        setRating(recipeAndCategory?.recipe?.rating?: 0)
+
         if (recipeAndCategory?.recipe?.imageUrl == "") {
             binding.recipeImageView.setImageResource(R.drawable.no_image_available)
         } else {
             binding.recipeImageView.setImageURI(recipeAndCategory?.recipe?.imageUrl?.toUri())
         }
+
+        sharedViewModel.recipeCategory.value = recipeAndCategory?.category
+        sharedViewModel.recipeNote.value = recipeAndCategory?.recipe?.note?:""
+        sharedViewModel.recipeIngredients.value = recipeAndCategory?.recipe?.ingredients?:""
+        sharedViewModel.recipeProcedure.value = recipeAndCategory?.recipe?.procedure?:""
     }
 
     private fun saveRecipe() {
@@ -145,6 +152,12 @@ class EditRecipeFragment : Fragment(), MenuProvider {
 
         binding.imageFromCameraImageView.setOnClickListener {
             cameraAndStoragePermission.checkPermissionsCamera(binding.recipeImageView)
+        }
+
+        binding.addCategoryImageView.setOnClickListener {
+            val bundle = bundleOf(
+                ChooseCategoryDialogFragment.TITLE to "Choose the category")
+            findNavController().navigate(R.id.action_editRecipeFragment_to_chooseCategoryDialogFragment, bundle)
         }
 
         // Set rating (stars)
@@ -213,6 +226,14 @@ class EditRecipeFragment : Fragment(), MenuProvider {
         sharedViewModel.recipeNote.observe(viewLifecycleOwner) { note ->
             recipeAndCategory?.recipe?.note = note
             binding.noteTextView.text = sharedViewModel.geNoteMessage(note)
+        }
+
+        // Set category
+        sharedViewModel.recipeCategory.observe(viewLifecycleOwner) { selectedCategory ->
+            selectedCategory?.let { category ->
+                recipeAndCategory?.recipe?.idCategory = category.id
+                binding.categoryTextView.text = category.name
+            }
         }
     }
 }

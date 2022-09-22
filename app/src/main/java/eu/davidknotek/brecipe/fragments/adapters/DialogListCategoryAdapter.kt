@@ -40,7 +40,7 @@ class DialogListCategoryAdapter(private val sharedViewModel: SharedViewModel): R
 
         // If we click on a category, we save it and inform that we have already selected the category (we need close the chooseCategoryDialog)
         holder.binding.categoryCargView.setOnClickListener {
-            sharedViewModel.selectedCategory.value = currentCategory
+            sharedViewModel.recipeCategory.value = currentCategory
             sharedViewModel.isSelectedCategory.value = true
         }
     }
