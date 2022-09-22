@@ -9,6 +9,8 @@ import eu.davidknotek.brecipe.data.models.Category
 class SharedViewModel(application: Application) : AndroidViewModel(application) {
     private val app = application
     val isEmptyDatabase = MutableLiveData(false)
+    val isEmptyCategory = MutableLiveData(false) // categories in chooseCategoryDialogFragment
+
     val recipeIngredients = MutableLiveData("")
     val recipeProcedure = MutableLiveData("")
     val recipeNote = MutableLiveData("")
@@ -19,6 +21,10 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
 
     fun <T> checkIfDatabaseIsEmpty(list: List<T>) {
         isEmptyDatabase.value = list.isEmpty()
+    }
+
+    fun <T> checkIfCategoriesIsEmpty(list: List<T>) {
+        isEmptyCategory.value = list.isEmpty()
     }
 
     fun getIngredientsMessage(ingredients: String): String {

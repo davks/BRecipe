@@ -16,10 +16,12 @@ import eu.davidknotek.brecipe.fragments.UsedRecipesBy
 import eu.davidknotek.brecipe.fragments.adapters.ListRecipeAdapter
 import eu.davidknotek.brecipe.fragments.detail.DetailRecipeFragment
 import eu.davidknotek.brecipe.viewmodels.RecipeViewModel
+import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 
 class ListRecipesFragment : Fragment() {
     private lateinit var binding: FragmentListRecipesBinding
     private val recipeViewModel: RecipeViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by viewModels()
     private val listRecipeAdapter: ListRecipeAdapter by lazy { ListRecipeAdapter(recipeViewModel) }
     private var usedRecipesBy: UsedRecipesBy = UsedRecipesBy.CATEGORY
     private var currentCategory: Category? = null
@@ -43,6 +45,14 @@ class ListRecipesFragment : Fragment() {
 
         setListeners()
 
+        sharedViewModel.isEmptyDatabase.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.noItemsLinearLayout.visibility = View.VISIBLE
+            } else {
+                binding.noItemsLinearLayout.visibility = View.GONE
+            }
+        }
+
         return binding.root
     }
 
@@ -52,6 +62,7 @@ class ListRecipesFragment : Fragment() {
             getString(R.string.favorites)
 
         recipeViewModel.getFavoriteRecipes().observe(viewLifecycleOwner) { recipes ->
+            sharedViewModel.checkIfDatabaseIsEmpty(recipes)
             listRecipeAdapter.addRecipes(recipes)
         }
     }
@@ -63,6 +74,7 @@ class ListRecipesFragment : Fragment() {
 
         recipeViewModel.getRecipes(currentCategory?.id!!).observe(viewLifecycleOwner) { list ->
             list?.let {
+                sharedViewModel.checkIfDatabaseIsEmpty(it)
                 listRecipeAdapter.addRecipes(it)
             }
         }

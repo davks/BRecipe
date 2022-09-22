@@ -82,10 +82,12 @@ class ChooseCategoryDialogFragment : BottomSheetDialogFragment() {
         // We can show all categories, or all categories except the selected one
         if (categoryId == 0) {
             categoryViewModel.allCategories.observe(viewLifecycleOwner) {
+                sharedViewModel.checkIfCategoriesIsEmpty(it)
                 dialogListCategoryAdapter.addCategories(it)
             }
         } else {
             categoryViewModel.getAllCategories(categoryId).observe(viewLifecycleOwner) {
+                sharedViewModel.checkIfCategoriesIsEmpty(it)
                 dialogListCategoryAdapter.addCategories(it)
             }
         }
@@ -95,6 +97,15 @@ class ChooseCategoryDialogFragment : BottomSheetDialogFragment() {
             if (isSelectedCategory) {
                 sharedViewModel.isSelectedCategory.value = false
                 dismiss()
+            }
+        }
+
+        // When empty, database show an image with no items
+        sharedViewModel.isEmptyCategory.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.noItemsLinearLayout.visibility = View.VISIBLE
+            } else {
+                binding.noItemsLinearLayout.visibility = View.GONE
             }
         }
     }

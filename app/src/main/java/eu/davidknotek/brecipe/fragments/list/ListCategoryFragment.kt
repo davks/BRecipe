@@ -102,9 +102,13 @@ class ListCategoryFragment : Fragment(), MenuProvider {
             }
         }
 
-        // When empty, database show an image on fragment
+        // When empty, database show an image with no items
         sharedViewModel.isEmptyDatabase.observe(viewLifecycleOwner) {
-
+            if (it) {
+                binding.noItemsLinearLayout.visibility = View.VISIBLE
+            } else {
+                binding.noItemsLinearLayout.visibility = View.GONE
+            }
         }
 
         // If we select a category from the chooseCategoryDialog, we remove the old category and transfer the recipes to the new category.
