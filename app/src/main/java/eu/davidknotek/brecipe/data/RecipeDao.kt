@@ -51,5 +51,5 @@ interface RecipeDao {
     fun getAllCategories(): LiveData<List<Category>>
 
     @Query("SELECT * FROM categories WHERE id != :exceptCategoryId")
-    fun getAllCategories(exceptCategoryId: Int): LiveData<List<Category>>
+    fun getCategories(exceptCategoryId: Int): LiveData<List<Category>>
 }

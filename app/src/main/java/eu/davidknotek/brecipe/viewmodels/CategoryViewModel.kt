@@ -25,8 +25,8 @@ class CategoryViewModel(application: Application): AndroidViewModel(application)
         categoryRepository = CategoryRepositoryImpl(recipeDao)
     }
 
-    fun getAllCategories(exceptId: Int): LiveData<List<Category>> {
-        return categoryRepository.getAllCategories(exceptId)
+    fun getCategories(exceptId: Int): LiveData<List<Category>> {
+        return categoryRepository.getCategories(exceptId)
     }
 
     fun insertCategory(category: Category) {

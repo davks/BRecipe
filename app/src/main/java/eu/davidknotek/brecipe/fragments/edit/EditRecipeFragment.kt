@@ -16,7 +16,7 @@ import androidx.navigation.fragment.findNavController
 import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.RecipeAndCategory
 import eu.davidknotek.brecipe.databinding.FragmentEditRecipeBinding
-import eu.davidknotek.brecipe.dialogs.ChooseCategoryDialogFragment
+import eu.davidknotek.brecipe.fragments.choose.ChooseCategoryDialogFragment
 import eu.davidknotek.brecipe.fragments.detail.DetailRecipeFragment
 import eu.davidknotek.brecipe.util.CameraAndStoragePermission
 import eu.davidknotek.brecipe.util.strToInt
@@ -90,7 +90,7 @@ class EditRecipeFragment : Fragment(), MenuProvider {
             binding.recipeImageView.setImageURI(recipeAndCategory?.recipe?.imageUrl?.toUri())
         }
 
-        sharedViewModel.recipeCategory.value = recipeAndCategory?.category
+        sharedViewModel.selectedCategory.value = recipeAndCategory?.category
         sharedViewModel.recipeNote.value = recipeAndCategory?.recipe?.note?:""
         sharedViewModel.recipeIngredients.value = recipeAndCategory?.recipe?.ingredients?:""
         sharedViewModel.recipeProcedure.value = recipeAndCategory?.recipe?.procedure?:""
@@ -229,7 +229,7 @@ class EditRecipeFragment : Fragment(), MenuProvider {
         }
 
         // Set category
-        sharedViewModel.recipeCategory.observe(viewLifecycleOwner) { selectedCategory ->
+        sharedViewModel.selectedCategory.observe(viewLifecycleOwner) { selectedCategory ->
             selectedCategory?.let { category ->
                 recipeAndCategory?.recipe?.idCategory = category.id
                 binding.categoryTextView.text = category.name

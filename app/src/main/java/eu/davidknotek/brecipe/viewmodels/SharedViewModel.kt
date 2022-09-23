@@ -9,12 +9,14 @@ import eu.davidknotek.brecipe.data.models.Category
 class SharedViewModel(application: Application) : AndroidViewModel(application) {
     private val app = application
     val isEmptyDatabase = MutableLiveData(false)
-    val isEmptyCategory = MutableLiveData(false) // categories in chooseCategoryDialogFragment
+    val isEmptyCategory = MutableLiveData(false) // categories in ChooseCategoryDialogFragment
 
     val recipeIngredients = MutableLiveData("")
     val recipeProcedure = MutableLiveData("")
     val recipeNote = MutableLiveData("")
-    val recipeCategory = MutableLiveData<Category>()
+
+    val selectedCategory = MutableLiveData<Category>() // we use it in EditRecipeFragment
+    val deleteCategory = MutableLiveData<Category>() // we use it in ListCategoryFragment
 
     val refreshCategory = MutableLiveData(false)
     val isSelectedCategory = MutableLiveData(false) // we need to close chooseCategoryDialogFragment

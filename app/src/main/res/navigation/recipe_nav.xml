@@ -160,22 +160,22 @@
     </fragment>
     <dialog
         android:id="@+id/addNoteDialogFragment"
-        android:name="eu.davidknotek.brecipe.dialogs.AddNoteDialogFragment"
+        android:name="eu.davidknotek.brecipe.fragments.add.AddNoteDialogFragment"
         android:label="@string/add_note"
         tools:layout="@layout/fragment_add_note_dialog" />
     <dialog
         android:id="@+id/addProcedureDialogFragment"
-        android:name="eu.davidknotek.brecipe.dialogs.AddProcedureDialogFragment"
+        android:name="eu.davidknotek.brecipe.fragments.add.AddProcedureDialogFragment"
         android:label="@string/add_procedure"
         tools:layout="@layout/fragment_add_procedure_dialog"/>
     <dialog
         android:id="@+id/addIngredientsDialogFragment"
-        android:name="eu.davidknotek.brecipe.dialogs.AddIngredientsDialogFragment"
+        android:name="eu.davidknotek.brecipe.fragments.add.AddIngredientsDialogFragment"
         android:label="@string/add_ingredients"
         tools:layout="@layout/fragment_add_ingredients_dialog" />
     <dialog
         android:id="@+id/chooseCategoryDialogFragment"
-        android:name="eu.davidknotek.brecipe.dialogs.ChooseCategoryDialogFragment"
+        android:name="eu.davidknotek.brecipe.fragments.choose.ChooseCategoryDialogFragment"
         android:label="@string/add_category"
         tools:layout="@layout/fragment_choose_category_dialog" />
     <fragment

@@ -17,7 +17,7 @@ import com.google.android.material.snackbar.Snackbar
 import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.Category
 import eu.davidknotek.brecipe.databinding.FragmentListCategoryBinding
-import eu.davidknotek.brecipe.dialogs.ChooseCategoryDialogFragment
+import eu.davidknotek.brecipe.fragments.choose.ChooseCategoryDialogFragment
 import eu.davidknotek.brecipe.util.SwipeGesture
 import eu.davidknotek.brecipe.fragments.adapters.ListCategoryAdapter
 import eu.davidknotek.brecipe.fragments.UsedRecipesBy
@@ -112,14 +112,14 @@ class ListCategoryFragment : Fragment(), MenuProvider {
         }
 
         // If we select a category from the chooseCategoryDialog, we remove the old category and transfer the recipes to the new category.
-        sharedViewModel.recipeCategory.observe(viewLifecycleOwner) { selectedCategory ->
+        sharedViewModel.deleteCategory.observe(viewLifecycleOwner) { selectedCategory ->
             selectedCategory?.let { newCategory ->
                 recipeViewModel.changeRecipeCategory(oldCategoryId, newCategory.id)
                 oldCategory?.let {
                     categoryViewModel.deleteCategory(it)
                 }
                 listCategoryAdapter.refreshCategories()
-                sharedViewModel.recipeCategory.value = null
+                sharedViewModel.deleteCategory.value = null
             }
         }
     }

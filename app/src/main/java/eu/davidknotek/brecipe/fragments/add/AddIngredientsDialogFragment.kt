@@ -1,4 +1,4 @@
-package eu.davidknotek.brecipe.dialogs
+package eu.davidknotek.brecipe.fragments.add
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,21 +6,28 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import eu.davidknotek.brecipe.databinding.FragmentAddNoteDialogBinding
+import eu.davidknotek.brecipe.databinding.FragmentAddIngredientsDialogBinding
 import eu.davidknotek.brecipe.util.setDialogDimension
 import eu.davidknotek.brecipe.viewmodels.SharedViewModel
 
-class AddNoteDialogFragment : DialogFragment() {
-    private lateinit var binding: FragmentAddNoteDialogBinding
+
+class AddIngredientsDialogFragment : DialogFragment() {
+    private lateinit var binding: FragmentAddIngredientsDialogBinding
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentAddNoteDialogBinding.inflate(layoutInflater, container, false)
+        binding = FragmentAddIngredientsDialogBinding.inflate(layoutInflater, container, false)
         isCancelable = false
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.ingredientsEditText.setText(sharedViewModel.recipeIngredients.value)
+        setDialogDimension(dialog)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,14 +38,8 @@ class AddNoteDialogFragment : DialogFragment() {
         }
 
         binding.saveImageView.setOnClickListener {
-            sharedViewModel.recipeNote.value = binding.noteEditText.text.toString()
+            sharedViewModel.recipeIngredients.value = binding.ingredientsEditText.text.toString().trim()
             dismiss()
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        binding.noteEditText.setText(sharedViewModel.recipeNote.value)
-        setDialogDimension(dialog)
     }
 }
