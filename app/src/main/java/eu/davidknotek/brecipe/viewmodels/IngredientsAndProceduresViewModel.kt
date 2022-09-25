@@ -66,6 +66,9 @@ class IngredientsAndProceduresViewModel: ViewModel() {
         val ingredientsList = text.split("\n")
 
         for ((id, ingredient) in ingredientsList.withIndex()) {
+            if (ingredient == "") {
+                continue
+            }
             ingredients.add(Ingredient(id, ingredient, false))
         }
 
@@ -77,6 +80,9 @@ class IngredientsAndProceduresViewModel: ViewModel() {
         val proceduresList = text.split("\n")
 
         for ((id, procedure) in proceduresList.withIndex()) {
+            if (procedure == "") {
+                continue
+            }
             procedures.add(Procedure(id, procedure, false))
         }
 

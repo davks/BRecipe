@@ -2,6 +2,7 @@ package eu.davidknotek.brecipe.fragments.adapters
 
 import android.annotation.SuppressLint
 import android.graphics.Paint
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import eu.davidknotek.brecipe.R
 import eu.davidknotek.brecipe.data.models.Ingredient
 import eu.davidknotek.brecipe.databinding.RowIngredientBinding
+import eu.davidknotek.brecipe.util.isBold
 import eu.davidknotek.brecipe.viewmodels.IngredientsAndProceduresViewModel
 
 class IngredientsAdapter(private val ingredientsAndProceduresViewModel: IngredientsAndProceduresViewModel): RecyclerView.Adapter<IngredientsAdapter.MyViewHolder>() {
@@ -28,15 +30,26 @@ class IngredientsAdapter(private val ingredientsAndProceduresViewModel: Ingredie
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val ingredient = ingredients[position]
-        holder.binding.ingredientNameTextview.text = ingredient.item
+        var item = ingredient.item
 
+        // Item is bold
+        if (isBold(ingredient.item)) {
+            holder.binding.ingredientNameTextview.setTypeface(null, Typeface.BOLD)
+            holder.binding.ingredientNameTextview.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.orange))
+            item = item.substring(1, item.length - 1)
+        } else {
+            holder.binding.ingredientNameTextview.setTypeface(null, Typeface.NORMAL)
+            holder.binding.ingredientNameTextview.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.gray_dark))
+        }
+        holder.binding.ingredientNameTextview.text = item
+
+        // Item is done
         if (ingredient.done) {
             holder.binding.ingredientDoneImageView.setImageResource(R.drawable.ic_check_box)
             holder.binding.ingredientNameTextview.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.gray_light))
             holder.binding.ingredientNameTextview.paintFlags = holder.binding.ingredientNameTextview.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
         } else {
             holder.binding.ingredientDoneImageView.setImageResource(R.drawable.ic_check_box_outline_blank)
-            holder.binding.ingredientNameTextview.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.gray_dark))
             holder.binding.ingredientNameTextview.paintFlags = holder.binding.ingredientNameTextview.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
         }
 
