@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -35,9 +36,11 @@ class ProcedureAdapter(private val ingredientsAndProceduresViewModel: Ingredient
             holder.binding.procedureNameTextview.setTypeface(null, Typeface.BOLD)
             holder.binding.procedureNameTextview.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.blue2))
             item = procedure.item.substring(1, item.length - 1)
+            holder.binding.procedureDoneImageView.visibility = View.GONE
         } else {
             holder.binding.procedureNameTextview.setTypeface(null, Typeface.NORMAL)
             holder.binding.procedureNameTextview.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.gray_dark))
+            holder.binding.procedureDoneImageView.visibility = View.VISIBLE
         }
         holder.binding.procedureNameTextview.text = item
 
@@ -53,14 +56,16 @@ class ProcedureAdapter(private val ingredientsAndProceduresViewModel: Ingredient
 
         // When change ingredient to done or opposite
         holder.binding.rowProcedure.setOnClickListener {
-            if (procedure.done) {
-                holder.binding.procedureDoneImageView.setImageResource(R.drawable.ic_check_box_outline_blank)
-                procedure.done = false
-            } else {
-                holder.binding.procedureDoneImageView.setImageResource(R.drawable.ic_check_box)
-                procedure.done = true
+            if (!isBold(procedure.item)) {
+                if (procedure.done) {
+                    holder.binding.procedureDoneImageView.setImageResource(R.drawable.ic_check_box_outline_blank)
+                    procedure.done = false
+                } else {
+                    holder.binding.procedureDoneImageView.setImageResource(R.drawable.ic_check_box)
+                    procedure.done = true
+                }
+                ingredientsAndProceduresViewModel.updateProcedure(procedure)
             }
-            ingredientsAndProceduresViewModel.updateProcedure(procedure)
         }
     }
 

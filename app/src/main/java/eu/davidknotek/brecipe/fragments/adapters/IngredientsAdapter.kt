@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -37,7 +38,9 @@ class IngredientsAdapter(private val ingredientsAndProceduresViewModel: Ingredie
             holder.binding.ingredientNameTextview.setTypeface(null, Typeface.BOLD)
             holder.binding.ingredientNameTextview.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.orange))
             item = item.substring(1, item.length - 1)
+            holder.binding.ingredientDoneImageView.visibility = View.GONE
         } else {
+            holder.binding.ingredientDoneImageView.visibility = View.VISIBLE
             holder.binding.ingredientNameTextview.setTypeface(null, Typeface.NORMAL)
             holder.binding.ingredientNameTextview.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.gray_dark))
         }
@@ -55,14 +58,16 @@ class IngredientsAdapter(private val ingredientsAndProceduresViewModel: Ingredie
 
         // When change ingredient to done or opposite
         holder.binding.rowIngredient.setOnClickListener {
-            if (ingredient.done) {
-                holder.binding.ingredientDoneImageView.setImageResource(R.drawable.ic_check_box_outline_blank)
-                ingredient.done = false
-            } else {
-                holder.binding.ingredientDoneImageView.setImageResource(R.drawable.ic_check_box)
-                ingredient.done = true
+            if (!isBold(ingredient.item)) {
+                if (ingredient.done) {
+                    holder.binding.ingredientDoneImageView.setImageResource(R.drawable.ic_check_box_outline_blank)
+                    ingredient.done = false
+                } else {
+                    holder.binding.ingredientDoneImageView.setImageResource(R.drawable.ic_check_box)
+                    ingredient.done = true
+                }
+                ingredientsAndProceduresViewModel.updateIngredient(ingredient)
             }
-            ingredientsAndProceduresViewModel.updateIngredient(ingredient)
         }
     }
 

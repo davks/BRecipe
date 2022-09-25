@@ -9,10 +9,10 @@
         android:id="@+id/ingredientNameTextview"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginStart="10dp"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@id/ingredientDoneImageView"
+        app:layout_constraintStart_toEndOf="@+id/ingredientDoneImageView"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -21,6 +21,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="14dp"
+        android:layout_marginStart="12dp"
         app:tint="@color/orange"
         android:src="@drawable/ic_check_box_outline_blank"
         app:layout_constraintStart_toStartOf="parent"
