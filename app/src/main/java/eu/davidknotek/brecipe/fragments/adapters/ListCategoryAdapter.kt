@@ -1,8 +1,6 @@
 package eu.davidknotek.brecipe.fragments.adapters
 
 import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.net.toUri
@@ -43,8 +41,6 @@ class ListCategoryAdapter : RecyclerView.Adapter<ListCategoryAdapter.MyViewHolde
             holder.binding.categoryImageView.setImageURI(currentCategory.imageUrl.toUri())
         }
         holder.binding.numberOfRecipesTextView.text = currentCategory.numberOfRecipes?.toString()
-
-        Log.d(TAG, "onBindViewHolder: ${currentCategory.numberOfRecipes?.toString()}")
 
         // Show recipes from selected category
         holder.binding.rowCategory.setOnClickListener {

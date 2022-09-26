@@ -76,4 +76,5 @@
     <string name="recipe_detail">Recipe detail</string>
     <string name="add_recipe">Add new recipe</string>
     <string name="edit_category">Edit category</string>
+    <string name="recipes_colon">Recipes:</string>
 </resources>

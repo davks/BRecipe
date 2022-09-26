@@ -73,4 +73,5 @@
     <string name="recipe_detail">Detail receptu</string>
     <string name="add_recipe">Vložit nový recept</string>
     <string name="edit_category">Editovat kategorii</string>
+    <string name="recipes_colon">Recepty:</string>
 </resources>
