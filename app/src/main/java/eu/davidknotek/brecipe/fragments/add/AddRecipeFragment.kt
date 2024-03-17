@@ -11,8 +11,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import eu.davidknotek.brecipe.R
-import eu.davidknotek.brecipe.data.models.Category
-import eu.davidknotek.brecipe.data.models.Recipe
 import eu.davidknotek.brecipe.databinding.FragmentAddRecipeBinding
 import eu.davidknotek.brecipe.fragments.UsedRecipesBy
 import eu.davidknotek.brecipe.fragments.detail.DetailRecipeFragment
@@ -31,8 +29,6 @@ class AddRecipeFragment : Fragment(), MenuProvider {
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private val recipeViewModel: RecipeViewModel by viewModels()
     private lateinit var cameraAndStoragePermission: CameraAndStoragePermission
-    private var category: Category? = null
-    private lateinit var recipe: Recipe
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,9 +36,8 @@ class AddRecipeFragment : Fragment(), MenuProvider {
     ): View {
         binding = FragmentAddRecipeBinding.inflate(layoutInflater, container, false)
 
-        // In a new recipe we need a category
-        category = arguments?.getParcelable(DetailRecipeFragment.CATEGORY)
-        recipe = Recipe(0, category?.id?: 0, "", 0, 0, 0, false, 0, "", "", "", "")
+        // In a new recipe we need to know a category
+        sharedViewModel.setRecipeCategory(arguments?.getParcelable(DetailRecipeFragment.CATEGORY))
 
         // We need permission to camera
         cameraAndStoragePermission = CameraAndStoragePermission(this)
@@ -55,9 +50,6 @@ class AddRecipeFragment : Fragment(), MenuProvider {
         // Menu in ToolBar
         val menuHost = requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
-
-        // Set category name
-        binding.categoryTextView.text = category?.name
 
         emptyRecipe()
         setListeners()
@@ -126,21 +118,26 @@ class AddRecipeFragment : Fragment(), MenuProvider {
     private fun setObservers() {
         // Set ingredients
         sharedViewModel.recipeIngredients.observe(viewLifecycleOwner) { ingredients ->
-            recipe.ingredients = ingredients
+            sharedViewModel.setRecipeIngredients(ingredients)
             binding.ingredientsTextView.text = sharedViewModel.getIngredientsMessage(ingredients)
         }
 
         // Set procedure
         sharedViewModel.recipeProcedure.observe(viewLifecycleOwner) { procedure ->
-            recipe.procedure = procedure
+            sharedViewModel.setRecipeProcedure(procedure)
             binding.procedureTextView.text = sharedViewModel.getProcedureMessage(procedure)
 
         }
 
         // Set note
         sharedViewModel.recipeNote.observe(viewLifecycleOwner) { note ->
-            recipe.note = note
+            sharedViewModel.setRecipeNotes(note)
             binding.noteTextView.text = sharedViewModel.geNoteMessage(note)
+        }
+
+        // Set recipe category
+        sharedViewModel.category.observe(viewLifecycleOwner) {category ->
+            binding.categoryTextView.text = category?.name
         }
     }
 
@@ -167,26 +164,28 @@ class AddRecipeFragment : Fragment(), MenuProvider {
             binding.starFiveImageView.setImageResource(R.drawable.ic_star)
         }
 
-        recipe.rating = stars
+        sharedViewModel.setRecipeRating(stars)
     }
 
     private fun saveRecipe() {
-        recipe.name = binding.recipeNameEditText.text.toString()
-        recipe.preparation = strToInt(binding.preparationEditText.text.toString())
-        recipe.cooking = strToInt(binding.cookingEditText.text.toString())
-        recipe.yield = strToInt(binding.yieldEditText.text.toString())
+        sharedViewModel.setRecipeName(binding.recipeNameEditText.text.toString())
+        sharedViewModel.setRecipePreparation(strToInt(binding.preparationEditText.text.toString()))
+        sharedViewModel.setRecipeCooking(strToInt(binding.cookingEditText.text.toString()))
+        sharedViewModel.setRecipeYield(strToInt(binding.yieldEditText.text.toString()))
 
-        if (verifyRecipe(recipe)) {
-            if (cameraAndStoragePermission.image != null) {
-                val uri = cameraAndStoragePermission.saveImageToStorage()
-                recipe.imageUrl = uri.path.toString()
+        if (sharedViewModel.recipe.value != null) {
+            if (verifyRecipe(sharedViewModel.recipe.value!!)) {
+                if (cameraAndStoragePermission.image != null) {
+                    val uri = cameraAndStoragePermission.saveImageToStorage()
+                    sharedViewModel.setRecipeImageUrl(uri.path.toString())
+                }
+                recipeViewModel.insertRecipe(sharedViewModel.recipe.value!!)
+
+                val bundle = bundleOf(DetailRecipeFragment.CATEGORY to sharedViewModel.category.value, DetailRecipeFragment.SHOW_RECIPES_BY to UsedRecipesBy.CATEGORY)
+                findNavController().navigate(R.id.action_addRecipeFragment_to_listRecipesFragment, bundle)
+            } else {
+                Toast.makeText(requireContext(), getString(R.string.fill_in_all), Toast.LENGTH_SHORT).show()
             }
-            recipeViewModel.insertRecipe(recipe)
-
-            val bundle = bundleOf(DetailRecipeFragment.CATEGORY to category, DetailRecipeFragment.SHOW_RECIPES_BY to UsedRecipesBy.CATEGORY)
-            findNavController().navigate(R.id.action_addRecipeFragment_to_listRecipesFragment, bundle)
-        } else {
-            Toast.makeText(requireContext(), getString(R.string.fill_in_all), Toast.LENGTH_SHORT).show()
         }
     }
 }
